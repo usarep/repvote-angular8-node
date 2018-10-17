@@ -1,0 +1,74 @@
+
+<div class="center-block">
+  <app-spinner [visible]="_loading"> </app-spinner>
+</div>
+<div *ngIf="_repVoteKeywordDetail && _repVoteKeywordDetail.rollCallInfoVote?.length > 0"
+    class="panel panel-default" >
+
+    <!--
+
+RollCallInfoVote looks like this:
+
+rollCallInfo:
+
+"rowId": 9379,
+"id": 0,
+"congress": 114,
+"session": 1,
+"chamberId": 2,
+"year": 2015,
+"rollCallNum": 244,
+"voteQuestion": "Coons Amdt. No. 2243",
+"voteResult": "Amendment Agreed to",
+"voteDesc": "To authorize the establishment of American Dream Accounts.",
+"actionDate": "July 16, 2015,  11:42 AM"
+
+currently no billId
+
+vote: ...
+
+markup:
+http://getbootstrap.com/components/#panels-heading
+
+    -->
+
+  <!-- Default panel contents -->
+  <div class="panel-heading">
+     <h3 class="panel-title">
+         Votes on {{ _topicTypeDesc }} <span class="index-term-header"> {{ _topic }} </span> by
+         Representative <span class="rep-name bold"> {{ _repVoteKeywordDetail.repName }} </span>
+     </h3>
+  </div>
+  <div class="panel-body">
+    <p></p>
+  </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <th>Year</th>
+            <th>Num</th>
+            <th class="rcbi">Question/Description</th>
+            <th class="rep-name" > {{ _repVoteKeywordDetail.repName }} </th>
+            <th>Date</th>
+        </thead>
+        <tr *ngFor="let rollCallInfoVote of _repVoteKeywordDetail.rollCallInfoVote">
+            <td>{{ rollCallInfoVote.rollCallInfo?.year }} </td>
+            <td> {{ rollCallInfoVote?.rollCallInfo?.rollCallNum }}   </td>
+            <td class="rcbi">
+                <app-roll-call-bill-info [rollCallInfo]="rollCallInfoVote.rollCallInfo" > </app-roll-call-bill-info>
+            </td>
+            <!--
+            <td>rollCallInfoVote.rollCallInfo?.voteQuestion</td>
+            <td>rollCallInfoVote.rollCallInfo?.voteDesc</td>
+            -->
+            <td>
+                <i [class]="getVoteIcon(rollCallInfoVote.vote)"
+                    title="{{ rollCallInfoVote.vote }}"></i>
+            </td>
+
+            <td>{{ rollCallInfoVote.rollCallInfo?.actionDate }} </td>
+
+        </tr>
+    </table>
+</div>
+

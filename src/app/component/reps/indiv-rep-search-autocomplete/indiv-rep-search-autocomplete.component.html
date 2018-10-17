@@ -1,0 +1,54 @@
+<div class="container-fluid">
+    <div class="row">
+
+  <form class="form-group"  (ngSubmit)="indivReps()">
+      <!-- [formGroup]="compareRepsForm" -->
+        <ul class="list-inline">
+          <li *ngFor="let item of _items; let i=index;  "
+            [class]="getCssClass(item.party)" >
+            {{ item.label }}
+            <i (click)="deleteItem(item)"
+                class="glyphicon glyphicon-remove">
+            </i>
+          </li>
+        </ul>
+
+        <div class="column well col-sm">
+              <app-spinner [visible]="_repDataLoading"> </app-spinner>
+
+              <ng2-completer
+                [disableInput]="false || _items?.length >= 1"
+                 [(ngModel)]="searchStr"
+                 [dataService]="dataService"
+                 (selected)="onSelected($event)"
+                 [minSearchLength]="0"
+                 placeholder="Enter name of representative"
+                 [clearSelected]="true"
+                 inputClass="form-control input-sm"
+                 [ngModelOptions]="{standalone: true}"
+                 >
+              </ng2-completer>
+              <i *ngIf="_items?.length >= 1"
+                class="glyphicon glyphicon-question-sign"
+                (click)="showMaxCompareInfo()" > </i>
+        </div>
+        <!--
+              <div
+                *ngIf="_items?.length >= 1 && _isMaxCompareInfoVisible"
+                class="alert alert-success">To select a different representative, please first remove one you have already selected.
+                <i
+                  (click)="hidMaxCompareInfo()"
+                  class="glyphicon glyphicon-remove"></i>
+              </div>
+
+
+        <button class="btn btn-primary" [disabled]="!_items || _items.length < 1 ">
+          Show
+        </button>
+        -->
+
+
+      </form>
+
+    </div> <!-- row -->
+    </div> <!-- container-fluid -->

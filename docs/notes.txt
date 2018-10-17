@@ -1,0 +1,32 @@
+nav-bar - done
+
+app.routing
+
+app.module:
+  imports (modules) done
+  declarations (components) : todo
+
+Components:
+
+under bill/
+  bill-summary - done
+  amendment-summary - done
+
+
+
+Services (under repServices/) :
+
+bill-summary: replace AjaxService with HttpClient and Subject
+diff-data: replace AjaxService with HttpClient and Subject
+rep-names: replace AjaxService with HttpClient and Subject
+rep-votes: replace AjaxService with HttpClient and Subject
+
+Models (under repModels/) :
+  chamber.model.ts - done
+  rep.model.ts  - done
+  vote.model.ts - done
+
+
+Util (under repUtil/) :
+  rep-util.ts : done
+

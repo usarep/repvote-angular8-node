@@ -1,0 +1,17 @@
+
+  <h3 class="header"> Voting Record by Policy Area</h3>
+  <p class="subheader"> (Click to drill down.) </p>
+
+  <div class="row">
+    <div class="col-md-6">
+        <div class="list-group">
+            <a *ngFor="let policyAreaCount of _policyAreaCounts"
+                (click)="detailedVote(policyAreaCount)"
+                class="list-group-item">
+                <span class="badge"> {{ policyAreaCount.wasMember }} </span>
+                {{ policyAreaCount.topic }}
+            </a>
+        </div>
+    </div>
+  </div>
+

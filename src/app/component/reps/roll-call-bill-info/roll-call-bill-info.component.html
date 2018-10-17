@@ -1,0 +1,17 @@
+
+<!-- <a  (click)="billSummary()">
+  rc bill info
+</a>
+-->
+
+<span *ngIf="text1"> {{ text1 }} </span>
+<span *ngIf="amdt != null">
+  <app-issue-link [issue]="amdt" > </app-issue-link>
+</span>
+<span *ngIf="text2"> {{ text2 }} </span>
+<ol *ngIf="issueChain != null && issueChain.length > 0" class="breadcrumb amdtChain">
+<li *ngFor="let issue of issueChain; let i=index;">
+    <app-issue-link [issue]="issue" > </app-issue-link>
+</li>
+</ol>
+

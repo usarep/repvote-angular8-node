@@ -1,0 +1,52 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a
+            class="navbar-brand"
+            [class.active]="isCurrentlyActive('home')"
+            routerLink="" >
+                <img class="own-logo" alt="Brand" src="/assets/img/congress.jpg">
+                <app-active-link-sr [isActive]="isCurrentlyActive('home')"></app-active-link-sr>
+        </a>
+     </div> <!-- navbar-header -->
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <li class="dropdown open">
+                <a href="#"
+                    class="dropdown-toggle"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                    Voting History <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a [routerLink]="['/vote', 'house']" >CongressPerson</a></li>
+                    <li><a [routerLink]="['/vote', 'senate']" >Senator</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown open">
+                <a href="#"
+                    class="dropdown-toggle"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                    Compare & Contrast<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a [routerLink]="['/compare', 'house']" >CongressPersons</a></li>
+                    <li><a [routerLink]="['/compare', 'senate']" >Senators</a></li>
+                </ul>
+            </li>
+        </ul> <!-- nav navbar-nav -->
+    </div><!-- collapse navbar-collapse -->
+  </div><!-- container-fluid -->
+</nav>

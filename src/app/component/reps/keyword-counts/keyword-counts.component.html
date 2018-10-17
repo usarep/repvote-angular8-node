@@ -1,0 +1,44 @@
+<div *ngIf="_keywordCounts && _keywordCounts.length > 0">
+
+  <!--
+
+{
+"topic": "congress",
+"yes": 2003,
+"no": 1418,
+"present": 2,
+"absent": 177,
+"voted": 0,
+"wasMember": 3600
+},
+{
+"topic": "economics and public finance",
+"yes": 1630,
+"no": 1336,
+"present": 3,
+"absent": 125,
+"voted": 0,
+"wasMember": 3094
+},
+
+http://getbootstrap.com/components/#list-group-badges
+  -->
+
+
+  <h3 class="header"> Voting Record by Legislative Subjects</h3>
+  <p class="subheader"> (Click to drill down.) </p>
+
+  <div class="row">
+    <div class="col-md-6">
+        <div class="list-group">
+            <a *ngFor="let keywordCount of _keywordCounts"
+                (click)="detailedVote(keywordCount)"
+                class="list-group-item">
+                <span class="badge"> {{ keywordCount.wasMember }} </span>
+                {{ keywordCount.topic }}
+            </a>
+        </div>
+    </div>
+  </div>
+
+

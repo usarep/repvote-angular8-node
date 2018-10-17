@@ -1,0 +1,9 @@
+<a *ngIf="issue"
+        [routerLink]="[_billSummaryUrl,
+                issue.congress,
+                issue.docType,
+                issue.docNumber
+            ]"
+            class="issueLink"
+            > {{ issue.docType }}  {{ issue.docNumber }}
+</a>

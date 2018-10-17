@@ -1,0 +1,7 @@
+#page_toolbar, .locshare-toolbar {
+  display: none;
+}
+.vertical-space-10 {
+  margin-top: 10px;
+  padding-top: 10px;
+}

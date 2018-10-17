@@ -1,0 +1,39 @@
+<div class="container-fluid">
+
+    <div class="row">
+      <form class="form-group" [formGroup]="_searchForm" (ngSubmit)="indivReps()">
+
+         <div class="column well col-sm">
+               <app-spinner [visible]="_repDataLoading"> </app-spinner>
+
+               <input
+                  (ngModelChange)="onKeyPress($event)"
+                  placeholder="Enter name of representative"
+                  class="form-control input-sm"
+                  formControlName="search"
+                  >
+
+         </div>
+
+       </form>
+      </div> <!-- row -->
+
+      <div class="row">
+       <div *ngFor="let rep of _matchingReps"
+               class="col-sm-3">
+
+         <div class="card">
+           <div class="card-block">
+             <h3 class="card-title rep-name">{{ rep.label }} </h3>
+             <p class="card-text">
+               <!-- With supporting text below as a natural lead-in to additional content.
+               -->
+             </p>
+             <button class="btn btn-primary"  (click)="onSelected(rep)" >Select</button>
+           </div>
+         </div> <!-- card -->
+
+        </div>  <!-- col-sm-3 -->
+      </div> <!-- row -->
+
+     </div> <!-- container-fluid -->

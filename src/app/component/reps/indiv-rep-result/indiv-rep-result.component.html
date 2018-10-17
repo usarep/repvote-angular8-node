@@ -1,0 +1,26 @@
+<div><app-spinner [visible]="_loading"> </app-spinner></div>
+<div *ngIf="_repVoteSummary && _repVoteSummary.absence?.chartData?.length > 0" >
+
+     <app-absence-bar-chart
+        [chartData]="_repVoteSummary.absence?.chartData"
+        [chartLabels]="_repVoteSummary.absence?.chartLabels"
+        [chartLegend]="_repVoteSummary.repName"
+        >
+    </app-absence-bar-chart>
+</div>
+
+<app-policy-area-counts
+    *ngIf="showPolicyAreaCounts && _repVoteSummary && _repVoteSummary.policyAreaSummary"
+    [data]="_repVoteSummary.policyAreaSummary"
+    [_repName]="_repName"
+    [_repId]="_repId"
+    [_chamber]="_chamber"
+    > </app-policy-area-counts>
+
+<app-keyword-counts
+    *ngIf="showKeywordCounts && _repVoteSummary && _repVoteSummary.keywordSummary"
+    [data]="_repVoteSummary.keywordSummary"
+    [_repName]="_repName"
+    [_repId]="_repId"
+    [_chamber]="_chamber"
+    > </app-keyword-counts>

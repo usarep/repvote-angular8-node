@@ -1,0 +1,122 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+/*
+@import "../node_modules/ngx-sharebuttons/styles/share-buttons";
+
+@import "../node_modules/ngx-sharebuttons/styles/themes/circles/circles-theme";
+*/
+
+
+@import '../node_modules/@ngx-share/button/styles/share-buttons.css';
+@import '../node_modules/@ngx-share/button/styles/themes/default/default-theme.css';
+
+
+.glyphicon.glyphicon-asterisk {
+  font-size: 8px;
+}
+
+/* hide the recaptcha badge */
+div.grecaptcha-badge {
+ /* width:0 !important; */
+ display: none;
+}
+/* increase contrast */
+.breadcrumb > .active {
+  color: #000;
+}
+.breadcrumb {
+  font-size: 100%;
+}
+legend.small{
+  font-size: 100%;
+}
+
+/*  from v2 */
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+h2, h3 {
+  color: #444;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+}
+body {
+  margin: 2em;
+  padding-top: 200px;
+}
+.dropdown-menu > li > a { color: blue; }
+.rep-name {
+  padding-left: 5px;
+  padding-right: 5px;
+  text-transform: capitalize;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+.bold {
+  font-weight: bold;
+}
+
+/*
+http://stackoverflow.com/questions/25261254/how-to-make-a-bootstrap-3-dropdown-menu-open-by-default-when-it-is-inside-a-coll
+*/
+@media only screen and (max-width:480px){
+    .dropdown-menu{
+        display: block;
+        position: static;
+        background-color:transparent;
+        border:0 none;
+        box-shadow:none;
+        margin-top:0;
+        position:static;
+        width:100%;
+    }
+    .navbar-nav .dropdown-menu > li > a,
+    .navbar-nav .dropdown-menu .dropdown-header {
+        padding:5px 15px 5px 25px;
+    }
+    .navbar-nav .dropdown-menu > li > a{
+        line-height:20px;
+    }
+    .navbar-default .navbar-nav .dropdown-menu > li > a{
+        color:#777;
+    }
+}
+
+/*
+card is a bootstrap 4 feature. we are still using bootstrap 3.x
+*/
+.card {
+  -moz-box-direction: normal;
+    -moz-box-orient: vertical;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-sizing: inherit;
+    margin-bottom: 1.25rem;
+}
+.card-block {
+  box-sizing: inherit;
+  -moz-box-flex: 1;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+.card-title {
+    margin-bottom: 0.75rem;
+}
+
+.text-center {
+  text-align: center;
+}
+.dust {
+    color: #d0d0d0;
+    margin: 45px auto;
+    text-align: center;
+}

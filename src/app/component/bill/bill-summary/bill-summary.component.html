@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div><app-spinner [visible]="_loading"> </app-spinner></div>
+
+  <div *ngIf="billInfo" class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            {{ billName }} {{ _docNumber }} ,  {{ congressStr }}
+        </h3>
+    </div>
+    <div class="panel-body">
+
+        <div class="col-md-8 well">
+            <div [innerHTML]="billInfo.crsSummary"> </div>
+            <!-- if there is no crsSummary or description. if no extUrl, it could be a PN, etc. -->
+            <div *ngIf="!billInfo.crsSummary && extUrl && !billInfo.description ">
+                A summary is in progress.
+            </div>
+            <div *ngIf="!billInfo.crsSummary && !extUrl && !billInfo.description" class="dust">
+                Dust.
+            </div>
+
+            <!-- for older bills that are not in db, a placeholder description -->
+            <div *ngIf="!billInfo.crsSummary && extUrl && billInfo.description" class="dl-horizontal">
+
+                {{ billInfo.description }}
+            </div>
+
+            <div *ngIf="extUrl" class="vertical-space-10">
+                <small>
+                    <a href="{{ extUrl }} " new-tab> {{ _docType }} {{ _docNumber}} </a>
+                </small>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div *ngIf="billInfo.policyArea" >
+                <h3>Policy Area </h3>
+                {{ billInfo.policyArea }}
+            </div>
+            <div *ngIf="billInfo.crsIndexTerms">
+                <h3>Legislative Terms </h3>
+                <ul class="list-group">
+                    <li *ngFor="let keyword of billInfo.crsIndexTerms"
+                        class="list-group-item">
+                        {{ keyword }}
+                    </li>
+                </ul>
+            </div>
+
+
+        </div>
+
+        </div> <!-- panel-body -->
+    </div> <!-- panel panel-default -->
+</div> <!-- container-fluid -->

@@ -1,0 +1,108 @@
+<div class="container-fluid">
+  <div><app-spinner [visible]="_loading"> </app-spinner></div>
+
+  <div *ngIf="amdtInfo" class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title inline">
+            {{ amendmentName }} {{ _docNumber }} , {{ congressStr }}
+        </div>
+    </div> <!-- panel-heading -->
+
+    <div class="panel-body">
+        <div class="col-md-8 well">
+            <dl *ngIf="amdtInfo?.purpose"  class="dl-horizontal" >
+                <dt>Purpose</dt>
+                <dd> {{ amdtInfo.purpose }}</dd>
+            </dl>
+            <dl *ngIf="amdtInfo?.description" class="dl-horizontal">
+                <dt>Description</dt>
+                <dd>{{ amdtInfo.description }}</dd>
+            </dl>
+            <dl *ngIf="amdtInfo?.chamber?.chamberName" class="dl-horizontal">
+                <dt>Chamber</dt>
+                <dd>{{ amdtInfo.chamber.chamberName }}</dd>
+            </dl>
+            <dl *ngIf="amdtInfo?.sponsors" class="dl-horizontal">
+                <dt>Sponsor(s)</dt>
+                <dd>
+                <ul class="list-inline">
+                    <li *ngFor="let sponsor of amdtInfo?.sponsors" >
+                        <!-- link to vote/:chamber/:rep if chamber and nameId available -->
+                        <a *ngIf="amdtInfo?.chamber?.shortName && sponsor.nameId"
+                        [routerLink]=
+                        "['/vote', chamber, nameIdPrefix + sponsor.nameId]" >
+                        {{ sponsor.fullName }} </a>
+                        <!-- else, just present the name, no link-->
+                        <span *ngIf="!amdtInfo.chamber?.shortName || !sponsor.nameId">
+                            {{ sponsor.fullName }}
+                        </span>
+                    </li>
+                </ul>
+                </dd>
+            </dl> <!-- sponsors -->
+
+            <dl *ngIf="amdtInfo.amendedBill" class="dl-horizontal">
+                <dt>Amends</dt>
+                <dd> {{ amdtInfo.amendedBill.billType }} {{ amdtInfo.amendedBill.number }}:
+                {{ amdtInfo.amendedBill.billTitle }}
+                </dd>
+            </dl>
+
+            <dl *ngIf="amdtInfo.latestAction" class="dl-horizontal">
+                <dt>Latest Action</dt>
+                <dd>{{ amdtInfo.latestAction.text }}
+                <br />
+                {{ amdtInfo.latestAction.actionDate}}
+                {{ amdtInfo.latestAction.actionTime }}
+                </dd>
+            </dl>
+
+            <dl
+                *ngIf="amdtInfo.createDate || amdtInfo.submittedDate || amdtInfo.updateDate"
+                class="dl-horizontal" >
+                <dt></dt>
+                <dd> <small>
+                <span *ngIf="amdtInfo.createDate">
+                    Created: {{ amdtInfo.createDate }}
+                </span>
+                <span *ngIf="amdtInfo.submittedDate">
+                    Submitted: {{ amdtInfo.submittedDate }}
+                </span>
+                <span *ngIf="amdtInfo.updateDate">
+                    Last Update: {{ amdtInfo.updateDate }}
+                </span>
+                <p>
+                Ref: <a href="{{ extUrl}}" new-tab> {{ amdtInfo.amendmentType }} {{amdtInfo.number}} </a>
+
+                </small>
+                </dd>
+
+            </dl>
+
+
+        </div> <!-- col-md-8 well -->
+
+        <div class="col-md-4">
+            <div *ngIf="amdtInfo.actions" >
+                <h4>Actions</h4>
+                <ul class="list-group">
+                    <li *ngFor="let action of amdtInfo.actions; "
+                        class="list-group-item"  >
+                        {{ action.text }}
+                        <div *ngIf="action.links">
+                            <ul class="list-inline">
+                                <li *ngFor="let link of action.links;" >
+                                    <a href="{{link.url}}" new-tab>
+                                        {{link.name}}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        {{ action.actionDate }} {{ action.actionTime }}
+                    </li>
+                </ul>
+            </div>
+        </div> <!-- col-md-4 -->
+
+    </div> <!-- panel-body -->
+</div>

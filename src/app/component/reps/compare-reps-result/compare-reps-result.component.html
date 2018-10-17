@@ -1,0 +1,80 @@
+<div><app-spinner [visible]="_loading"> </app-spinner></div>
+<div *ngIf="_diffData && _diffData.absence?.chartData?.length > 0"
+     class="row">
+
+    <app-absence-bar-chart
+        [chartData]="_diffData.absence?.chartData"
+        [chartLabels]="_diffData.absence?.chartLabels"
+      >
+    </app-absence-bar-chart>
+
+</div>
+
+<div class="row"> <p> &nbsp;</p> </div>
+
+<div *ngIf="_diffData && _diffData.diffs?.length > 0"
+    class="panel panel-default" >
+
+    <!--
+
+"rowId": 9379,
+"id": 0,
+"congress": 114,
+"session": 1,
+"chamberId": 2,
+"year": 2015,
+"rollCallNum": 244,
+"voteQuestion": "Coons Amdt. No. 2243",
+"voteResult": "Amendment Agreed to",
+"voteDesc": "To authorize the establishment of American Dream Accounts.",
+"billId": 13863,
+"actionDate": "July 16, 2015,  11:42 AM"
+
+    markup:
+http://getbootstrap.com/components/#panels-heading
+
+    -->
+
+  <!-- Default panel contents -->
+  <div class="panel-heading">
+     <h3 class="panel-title">
+        Votes where
+          <span class="rep-name bold"> {{_diffData.repNames[0] }} </span> and
+          <span class="rep-name bold"> {{_diffData.repNames[1] }} </span> differ.
+     </h3>
+  </div>
+  <div class="panel-body">
+    <p>Voting patterns of representatives who are otherwise similar sheds interesting
+        insight into the hard tradeoffs they must resolve.  </p>
+  </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <th>Year</th>
+            <th>Num</th>
+            <th class="rcbi">Question/Description</th>
+            <th class="rep-name" > {{ _diffData.repNames[0]}} </th>
+            <th class="rep-name" > {{ _diffData.repNames[1]}} </th>
+            <th>Date</th>
+        </thead>
+        <tr *ngFor="let diff of _diffData.diffs">
+            <td>{{ diff.rollCallInfo?.year }} </td>
+            <td>{{ diff.rollCallInfo?.rollCallNum }}
+            </td>
+            <td class="rcbi">
+                <app-roll-call-bill-info [rollCallInfo]="diff.rollCallInfo" > </app-roll-call-bill-info>
+            </td>
+            <td>
+                <i [class]="getVoteIcon(diff.votes?.votes[0])"
+                    title="{{ diff.votes?.votes[0] }}"></i>
+            </td>
+            <td>
+                <i [class]="getVoteIcon(diff.votes?.votes[1])"
+                title="{{ diff.votes?.votes[1] }} " ></i>
+            </td>
+            <td>{{ diff.rollCallInfo?.actionDate }} </td>
+
+        </tr>
+    </table>
+
+</div>

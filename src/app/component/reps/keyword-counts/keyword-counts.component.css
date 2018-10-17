@@ -1,0 +1,14 @@
+.rep-name {
+  padding-left: 5px;
+  padding-right: 5px;
+  text-transform: capitalize;
+}
+.header {
+ margin-top: 15px;
+}
+.subheader {
+ margin-bottom: 15px;
+}
+a {
+   text-decoration: underline;
+}
