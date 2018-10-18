@@ -72,7 +72,7 @@ getRepVoteSummaryUrlFromBioGuide(bioGuide: string, chamberStr: string) {
  /repkeydet.htm?chamber_id=1&rep_name_id=1-E000215&policy_area=education
 
 */
-getRepKeywordDetailUrl(chamberId: number, repId: string, topic: string, topicType: string) {
+getRepKeywordDetailUrl(chamberId: number, repId: string, topic: string, topicType: string, voteType: string) {
 
   let url = environment.server + this._action.repKeywordDetail
     + "?chamber_id=" + chamberId
@@ -84,6 +84,10 @@ getRepKeywordDetailUrl(chamberId: number, repId: string, topic: string, topicTyp
 
   if (topicType && topicType === 'policy-area') {
     url += "&policy_area=" + encodeURIComponent(topic);
+  }
+
+  if (voteType) {
+    url += "&vote_type=" + encodeURIComponent(voteType);
   }
 
   return url;

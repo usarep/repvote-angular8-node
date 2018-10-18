@@ -16,7 +16,8 @@ export const ngProjectRouting = RouterModule.forRoot([
     { path: '', component: HomeComponent },
     { path: 'vote/:chamber', component: IndivRepLandingComponent },
     { path: 'vote/:chamber/:rep', component: IndivRepResultComponent },
-    { path: 'vote/:chamber/:rep/:topicType/:topic', component: IndivRepKeywordResultComponent },
+  { path: 'vote/:chamber/:rep/:topicType/:topic', component: IndivRepKeywordResultComponent },
+  { path: 'vote/:chamber/:rep/:topicType/:topic/:voteType', component: IndivRepKeywordResultComponent },
 
     { path: 'compare/:chamber', component: CompareRepsLandingComponent },
     { path: 'compare/:chamber/:reps', component: CompareRepsResultComponent },

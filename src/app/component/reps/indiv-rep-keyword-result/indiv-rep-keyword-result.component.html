@@ -37,6 +37,10 @@ http://getbootstrap.com/components/#panels-heading
      <h3 class="panel-title">
          Votes on {{ _topicTypeDesc }} <span class="index-term-header"> {{ _topic }} </span> by
          Representative <span class="rep-name bold"> {{ _repVoteKeywordDetail.repName }} </span>
+        <span *ngIf="this._voteTypeStr">
+          {{ _voteTypeStrPre }} <span class="capitalize bold"> {{ _voteTypeStr }} </span>
+        </span>
+
      </h3>
   </div>
   <div class="panel-body">

@@ -16,6 +16,8 @@ export class PolicyAreaCountsComponent implements OnInit {
   @Input() _repId: string;
   @Input() _repName: string;
 
+  showDetailed = true;
+
   constructor(public _router: Router) { }
 
   ngOnInit() {
@@ -53,14 +55,27 @@ export class PolicyAreaCountsComponent implements OnInit {
 
   // /repkeydet.htm?chamber_id=1&rep_name_id=foo&index_term=education
 
-  detailedVote(poliyAreaCount: KeywordCount) {
+  detailedVote(policyAreaCount: KeywordCount) {
 
       console.log("detailedVote() called for policy area");
       this._router.navigate(['/vote',
         this._chamber.paramName,
         this._repId,
         'policy-area',
-        poliyAreaCount.topic]);
+        policyAreaCount.topic]);
+  }
+
+  // voteType: yes, no, present, absent, wasMember
+
+  detailedVote2(policyAreaCount, voteType) {
+    console.log("detailedVote2() called for policy area");
+
+    this._router.navigate(['/vote',
+      this._chamber.paramName,
+      this._repId,
+      'policy-area',
+      policyAreaCount.topic,
+      voteType]);
   }
 
 }

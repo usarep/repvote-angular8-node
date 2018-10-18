@@ -25,6 +25,13 @@ export class IndivRepKeywordResultComponent implements OnInit, OnChanges, OnDest
 
   _topicTypeDesc: string; // if policy-area, then Policy Area. etc.
 
+  _voteType: string; // yes, no, present, absent, wasMember
+
+  _repOrSenatorStr: string; // value is "Representative" or "Senator"
+
+  _voteTypeStr: string; // if voteType is available, and is not wasMember, we show it
+  _voteTypeStrPre: string; // "where member was" absent, or "voting" present
+
   constructor(private _route: ActivatedRoute
              , private _router: Router
              , private _repVotesService: RepVotesService
@@ -41,6 +48,17 @@ export class IndivRepKeywordResultComponent implements OnInit, OnChanges, OnDest
        const chamberStr = String(params['chamber']).toLowerCase().trim();
        this._chamber = SupportedChambers[chamberStr];
 
+       // how to address this person -- "Representative" or "Senator"?
+       if (this._chamber.id === 1) {
+         this._repOrSenatorStr = "Representative";
+       }
+       else if (this._chamber.id === 2) {
+        this._repOrSenatorStr = "Senator";
+       }
+       else {
+          this._repOrSenatorStr = "Rep"; // default
+       }
+
        // repId - case sensitive on server when looking up repName
        this._repId = String(params['rep']).trim();
 
@@ -51,10 +69,31 @@ export class IndivRepKeywordResultComponent implements OnInit, OnChanges, OnDest
          this._topicTypeDesc = 'Policy Area';
        }
        else if (this._topicType === 'legislative-subject') {
-        this._topicTypeDesc = 'Legislative Subject';
-      }
+         this._topicTypeDesc = 'Legislative Subject';
+       }
+        // voteType
+        const tmpVoteType = params['voteType'];
+        if (tmpVoteType) {
+          this._voteType = String(tmpVoteType);
 
-       console.log(this._chamber, this._repId, this._topic, this._topicType);
+          if (this._voteType === 'wasMember') {
+            this._voteTypeStr = null; // all vote types
+          }
+          else if (this._voteType === 'absent') {
+            this._voteTypeStrPre = "where member was";
+            this._voteTypeStr = this._voteType;
+          }
+          else {
+            this._voteTypeStrPre = "voting";
+            this._voteTypeStr = this._voteType;
+          }
+        }
+        else {
+          this._voteType = null;
+          this._voteTypeStr = null;
+        }
+
+       console.log(this._chamber, this._repId, this._topic, this._topicType, this._voteType);
 
        this.subscriptionRepKeywordDetail = this._repVotesService.getRepKeywordDetailStatusListener()
          .subscribe(res => {
@@ -63,8 +102,12 @@ export class IndivRepKeywordResultComponent implements OnInit, OnChanges, OnDest
 
            this._loading = false;
 
-           if (this._chamber === res.chamber && this._repId === res.repId && this._topic === res.topic && this._topicType === res.topicType) {
-            this._repVoteKeywordDetail = res.repVoteKeywordDetail; // <RepVoteKeywordDetail>res;
+           if (this._chamber === res.chamber
+             && this._repId === res.repId
+             && this._topic === res.topic
+             && this._topicType === res.topicType
+             && this._voteType === res.voteType) {
+              this._repVoteKeywordDetail = res.repVoteKeywordDetail; // <RepVoteKeywordDetail>res;
            }
 
            else {
@@ -73,7 +116,7 @@ export class IndivRepKeywordResultComponent implements OnInit, OnChanges, OnDest
          });
 
        this._repVotesService.fetchRepVoteKeywordDetail(
-         this._chamber, this._repId, this._topic, this._topicType);
+         this._chamber, this._repId, this._topic, this._topicType, this._voteType);
 
 
      }

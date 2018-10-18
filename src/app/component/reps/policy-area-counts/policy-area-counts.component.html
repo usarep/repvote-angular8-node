@@ -1,17 +1,79 @@
 
-  <h3 class="header"> Voting Record by Policy Area</h3>
-  <p class="subheader"> (Click to drill down.) </p>
+<div class="row">
+  <div class="col-md-6">
 
-  <div class="row">
-    <div class="col-md-6">
-        <div class="list-group">
-            <a *ngFor="let policyAreaCount of _policyAreaCounts"
-                (click)="detailedVote(policyAreaCount)"
-                class="list-group-item">
-                <span class="badge"> {{ policyAreaCount.wasMember }} </span>
-                {{ policyAreaCount.topic }}
-            </a>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title inline">
+            Voting Record by Policy Area
+
+            <div class="right">
+                <button class="btn btn-default btn-spacebelow" (click)="showDetailed = !showDetailed">Toggle Detail Options</button>
+            </div>
         </div>
-    </div>
-  </div>
+      </div> <!-- panel-heading -->
+
+      <div class="panel-body">
+
+        <div *ngIf="showDetailed">
+          <table class="table table-bordered">
+            <thead>
+              <th>Policy Area</th>
+              <th>Total</th>
+              <th><i class="glyphicon glyphicon-thumbs-up" title="yeahs"></i></th>
+              <th><i class="glyphicon glyphicon-thumbs-down" title="nays"></i></th>
+              <th><i class="glyphicon glyphicon-unchecked" title="voted present"></i></th>
+              <th><i class="glyphicon glyphicon-minus" title="did not vote"></i></th>
+            </thead>
+            <tr *ngFor="let policyAreaCount of _policyAreaCounts" >
+              <td> {{ policyAreaCount.topic }} </td>
+              <td>
+                <a *ngIf="policyAreaCount.wasMember > 0"
+                  (click)="detailedVote2(policyAreaCount, 'wasMember')" >{{ policyAreaCount.wasMember }}
+                </a>
+              </td>
+              <td>
+                <a *ngIf="policyAreaCount.yes > 0"
+                  (click)="detailedVote2(policyAreaCount, 'yeah')" >{{ policyAreaCount.yes }}
+                </a>
+              </td>
+              <td>
+                <a *ngIf="policyAreaCount.no > 0"
+                  (click)="detailedVote2(policyAreaCount, 'nay')" >{{ policyAreaCount.no }}
+                </a>
+              </td>
+              <td>
+                <a *ngIf="policyAreaCount.present > 0"
+                  (click)="detailedVote2(policyAreaCount, 'present')" >{{ policyAreaCount.present }}
+                </a>
+              </td>
+              <td>
+                <a *ngIf="policyAreaCount.absent > 0"
+                  (click)="detailedVote2(policyAreaCount, 'absent')" >{{ policyAreaCount.absent }}
+
+                </a>
+              </td>
+            </tr>
+
+          </table>
+        </div> <!-- ngIf showDetailed -->
+
+        <div *ngIf="!showDetailed">
+          <div class="list-group">
+            <a *ngFor="let policyAreaCount of _policyAreaCounts"
+                  (click)="detailedVote(policyAreaCount)"
+                  class="list-group-item">
+                  <span class="badge"> {{ policyAreaCount.wasMember }} </span>
+                  {{ policyAreaCount.topic }}
+            </a>
+          </div>
+        </div> <!-- ngIf !showDetailed -->
+
+      </div> <!-- panel body -->
+
+      </div> <!-- panel panel-default" -->
+
+</div> <!-- col -->
+</div> <!-- row -->
 

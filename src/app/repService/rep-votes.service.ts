@@ -102,14 +102,14 @@ export class RepVotesService {
 // }
 
   private repKeywordDetailStatus =
-    new Subject<{ chamber: Chamber; repId: string; topic: string; topicType: string; repVoteKeywordDetail: RepVoteKeywordDetail }>();
+    new Subject<{ chamber: Chamber; repId: string; topic: string; topicType: string; voteType: string; repVoteKeywordDetail: RepVoteKeywordDetail }>();
 
   public getRepKeywordDetailStatusListener() {
     return this.repKeywordDetailStatus.asObservable();
 
   }
 
-  public fetchRepVoteKeywordDetail(chamber: Chamber, repId: string, topic: string, topicType: string)
+  public fetchRepVoteKeywordDetail(chamber: Chamber, repId: string, topic: string, topicType: string, voteType: string)
   {
 
         /*
@@ -125,6 +125,7 @@ export class RepVotesService {
             repId: repId,
             topic: topic,
             topicType: topicType,
+            voteType: voteType,
             repVoteKeywordDetail: this._cachedRepVoteKeywordDetail[repId][topic]
           });
 
@@ -134,7 +135,7 @@ export class RepVotesService {
         else {
           // not found in cache
 
-            const repKeywordDetailUrl = this._urlService.getRepKeywordDetailUrl(chamber.id, repId, topic, topicType);
+            const repKeywordDetailUrl = this._urlService.getRepKeywordDetailUrl(chamber.id, repId, topic, topicType, voteType);
             return this.http.get(repKeywordDetailUrl).subscribe(
                 res => {
                   console.log("getRepVoteKeywordDetail()", res);
@@ -151,6 +152,7 @@ export class RepVotesService {
                     repId: repId,
                     topic: topic,
                     topicType: topicType,
+                    voteType: voteType,
                     repVoteKeywordDetail: <RepVoteKeywordDetail>res
                   });
 
