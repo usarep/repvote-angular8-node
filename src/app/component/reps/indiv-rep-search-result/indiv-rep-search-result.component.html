@@ -1,0 +1,22 @@
+<div *ngIf="_loading" class="center-block">
+    <app-spinner [visible]="_loading"> </app-spinner>
+</div>
+<div *ngIf="_repVoteKeywordDetail && _repVoteKeywordDetail.rollCallInfoVote?.length > 0"
+      class="panel panel-default" >
+
+  <!-- Default panel contents -->
+  <div class="panel-heading">
+      <h3 class="panel-title">
+          Votes  by
+          {{ _repOrSenatorStr }} <span class="rep-name bold"> {{ _repVoteKeywordDetail.repName }} </span>
+          for search term <span class="bold"> {{ _searchStr }} </span>
+      </h3>
+  </div>
+  <div class="panel-body">
+
+    <app-indiv-rep-vote-table [_repVoteKeywordDetail]="_repVoteKeywordDetail" ></app-indiv-rep-vote-table>
+
+  </div>
+
+
+</div>

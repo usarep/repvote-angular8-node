@@ -1,0 +1,19 @@
+<div *ngIf="searchForm" class="row">
+  <div class="col-sm-4">
+      <form [formGroup]="searchForm" (ngSubmit)="searchBillForRepVote()" >
+          <div class="well">
+
+            <input
+              type="text"
+              class="form-control"
+              formControlName="searchStr"
+              aria-required="true"
+              aria-label="search bill for rep's vote">
+
+              <button type="submit"
+                  [disabled]="!searchForm.valid || !searchForm.dirty"
+                  class="btn btn-primary" > Go</button>
+          </div>
+      </form>
+</div>
+</div>

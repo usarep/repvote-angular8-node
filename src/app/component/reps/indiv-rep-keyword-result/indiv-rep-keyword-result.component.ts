@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RepVotesService } from 'src/app/repService/rep-votes.service';
 import { BillSummaryService } from 'src/app/repService/bill-summary.service';
 import { Subscription } from 'rxjs';
+import { SubscriptionUtil } from 'src/app/shared/subscription-util';
 
 @Component({
   selector: 'app-indiv-rep-keyword-result',
@@ -39,10 +40,12 @@ export class IndivRepKeywordResultComponent implements OnInit, OnChanges, OnDest
   { }
 
   subscriptionRepKeywordDetail: Subscription;
- ngOnInit() {
-     this._loading = true;
-   this.subscriptionParam = this._route.params.subscribe(
-     params => {
+
+  ngOnInit() {
+
+    this._loading = true;
+    this.subscriptionParam = this._route.params.subscribe(
+      params => {
        this._loading = true;
        // house or  senate
        const chamberStr = String(params['chamber']).toLowerCase().trim();
@@ -113,7 +116,7 @@ export class IndivRepKeywordResultComponent implements OnInit, OnChanges, OnDest
            else {
              console.log("stale data,skipping ");
            }
-         });
+        });  // subscriptionRepKeywordDetail
 
        this._repVotesService.fetchRepVoteKeywordDetail(
          this._chamber, this._repId, this._topic, this._topicType, this._voteType);
@@ -124,43 +127,44 @@ export class IndivRepKeywordResultComponent implements OnInit, OnChanges, OnDest
  }
 
  ngOnChanges(changes: SimpleChanges) {
-     console.log("from IndivRepResultComponent.ngOnChanges() ");
-     console.log(this._repVoteKeywordDetail);
+    //  console.log("from IndivRepResultComponent.ngOnChanges() ");
+    //  console.log(this._repVoteKeywordDetail);
  }
 
- ngOnDestroy() {
-     this.subscriptionParam.unsubscribe();
+  ngOnDestroy() {
+    SubscriptionUtil.unsubscribe(this.subscriptionParam);
+    SubscriptionUtil.unsubscribe(this.subscriptionRepKeywordDetail);
  }
 
- getVoteIcon(vote) {
-  if (!vote) {
-     return "";
-  }
+//  getVoteIcon(vote) {
+//   if (!vote) {
+//      return "";
+//   }
 
 
-  let glyph = " glyphicon ";
+//   let glyph = " glyphicon ";
 
-     // YEA or YES
-   if (vote === 'YEA' || vote === "YES") {
-     glyph += " glyphicon-thumbs-up";
-   }
+//      // YEA or YES
+//    if (vote === 'YEA' || vote === "YES") {
+//      glyph += " glyphicon-thumbs-up";
+//    }
 
-   else if (vote === "NAY" || vote === "NO") {
-     glyph += " glyphicon-thumbs-down";
-   }
+//    else if (vote === "NAY" || vote === "NO") {
+//      glyph += " glyphicon-thumbs-down";
+//    }
 
-   else if (vote === "PRESENT") {
-     glyph += " glyphicon-unchecked";
-   }
+//    else if (vote === "PRESENT") {
+//      glyph += " glyphicon-unchecked";
+//    }
 
-   else {
-     glyph += " glyphicon-minus";
-   }
+//    else {
+//      glyph += " glyphicon-minus";
+//    }
 
 
-   return glyph;
+//    return glyph;
 
- }
+//  }
 
 //  billSummaryOld(voteMetaDataId) {
 //      console.log("billSummary2 called");

@@ -36,7 +36,7 @@ http://getbootstrap.com/components/#panels-heading
   <div class="panel-heading">
      <h3 class="panel-title">
          Votes on {{ _topicTypeDesc }} <span class="index-term-header"> {{ _topic }} </span> by
-         Representative <span class="rep-name bold"> {{ _repVoteKeywordDetail.repName }} </span>
+         {{ _repOrSenatorStr }} <span class="rep-name bold"> {{ _repVoteKeywordDetail.repName }} </span>
         <span *ngIf="this._voteTypeStr">
           {{ _voteTypeStrPre }} <span class="capitalize bold"> {{ _voteTypeStr }} </span>
         </span>
@@ -47,32 +47,8 @@ http://getbootstrap.com/components/#panels-heading
     <p></p>
   </div>
 
-    <table class="table table-bordered">
-        <thead>
-            <th>Year</th>
-            <th>Num</th>
-            <th class="rcbi">Question/Description</th>
-            <th class="rep-name" > {{ _repVoteKeywordDetail.repName }} </th>
-            <th>Date</th>
-        </thead>
-        <tr *ngFor="let rollCallInfoVote of _repVoteKeywordDetail.rollCallInfoVote">
-            <td>{{ rollCallInfoVote.rollCallInfo?.year }} </td>
-            <td> {{ rollCallInfoVote?.rollCallInfo?.rollCallNum }}   </td>
-            <td class="rcbi">
-                <app-roll-call-bill-info [rollCallInfo]="rollCallInfoVote.rollCallInfo" > </app-roll-call-bill-info>
-            </td>
-            <!--
-            <td>rollCallInfoVote.rollCallInfo?.voteQuestion</td>
-            <td>rollCallInfoVote.rollCallInfo?.voteDesc</td>
-            -->
-            <td>
-                <i [class]="getVoteIcon(rollCallInfoVote.vote)"
-                    title="{{ rollCallInfoVote.vote }}"></i>
-            </td>
+  <app-indiv-rep-vote-table [_repVoteKeywordDetail]="_repVoteKeywordDetail" ></app-indiv-rep-vote-table>
 
-            <td>{{ rollCallInfoVote.rollCallInfo?.actionDate }} </td>
 
-        </tr>
-    </table>
-</div>
+  </div>
 

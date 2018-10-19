@@ -9,6 +9,10 @@
     </app-absence-bar-chart>
 </div>
 
+<div>
+    <app-search-bill-for-rep [_repId]="_repId" [_chamber]="_chamber" ></app-search-bill-for-rep>
+</div>
+
 <app-policy-area-counts
     *ngIf="showPolicyAreaCounts && _repVoteSummary && _repVoteSummary.policyAreaSummary"
     [data]="_repVoteSummary.policyAreaSummary"

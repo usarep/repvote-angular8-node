@@ -62,6 +62,9 @@ import { KeywordCountsComponent } from './component/reps/keyword-counts/keyword-
 import { RollCallBillInfoComponent } from './component/reps/roll-call-bill-info/roll-call-bill-info.component';
 import { ActiveLinkSrComponent } from './component/navBar/active-link-sr/active-link-sr.component';
 import { PolicyAreaCountsComponent } from './component/reps/policy-area-counts/policy-area-counts.component';
+import { SearchBillForRepComponent } from './component/reps/search-bill-for-rep/search-bill-for-rep.component';
+import { IndivRepVoteTableComponent } from './component/reps/indiv-rep-vote-table/indiv-rep-vote-table.component';
+import { IndivRepSearchResultComponent } from './component/reps/indiv-rep-search-result/indiv-rep-search-result.component';
 
 
 
@@ -117,6 +120,12 @@ import { PolicyAreaCountsComponent } from './component/reps/policy-area-counts/p
     ActiveLinkSrComponent,
 
     PolicyAreaCountsComponent,
+
+    SearchBillForRepComponent,
+
+    IndivRepVoteTableComponent,
+
+    IndivRepSearchResultComponent,
 
   ],
   imports: [

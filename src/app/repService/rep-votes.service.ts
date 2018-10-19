@@ -19,10 +19,12 @@ export class RepVotesService {
                     ...
                 }
     */
-      _cachedRepVoteKeywordDetail = {};
+  _cachedRepVoteKeywordDetail = {};
 
-    constructor(private http: HttpClient, public _urlService: UrlService)
-    { }
+  _cachedRepSearchResult= {};
+
+  constructor(private http: HttpClient, public _urlService: UrlService)
+  { }
 
   private repVoteSummaryStatus =
       new Subject<{ chamber: Chamber; repId: string; isBioGuide: boolean; repVoteSummary: RepVoteSummary }>();
@@ -109,6 +111,14 @@ export class RepVotesService {
 
   }
 
+  private repSearchStatus =
+    new Subject<{ chamber: Chamber; repId: string; searchStr: string; repVoteKeywordDetail: RepVoteKeywordDetail }>();
+
+  public getRepSearchStatusListener() {
+    return this.repSearchStatus.asObservable();
+
+  }
+
   public fetchRepVoteKeywordDetail(chamber: Chamber, repId: string, topic: string, topicType: string, voteType: string)
   {
 
@@ -153,6 +163,57 @@ export class RepVotesService {
                     topic: topic,
                     topicType: topicType,
                     voteType: voteType,
+                    repVoteKeywordDetail: <RepVoteKeywordDetail>res
+                  });
+
+                  return;
+                });
+        }
+
+  }
+
+  public fetchRepSearchResult(chamber: Chamber, repId: string, searchStr: string)
+  {
+
+        /*
+        if it's in cache, return an observable from cached data.
+        else return an observable from fetched data
+        */
+        if (this._cachedRepSearchResult[repId]
+            && this._cachedRepSearchResult[repId][searchStr]) {
+            // found in cache
+
+          // leave the repVoteKeywordDetail key the same for keywrod and search - simplifies common display component
+
+          this.repSearchStatus.next({
+            chamber: chamber,
+            repId: repId,
+            searchStr: searchStr,
+            repVoteKeywordDetail: this._cachedRepSearchResult[repId][searchStr]
+          });
+
+          return ;
+        }
+
+        else {
+          // not found in cache
+
+            const searchUrl = this._urlService.getRepVoteSearchUrl(chamber.id, repId, searchStr);
+            return this.http.get(searchUrl).subscribe(
+                res => {
+                  console.log("fetchRepSearchResult()", res);
+
+                  // cache it
+                  if (!this._cachedRepSearchResult[repId]) {
+                    this._cachedRepSearchResult[repId] = {};
+                  }
+
+                  this._cachedRepSearchResult[repId][searchStr] = <RepVoteKeywordDetail>res;
+
+                  this.repSearchStatus.next({
+                    chamber: chamber,
+                    repId: repId,
+                    searchStr: searchStr,
                     repVoteKeywordDetail: <RepVoteKeywordDetail>res
                   });
 

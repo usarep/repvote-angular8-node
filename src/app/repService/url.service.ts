@@ -93,6 +93,18 @@ getRepKeywordDetailUrl(chamberId: number, repId: string, topic: string, topicTyp
   return url;
 }
 
+  getRepVoteSearchUrl(chamberId: number, repId: string, searchStr: string) {
+
+    // action.repKeywordDetail is the same for keyword and searchStr
+    const url = environment.server + this._action.repKeywordDetail
+    + "?chamber_id=" + chamberId
+      + "&rep_name_id=" + repId
+      + "&search_str=" + encodeURIComponent(searchStr);
+
+    return url;
+
+}
+
  getBillSummaryUrl(congress: number, docType: string, docNumber: number) {
 
   const url = environment.server + this._action.billSummary
