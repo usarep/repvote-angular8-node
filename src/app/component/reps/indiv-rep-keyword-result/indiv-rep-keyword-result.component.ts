@@ -86,6 +86,10 @@ export class IndivRepKeywordResultComponent implements OnInit, OnChanges, OnDest
             this._voteTypeStrPre = "where member was";
             this._voteTypeStr = this._voteType;
           }
+          else if (this._voteType === 'yeah') {
+            this._voteTypeStrPre = "voting";
+            this._voteTypeStr = "yay";
+          }
           else {
             this._voteTypeStrPre = "voting";
             this._voteTypeStr = this._voteType;
