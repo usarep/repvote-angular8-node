@@ -21,7 +21,7 @@
             <thead>
               <th>Policy Area</th>
               <th>Total</th>
-              <th><i class="glyphicon glyphicon-thumbs-up" title="yeahs"></i></th>
+              <th><i class="glyphicon glyphicon-thumbs-up" title="yays"></i></th>
               <th><i class="glyphicon glyphicon-thumbs-down" title="nays"></i></th>
               <th><i class="glyphicon glyphicon-unchecked" title="voted present"></i></th>
               <th><i class="glyphicon glyphicon-minus" title="did not vote"></i></th>
@@ -35,7 +35,7 @@
               </td>
               <td>
                 <a *ngIf="policyAreaCount.yes > 0"
-                  (click)="detailedVote2(policyAreaCount, 'yeah')" >{{ policyAreaCount.yes }}
+                  (click)="detailedVote2(policyAreaCount, 'yay')" >{{ policyAreaCount.yes }}
                 </a>
               </td>
               <td>
