@@ -13,7 +13,9 @@ import { Ng5BreadcrumbModule } from 'ng5-breadcrumb';
 // other external modules
 import { Ng2CompleterModule } from "ng2-completer";
 import { ChartsModule } from 'ng4-charts/ng4-charts';
-import {ShareButtonsModule} from "ngx-sharebuttons";
+
+import { ShareButtonsOptions } from '@ngx-share/core';
+import {ShareButtonsModule} from "@ngx-share/buttons";
 
 
 import { AngularMaterialModule } from './angular-material.module';
@@ -66,7 +68,13 @@ import { SearchBillForRepComponent } from './component/reps/search-bill-for-rep/
 import { IndivRepVoteTableComponent } from './component/reps/indiv-rep-vote-table/indiv-rep-vote-table.component';
 import { IndivRepSearchResultComponent } from './component/reps/indiv-rep-search-result/indiv-rep-search-result.component';
 
-
+const customOptions: ShareButtonsOptions = {
+  include: ['reddit', 'facebook', 'twitter', 'linkedin', 'whatsapp'],
+  exclude: ['tumblr', 'stumble', 'vk'],
+  // theme: 'modern-light',
+  // gaTracking: true,
+  // twitterAccount: 'twitterUsername'
+};
 
 
 @NgModule({
@@ -142,7 +150,7 @@ import { IndivRepSearchResultComponent } from './component/reps/indiv-rep-search
 
     Ng2CompleterModule,
     ChartsModule,
-    ShareButtonsModule.forRoot(),
+    ShareButtonsModule.forRoot( { options: customOptions } ),
 
 
 

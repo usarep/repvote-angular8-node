@@ -81,3 +81,7 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+ // see https://murhafsousli.github.io/ngx-sharebuttons/#/icons
+
+import './icons';

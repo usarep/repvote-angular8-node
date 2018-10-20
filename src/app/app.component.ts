@@ -2,17 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { BreadcrumbService } from 'ng5-breadcrumb';
 import { Recaptchav3Service } from './service/recaptchav3.service';
 
+// [exclude]="'tumblr,pinterest,stumbleUpOn,google'"
+
+/*
+[title]="'ComparaRep'"
+        [description]="'Compare votes cast by different House and Senate members'"
+        [tags]="'tag1,tag2'"
+        [include]="'facebook,twitter,reddit,whatsapp,linkedin'"
+        [showCount]="true"
+*/
 
 @Component({
   selector: 'app-root',
   template: `
   <app-nav-bar></app-nav-bar>
-  <share-buttons
-        [title]="'ComparaRep'"
-        [description]="'Compare votes cast by different House and Senate members'"
-        [tags]="'tag1,tag2'"
-        [exclude]="'tumblr,pinterest,stumbleUpOn,google'"
-        [showCount]="true"></share-buttons>
+  <share-buttons></share-buttons>
 
   <router-outlet></router-outlet>
   ` ,
