@@ -32,7 +32,11 @@ public chartOptions: any = {
     spanGaps : true ,  // if there is a gap (NaN), line will not break if set to true. default is false
 };
 
-public chartColors: Array<any> = [
+public chartColors: any[] = [
+{
+  backgroundColor:["#FF7360", "#6FC8CE", "#FAFFF2", "#FFFCC4", "#B9E8E0"]
+}];
+public chartColors0: Array<any> = [
     { // grey
         backgroundColor: 'rgba(148,159,177,0.0)',
         borderColor: 'rgba(148,159,177,1)',

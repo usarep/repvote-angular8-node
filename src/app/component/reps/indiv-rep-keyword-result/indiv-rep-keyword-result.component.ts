@@ -6,6 +6,7 @@ import { RepVotesService } from 'src/app/repService/rep-votes.service';
 import { BillSummaryService } from 'src/app/repService/bill-summary.service';
 import { Subscription } from 'rxjs';
 import { SubscriptionUtil } from 'src/app/shared/subscription-util';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-indiv-rep-keyword-result',
@@ -34,9 +35,10 @@ export class IndivRepKeywordResultComponent implements OnInit, OnChanges, OnDest
   _voteTypeStrPre: string; // "where member was" absent, or "voting" present
 
   constructor(private _route: ActivatedRoute
-             , private _router: Router
-             , private _repVotesService: RepVotesService
-             , private _billSummaryService: BillSummaryService)
+              , private _router: Router
+              , private _repVotesService: RepVotesService
+              , private _billSummaryService: BillSummaryService
+              , private titleService: Title)
   { }
 
   subscriptionRepKeywordDetail: Subscription;
@@ -115,6 +117,11 @@ export class IndivRepKeywordResultComponent implements OnInit, OnChanges, OnDest
              && this._topicType === res.topicType
              && this._voteType === res.voteType) {
               this._repVoteKeywordDetail = res.repVoteKeywordDetail; // <RepVoteKeywordDetail>res;
+
+             // set page title
+             this.setTitle();
+
+
            }
 
            else {
@@ -138,52 +145,36 @@ export class IndivRepKeywordResultComponent implements OnInit, OnChanges, OnDest
   ngOnDestroy() {
     SubscriptionUtil.unsubscribe(this.subscriptionParam);
     SubscriptionUtil.unsubscribe(this.subscriptionRepKeywordDetail);
- }
+  }
 
-//  getVoteIcon(vote) {
-//   if (!vote) {
-//      return "";
-//   }
+  setTitle() {
 
+     /*
+     this is what we do in the template. use the same text for page title
 
-//   let glyph = " glyphicon ";
+      Votes on {{ _topicTypeDesc }} {{ _topic }} by
+      {{ _repOrSenatorStr }}  {{ _repVoteKeywordDetail.repName }}
+      <span *ngIf="this._voteTypeStr">
+        {{ _voteTypeStrPre }}  {{ _voteTypeStr }}
+      </span>
 
-//      // YEA or YES
-//    if (vote === 'YEA' || vote === "YES") {
-//      glyph += " glyphicon-thumbs-up";
-//    }
+      */
 
-//    else if (vote === "NAY" || vote === "NO") {
-//      glyph += " glyphicon-thumbs-down";
-//    }
+    let titleStr = "Votes on "
+           + this._topicTypeDesc
+           + " " + this._topic
+           + " by " + this._repOrSenatorStr
+           + " " + this._repVoteKeywordDetail.repName;
 
-//    else if (vote === "PRESENT") {
-//      glyph += " glyphicon-unchecked";
-//    }
+         if (this._voteTypeStr) {
+           titleStr += " " + this._voteTypeStrPre + " " + this._voteTypeStr;
+         }
 
-//    else {
-//      glyph += " glyphicon-minus";
-//    }
-
-
-//    return glyph;
-
-//  }
-
-//  billSummaryOld(voteMetaDataId) {
-//      console.log("billSummary2 called");
-//      const sub = this._billSummaryService.getBillId(voteMetaDataId).subscribe(res => {
-//          const vmId2BillId: VoteMetaId2BillId = <VoteMetaId2BillId>res;
-//        if (vmId2BillId && vmId2BillId.billId) {
-//          this._router.navigate(['/billSummary', vmId2BillId.billId]);
-//        }
-//        else {
-//              console.log("no billId found for voteMetaDataId=" + voteMetaDataId);
-//        }
-//      });
+    this.titleService.setTitle(titleStr);
+  }
 
 
-//  }
+
 
   billSummary(rollCallInfo: RollCallInfo) {
      console.log("billSummary() called");

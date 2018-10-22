@@ -3,6 +3,7 @@ import { RepVoteSummary } from 'src/app/repModel/vote.model';
 import { Chamber, SupportedChambers } from 'src/app/repModel/chamber.model';
 import { ActivatedRoute } from '@angular/router';
 import { RepVotesService } from 'src/app/repService/rep-votes.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-indiv-rep-result',
@@ -23,7 +24,8 @@ export class IndivRepResultComponent implements OnInit, OnChanges, OnDestroy {
   showPolicyAreaCounts = true;
 
  constructor(public _route: ActivatedRoute
-             , public _repVotesService: RepVotesService) { }
+    , public _repVotesService: RepVotesService
+    , public titleService: Title) { }
 
  ngOnInit() {
      this._loading = true;
@@ -52,6 +54,8 @@ export class IndivRepResultComponent implements OnInit, OnChanges, OnDestroy {
 
            if (this._chamber === res.chamber && this._repId === res.repId && bioGuide === res.isBioGuide) {
              this._repVoteSummary = res.repVoteSummary; // <RepVoteSummary>res;
+
+             this.setTitle("Voting summary for " + this._repVoteSummary.repName);
            }
            else {
              console.log("stale data, skipping");
@@ -101,4 +105,8 @@ export class IndivRepResultComponent implements OnInit, OnChanges, OnDestroy {
 
   return glyph ;
  }
+
+  setTitle(title: string) {
+    this.titleService.setTitle(title);
+  }
 }

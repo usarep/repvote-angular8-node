@@ -1,19 +1,24 @@
 <div *ngIf="searchForm" class="row">
-  <div class="col-sm-4">
+  <div class="col-sm-6">
       <form [formGroup]="searchForm" (ngSubmit)="searchBillForRepVote()" >
           <div class="well">
+              <div class="input-group">
+                  <input
+                      type="text"
+                      class="form-control"
+                      formControlName="searchStr"
+                      placeholder="Search for..."
+                      aria-required="true"
+                      aria-label="search bill for rep's vote">
 
-            <input
-              type="text"
-              class="form-control"
-              formControlName="searchStr"
-              aria-required="true"
-              aria-label="search bill for rep's vote">
+                  <span class="input-group-btn">
+                      <button type="submit"
+                      [disabled]="!searchForm.valid || !searchForm.dirty"
+                      class="btn btn-primary" > Go!</button>
+                  </span>
+                </div><!-- /input-group -->
 
-              <button type="submit"
-                  [disabled]="!searchForm.valid || !searchForm.dirty"
-                  class="btn btn-primary" > Go</button>
-          </div>
+          </div> <!-- well -->
       </form>
 </div>
 </div>
