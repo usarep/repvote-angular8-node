@@ -78,4 +78,24 @@ export class PolicyAreaCountsComponent implements OnInit {
       voteType]);
   }
 
+  /*
+  if policyAreaCount.wasMember > 0 then return a percent
+  as (x %)
+  else return nothing.
+  */
+  percent(policyAreaCount, oneCount) {
+    let result = 0;
+    if (policyAreaCount
+      && policyAreaCount.wasMember
+      && policyAreaCount.wasMember > 0
+      && oneCount > 0) {
+      result = Math.round((oneCount / policyAreaCount.wasMember) * 100);
+      return "" + result + "%";
+    }
+    else {
+      return "";
+    }
+
+  }
+
 }

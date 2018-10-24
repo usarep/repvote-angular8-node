@@ -39,6 +39,7 @@
                 <a *ngIf="policyAreaCount.yes > 0"
                   (click)="detailedVote2(policyAreaCount, 'yay')" >{{ policyAreaCount.yes }}
                 </a>
+                <br>{{ percent(policyAreaCount, policyAreaCount.yes) }}
               </td>
               <td>
                 <a *ngIf="policyAreaCount.no > 0"
@@ -53,8 +54,8 @@
               <td>
                 <a *ngIf="policyAreaCount.absent > 0"
                   (click)="detailedVote2(policyAreaCount, 'absent')" >{{ policyAreaCount.absent }}
-
                 </a>
+                <br>{{ percent(policyAreaCount, policyAreaCount.absent) }}
               </td>
             </tr>
 
