@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { House } from 'src/app/repModel/chamber.model';
 
+
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -14,5 +15,6 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit() {
   }
+
 
 }

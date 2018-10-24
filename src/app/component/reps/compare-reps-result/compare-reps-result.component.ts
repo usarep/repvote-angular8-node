@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DiffDataService } from 'src/app/repService/diff-data.service';
 import { Subscription } from 'rxjs';
 import { SubscriptionUtil } from 'src/app/shared/subscription-util';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-compare-reps-result',
@@ -24,8 +25,9 @@ export class CompareRepsResultComponent implements OnInit, OnChanges, OnDestroy 
 
 
  constructor( public _route: ActivatedRoute,
-     public _diffDataService: DiffDataService,
-     private _router: Router
+   public _diffDataService: DiffDataService,
+   public titleService: Title,
+   private _router: Router
  ) { }
 
   subscriptionDiffData: Subscription;
@@ -52,7 +54,12 @@ export class CompareRepsResultComponent implements OnInit, OnChanges, OnDestroy 
            // verify that the data is for this particular set of params
            if (this._chamber === res.chamber && this._csvRepIds === res.csvRepIds) {
             this._diffData = res.diffData;
-            console.log(this._diffData);
+             console.log(this._diffData);
+
+             if (this._diffData && this._diffData.repNames && this._diffData.repNames.length >= 2) {
+              this.titleService.setTitle("Compare voting records of " + this._diffData.repNames[0] + " and " + this._diffData.repNames[1]);
+             }
+
            }
            else {
             console.log("stale diff data, skipping.");

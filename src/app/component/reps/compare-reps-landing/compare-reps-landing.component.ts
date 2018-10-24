@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Chamber, SupportedChambers } from 'src/app/repModel/chamber.model';
 import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-compare-reps-landing',
@@ -13,7 +14,7 @@ export class CompareRepsLandingComponent implements OnInit, OnDestroy {
 
   _chamber : Chamber;
 
-  constructor(public _route: ActivatedRoute) {
+  constructor(public _route: ActivatedRoute, private titleService: Title) {
   }
 
   ngOnInit() {
@@ -24,6 +25,8 @@ export class CompareRepsLandingComponent implements OnInit, OnDestroy {
         this._chamber = SupportedChambers[normalized];
 
         console.log(this._chamber);
+
+        this.titleService.setTitle("Compare voting records of members of congress : " + normalized);
 
       }
     );

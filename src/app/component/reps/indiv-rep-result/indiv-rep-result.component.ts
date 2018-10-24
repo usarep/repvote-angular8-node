@@ -24,8 +24,10 @@ export class IndivRepResultComponent implements OnInit, OnChanges, OnDestroy {
   showPolicyAreaCounts = true;
 
  constructor(public _route: ActivatedRoute
-    , public _repVotesService: RepVotesService
-    , public titleService: Title) { }
+   , public _repVotesService: RepVotesService
+   , public titleService: Title
+   )
+ { }
 
  ngOnInit() {
      this._loading = true;

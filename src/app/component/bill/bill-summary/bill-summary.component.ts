@@ -10,6 +10,7 @@ import { BillSummaryService } from 'src/app/repService/bill-summary.service';
 import * as $ from '../../../../../node_modules/jquery/dist/jquery.min.js';
 import { Subscription } from 'rxjs';
 import { SubscriptionUtil } from 'src/app/shared/subscription-util.js';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-bill-summary',
@@ -32,7 +33,8 @@ export class BillSummaryComponent implements OnInit, OnDestroy {
   // [innerHTML]="{{ billInfo.crsSummary }}"
 
   constructor( private _route: ActivatedRoute,
-      private _billSummaryService: BillSummaryService)
+    private _billSummaryService: BillSummaryService,
+    private _titleService: Title)
   {
   }
 
@@ -58,6 +60,13 @@ export class BillSummaryComponent implements OnInit, OnDestroy {
                       console.log(this.billInfo);
                       this.cleanStuff();
                       this.computeExtUrl();
+
+                      // {{ billName }} {{ _docNumber }} ,  {{ congressStr }}
+                      this._titleService.setTitle(
+                            "Bill summary for " +
+                            this.billName + " " +
+                            this._docNumber + " " +
+                            this.congressStr);
 
                     }
                     else {

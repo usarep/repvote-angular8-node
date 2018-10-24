@@ -6,6 +6,7 @@ import { Constants } from 'src/app/constants/constants';
 import { AmendmentInfo } from 'src/app/repModel/vote.model';
 import { BillSummaryService } from 'src/app/repService/bill-summary.service';
 import { SubscriptionUtil } from 'src/app/shared/subscription-util';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-amendment-summary',
@@ -39,7 +40,8 @@ export class AmendmentSummaryComponent implements OnInit, OnDestroy {
   // [innerHTML]="{{ billInfo.crsSummary }}"
 
   constructor( private _route: ActivatedRoute,
-      private _billSummaryService: BillSummaryService)
+    private _billSummaryService: BillSummaryService,
+    private _titleService: Title)
   {
   }
 
@@ -78,6 +80,14 @@ export class AmendmentSummaryComponent implements OnInit, OnDestroy {
                           shortName = this._docType; // kludge but will work
                       }
                       this.computeChamber(shortName);
+
+                      //  {{ amendmentName }} {{ _docNumber }} , {{ congressStr }}
+                      this._titleService.setTitle(
+                        "Amendment Summary for " +
+                        this.amendmentName + " " +
+                        this._docNumber + " " +
+                        this.congressStr
+                      );
 
                     }
 

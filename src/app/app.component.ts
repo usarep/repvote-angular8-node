@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadcrumbService } from 'ng5-breadcrumb';
 import { Recaptchav3Service } from './service/recaptchav3.service';
+import { Title, Meta } from '@angular/platform-browser';
 
 // [exclude]="'tumblr,pinterest,stumbleUpOn,google'"
 
@@ -16,9 +17,15 @@ import { Recaptchav3Service } from './service/recaptchav3.service';
   selector: 'app-root',
   template: `
   <app-nav-bar></app-nav-bar>
-  <div class="content-body">
-    <router-outlet></router-outlet>
+
+  <div class="hidden-xs app-vert-space">
+    &nbsp;
   </div>
+  <div class="visible-xs app-vert-space">
+    &nbsp;
+  </div>
+
+  <router-outlet></router-outlet>
 
   <share-buttons></share-buttons>
   ` ,
@@ -29,57 +36,99 @@ export class AppComponent implements OnInit {
   title = 'app';
 
   //
-  constructor() {
+  constructor(
+    private titleService: Title,
+    private metaService: Meta,
+    private breadcrumbService: BreadcrumbService
+  ) {
 
+    // breadcrumbs: https://github.com/akiocloud/ng5-breadcrumb
+    // breadcrumbs is a TODO
+    // this.initBreadCrumbLabels();
 
   }
 
 
   ngOnInit() {
+    this.titleService.setTitle("Voting record of members of congress");
+    this.initKeywordsTag("roll-call, voting-record");
   }
 
-  initBreadCrumbLabels() {
+  /*
+  if there is a name=keywords tag, update it. else, initialize it
+  */
+ initKeywordsTag(contentStr: string) {
 
-    /*
-    this.breadcrumbService.addFriendlyNameForRoute('/newForm', 'New');
+    const existing = this.metaService.getTag('name=keywords');
+    console.log("existing", existing);
 
-    this.breadcrumbService.addFriendlyNameForRoute('/newForm/intakeForm', 'Intake');
-    this.breadcrumbService.addFriendlyNameForRoute('/newForm/altMediaRequest', 'Alt Media Request');
+    if (existing && existing.content) {
+      // update
+      this.metaService.updateTag({ name: 'keywords', content: contentStr });
+    }
+    else {
+      // add
+      this.metaService.addTag({ name: 'keywords', content: contentStr });
+    }
+
+ }
+
+  /*
+
+  this part works, but the actual breadcrumbs at more depth require some attention
+
+  remove the app-vert-space stuff if breadcrumbs are enabled
+
+  <div class="hidden-xs our-breadcrumb">
+    <breadcrumb></breadcrumb>
+  </div>
+
+  <div class="visible-xs our-breadcrumb">
+    <breadcrumb></breadcrumb>
+  </div>
+
+  */
+
+  // initBreadCrumbLabels() {
+
+  //   this.breadcrumbService.addCallbackForRouteRegex('/vote/house/[a-zA-Z0-9_\-]', this.getVoteHouseLeaf);
+  //   this.breadcrumbService.addCallbackForRouteRegex('/vote/senate/[a-zA-Z0-9_\-]', this.getVoteSenateLeaf);
+
+  //   this.breadcrumbService.addCallbackForRouteRegex('/compare/house/[a-zA-Z0-9_\-]', this.getCompareHouseLeaf);
+  //   this.breadcrumbService.addCallbackForRouteRegex('/compare/senate/[a-zA-Z0-9_\-]', this.getCompareSenateLeaf);
+
+  //   this.breadcrumbService.hideRouteRegex('/billSummary');
+  //   this.breadcrumbService.hideRouteRegex('/billSummary/[a-zA-Z0-9_\-]');
+
+  //   // amendmentSummary/110/SAmdt/5280
+  //   this.breadcrumbService.hideRouteRegex('/amendmentSummary');
+  //   this.breadcrumbService.hideRouteRegex('/amendmentSummary/[a-zA-Z0-9_\-]');
 
 
-    this.breadcrumbService.addFriendlyNameForRoute('/submittedForm', 'Submitted');
-    this.breadcrumbService.addFriendlyNameForRoute('/submittedForm/intakeForm', 'Intake');
-    this.breadcrumbService.addFriendlyNameForRoute('/submittedForm/altMediaRequest', 'Alt Media Request');
+  //   this.breadcrumbService.hideRouteRegex('/vote/senate/[a-zA-Z0-9_\-]/policy-area');
 
-    this.breadcrumbService.addCallbackForRouteRegex('/submittedForm/intakeForm/[a-zA-Z0-9_\-]', this.getIntakeLeaf);
 
-    this.breadcrumbService.addCallbackForRouteRegex('/submittedForm/altMediaRequest/[a-zA-Z0-9_\-]', this.getAltReqLeaf);
+  // }
 
-    this.breadcrumbService.addCallbackForRouteRegex('/submittedForm/applicationForServices/[a-zA-Z0-9_\-]', this.getAppServicesReqLeaf);
+  // getVoteHouseLeaf(id: string): string {
+  //   return 'member';
+  // }
 
-    // login?next=...  -- nothing
-    this.breadcrumbService.hideRouteRegex('/login');
+  // getVoteSenateLeaf(id: string): string {
+  //   return 'senator';
+  // }
 
-    // agreementView/intakeForm
-    this.breadcrumbService.hideRouteRegex('/agreementView');
-    this.breadcrumbService.hideRouteRegex('/agreementView/[a-zA-Z0-9_\-]');
+  // getCompareHouseLeaf(id: string): string {
+  //   return 'members';
+  // }
 
-    // /agreementCreateEdit/emergencyEvacInfo
-    this.breadcrumbService.hideRouteRegex('/agreementCreateEdit');
-    this.breadcrumbService.hideRouteRegex('/agreementCreateEdit/[a-zA-Z0-9_\-]');
+  // getCompareSenateLeaf(id: string): string {
+  //   return 'senators';
+  // }
 
-    // feedback. if we don't want to show the last node in the tree.
-    // however, this will remove the link to "all feedbacks" in the breadcrumb, which is not desirable
-    // this.breadcrumbService.hideRouteRegex('/submittedForm/feedback/[a-zA-Z0-9_\-]');
-
-    this.breadcrumbService.addCallbackForRouteRegex('/submittedForm/feedback/[a-zA-Z0-9_\-]', this.getFeedback);
-
-    // this.breadcrumbService.hideRoute('/newForm');
-    // this.breadcrumbService.hideRoute('/submittedForm');
-
-    */
-
-  }
+  // getPolicyArea(id: string): string {
+  //   return "policy-area";
+  // }
 
 
 }

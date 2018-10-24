@@ -1,0 +1,45 @@
+title and meta services.
+
+app.component: done2
+
+landing-page: no-op : done2
+
+
+indiv-rep-landing: done2
+    indiv-rep-search is called from within, does not need separate title/meta
+
+
+
+indiv-rep-result: done2
+
+indiv-rep-keyword-result: done2
+
+compare-reps-landing: done2
+
+compare-reps-result: done2
+
+bill-summary : done2
+
+amendment-summary: done2
+
+
+
+sub-components: do not need separate title/meta
+  indiv-rep-vote-table
+  indiv-rep-search
+  indiv-rep-search-autocomplete
+
+  issue-link
+  keyword-counts
+  policy-area-counts
+  search-bill-for-rep
+  roll-call-bill-info
+
+  absence-bar-chart
+  absence-line-chart
+
+  compare-reps-search
+
+
+
+

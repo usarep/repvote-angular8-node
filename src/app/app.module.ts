@@ -153,14 +153,14 @@ const customOptions: ShareButtonsOptions = {
 
     Ng2CompleterModule,
     ChartsModule,
-    ShareButtonsModule.forRoot( { options: customOptions } ),
+    ShareButtonsModule.forRoot({ options: customOptions }),
 
 
 
     ngProjectRouting
   ],
   providers: [
-
+    // { provide: TitleMetaService, useValue: {} },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: MAT_DIALOG_DATA, useValue: {} },
      { provide: MatDialogRef, useValue: {} }
