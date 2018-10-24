@@ -67,6 +67,7 @@ import { PolicyAreaCountsComponent } from './component/reps/policy-area-counts/p
 import { SearchBillForRepComponent } from './component/reps/search-bill-for-rep/search-bill-for-rep.component';
 import { IndivRepVoteTableComponent } from './component/reps/indiv-rep-vote-table/indiv-rep-vote-table.component';
 import { IndivRepSearchResultComponent } from './component/reps/indiv-rep-search-result/indiv-rep-search-result.component';
+import { LandingPageComponent } from './component/landing-page/landing-page.component';
 
 const customOptions: ShareButtonsOptions = {
   include: ['reddit', 'facebook', 'twitter', 'linkedin', 'whatsapp'],
@@ -134,6 +135,8 @@ const customOptions: ShareButtonsOptions = {
     IndivRepVoteTableComponent,
 
     IndivRepSearchResultComponent,
+
+    LandingPageComponent,
 
   ],
   imports: [

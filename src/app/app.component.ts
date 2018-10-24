@@ -16,9 +16,11 @@ import { Recaptchav3Service } from './service/recaptchav3.service';
   selector: 'app-root',
   template: `
   <app-nav-bar></app-nav-bar>
-  <share-buttons></share-buttons>
+  <div class="content-body">
+    <router-outlet></router-outlet>
+  </div>
 
-  <router-outlet></router-outlet>
+  <share-buttons></share-buttons>
   ` ,
   styleUrls: ['./app.component.css'
   ]
@@ -26,6 +28,7 @@ import { Recaptchav3Service } from './service/recaptchav3.service';
 export class AppComponent implements OnInit {
   title = 'app';
 
+  //
   constructor() {
 
 

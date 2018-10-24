@@ -1,6 +1,10 @@
 .own-logo {
   height : 100px;
 }
+.own-logo-small {
+  height : 50px;
+  margin-top: -12px;
+}
 
 /* for increasing contrast */
 
@@ -9,3 +13,5 @@
 .navbar-default .navbar-text {
   color: #000;
 }
+
+

@@ -9,12 +9,13 @@ import { BillSummaryComponent } from './component/bill/bill-summary/bill-summary
 import { AmendmentSummaryComponent } from './component/bill/amendment-summary/amendment-summary.component';
 import { NotFoundComponent } from './not-found.component';
 import { IndivRepSearchResultComponent } from './component/reps/indiv-rep-search-result/indiv-rep-search-result.component';
+import { LandingPageComponent } from './component/landing-page/landing-page.component';
 
 
 // import { BillSummaryOldComponent } from './reps/bill-summary-old.component';
 
 export const ngProjectRouting = RouterModule.forRoot([
-  { path: '', component: HomeComponent },
+  { path: '', component: LandingPageComponent },
   { path: 'vote/:chamber', component: IndivRepLandingComponent },
   { path: 'vote/:chamber/:rep', component: IndivRepResultComponent },
   { path: 'vote/:chamber/:rep/:topicType/:topic', component: IndivRepKeywordResultComponent },

@@ -1,6 +1,7 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default ">
   <!-- navbar-fixed-top -->
   <div class="container-fluid">
+
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -11,15 +12,47 @@
         <a
             class="navbar-brand"
             [class.active]="isCurrentlyActive('home')"
-            routerLink="" >
-                <img class="own-logo" alt="Brand" src="/assets/img/congress.jpg">
+            routerLink="/" >
+            <div class="hidden-xs">
+            <img class="own-logo" title="ComparaRep" alt="Brand" src="/assets/img/congress.jpg">
                 <app-active-link-sr [isActive]="isCurrentlyActive('home')"></app-active-link-sr>
+            </div>
+            <div class="visible-xs">
+                <img class="own-logo-small" title="ComparaRep" alt="Brand" src="/assets/img/congress.jpg">
+                <app-active-link-sr [isActive]="isCurrentlyActive('home')"></app-active-link-sr>
+            </div>
         </a>
      </div> <!-- navbar-header -->
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
+
+          <!--
+            <li>
+              <a [routerLink]="['/vote', 'house']" >
+                 Record: House
+              </a>
+            </li>
+
+            <li>
+              <a [routerLink]="['/vote', 'senate']" >
+               Record: Senate
+              </a>
+            </li>
+
+            <li>
+              <a [routerLink]="['/compare', 'house']" >
+                Compare: House
+              </a></li>
+            <li>
+              <a [routerLink]="['/compare', 'senate']" >
+                Compare: Senate
+              </a>
+            </li>
+
+          -->
+
             <li class="dropdown open">
                 <a href="#"
                     class="dropdown-toggle"
@@ -47,7 +80,9 @@
                     <li><a [routerLink]="['/compare', 'senate']" >Senators</a></li>
                 </ul>
             </li>
+
+
         </ul> <!-- nav navbar-nav -->
     </div><!-- collapse navbar-collapse -->
-  </div><!-- container-fluid -->
+  </div> <!--  container-fluid -->
 </nav>
