@@ -4,6 +4,7 @@ import { Chamber } from '../repModel/chamber.model';
 import { Observable, Subject } from 'rxjs';
 import { RepVoteSummary, RepVoteKeywordDetail } from '../repModel/vote.model';
 import { HttpClient } from '@angular/common/http';
+import { Constants } from '../constants/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -58,6 +59,11 @@ export class RepVotesService {
           return this.http.get(repsVoteSummaryUrl).subscribe(
             res => {
               console.log("getRepVoteSummary()", res);
+              // put a chart color
+              const resTmp = <RepVoteSummary>res;
+              if (resTmp && resTmp.absence && resTmp.absence.chartData && resTmp.absence.chartData.length > 0) {
+                resTmp.absence.chartData[0].backgroundColor = Constants.COLOR_DARK_YELLOW;
+              }
               // cache it
               this._cachedRepVoteData[repId] = <RepVoteSummary>res;
               this.repVoteSummaryStatus.next({

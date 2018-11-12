@@ -34,7 +34,8 @@ public chartOptions: any = {
 
 public chartColors: any[] = [
 {
-  backgroundColor:["#FF7360", "#6FC8CE", "#FAFFF2", "#FFFCC4", "#B9E8E0"]
+    // backgroundColor: ["#00FF00", "#FF0000"]
+   // backgroundColor:["#FF7360", "#6FC8CE", "#FAFFF2", "#FFFCC4", "#B9E8E0"]
 }];
 public chartColors0: Array<any> = [
     { // grey

@@ -68,8 +68,9 @@ export class VotesWrapped {
 }
 
 export class DataModel {
-    data: any[];
-    label: string;
+  data: any[];
+  label: string;
+  backgroundColor?: string;
 }
 
 export class ChartModel {
