@@ -152,6 +152,9 @@ export class CompareRepsSearchComponent implements OnInit, OnChanges , OnDestroy
             // clear out _searchStr so remainingReps are visible
             this._searchStr = "";
 
+            // put focus back on the input field
+            this.search.nativeElement.focus();
+
             // slice() will create a shallow copy of the array;
             // elements in it are references to objects, and those references are copied,
             this._matchingReps = this._remainingReps.slice();
