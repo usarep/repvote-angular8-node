@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges, OnChanges, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, SimpleChanges, OnChanges, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Rep } from 'src/app/repModel/rep.model';
 import { DiffData } from 'src/app/repModel/vote.model';
 import { RepNamesService } from 'src/app/repService/rep-names.service';
@@ -11,8 +11,9 @@ import { SubscriptionUtil } from 'src/app/shared/subscription-util';
   templateUrl: './compare-reps-search.component.html',
   styleUrls: ['./compare-reps-search.component.css']
 })
-export class CompareRepsSearchComponent implements OnInit, OnChanges , OnDestroy {
+export class CompareRepsSearchComponent implements OnInit, OnChanges , OnDestroy, AfterViewInit {
   @Input() _chamber;
+  @ViewChild('search') search;
 
    _MAX_COMPARE = 2;
    _isMaxCompareInfoVisible = false;
@@ -93,6 +94,10 @@ export class CompareRepsSearchComponent implements OnInit, OnChanges , OnDestroy
 
   ngOnDestroy() {
     SubscriptionUtil.unsubscribe(this.subscription);
+  }
+
+  ngAfterViewInit() {
+    this.search.nativeElement.focus();
   }
 
   public onKeyPress(strFragment) {

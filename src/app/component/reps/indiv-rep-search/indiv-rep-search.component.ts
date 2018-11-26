@@ -1,4 +1,4 @@
-import { Component, OnDestroy, Input, SimpleChanges, OnChanges, OnInit } from '@angular/core';
+import { Component, OnDestroy, Input, SimpleChanges, OnChanges, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Chamber } from 'src/app/repModel/chamber.model';
 import { Rep } from 'src/app/repModel/rep.model';
 import { RepNamesService } from 'src/app/repService/rep-names.service';
@@ -10,9 +10,10 @@ import { FormBuilder } from '@angular/forms';
   templateUrl: './indiv-rep-search.component.html',
   styleUrls: ['./indiv-rep-search.component.css']
 })
-export class IndivRepSearchComponent implements OnInit, OnChanges, OnDestroy {
+export class IndivRepSearchComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
 
   @Input() _chamber: Chamber;
+  @ViewChild('search') search;
 
   _prevChamber: Chamber = null;
 
@@ -72,6 +73,12 @@ export class IndivRepSearchComponent implements OnInit, OnChanges, OnDestroy {
       this.initialized = true;
 
 
+  }
+
+  ngAfterViewInit() {
+    console.log("search");
+    console.log(this.search);
+    this.search.nativeElement.focus();
   }
 
   initialized = false;
