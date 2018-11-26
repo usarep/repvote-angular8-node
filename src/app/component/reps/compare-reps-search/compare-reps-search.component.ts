@@ -184,6 +184,9 @@ export class CompareRepsSearchComponent implements OnInit, OnChanges , OnDestroy
     this._remainingReps = this._allReps.slice();
     this._matchingReps = this._remainingReps.slice();
 
+    // put focus back on input field
+    this.search.nativeElement.focus();
+
   }
 
   private showMaxCompareInfo() {
