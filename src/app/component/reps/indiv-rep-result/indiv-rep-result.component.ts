@@ -1,7 +1,7 @@
 import { Component, OnInit, SimpleChanges, OnChanges, OnDestroy } from '@angular/core';
 import { RepVoteSummary } from 'src/app/repModel/vote.model';
 import { Chamber, SupportedChambers } from 'src/app/repModel/chamber.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RepVotesService } from 'src/app/repService/rep-votes.service';
 import { Title } from '@angular/platform-browser';
 
@@ -23,14 +23,18 @@ export class IndivRepResultComponent implements OnInit, OnChanges, OnDestroy {
   showKeywordCounts = true;
   showPolicyAreaCounts = true;
 
- constructor(public _route: ActivatedRoute
+  // if breakdown by legislative subject or policy area is available, set this to true
+  breakdownAvailable = false;
+
+  constructor(public _route: ActivatedRoute
+   , public _router: Router
    , public _repVotesService: RepVotesService
    , public titleService: Title
    )
  { }
 
  ngOnInit() {
-     this._loading = true;
+   this._loading = true;
    this.subscription = this._route.params.subscribe(
      params => {
        // house or  senate
@@ -58,6 +62,20 @@ export class IndivRepResultComponent implements OnInit, OnChanges, OnDestroy {
              this._repVoteSummary = res.repVoteSummary; // <RepVoteSummary>res;
 
              this.setTitle("Voting summary for " + this._repVoteSummary.repName);
+
+             //
+             if (this._repVoteSummary &&
+               ( (this._repVoteSummary.keywordSummary && this._repVoteSummary.keywordSummary.length > 0)
+                 || (this._repVoteSummary.policyAreaSummary && this._repVoteSummary.policyAreaSummary.length > 0)))
+             {
+                  this.breakdownAvailable = true;
+
+             }
+
+             else {
+               this.breakdownAvailable = false;
+             }
+
            }
            else {
              console.log("stale data, skipping");
@@ -80,6 +98,19 @@ export class IndivRepResultComponent implements OnInit, OnChanges, OnDestroy {
  ngOnDestroy() {
      this.subscription.unsubscribe();
  }
+
+
+  // return all bills for rep
+  allBillsForRep() {
+
+    // search/:chamber/:rep/:searchStr
+    this._router.navigate(['/search',
+      this._chamber.paramName,
+      this._repId,
+      "*" // searchStr
+    ]);
+
+  }
 
  getVoteIcon(vote) {
      if (!vote) { return ""; }

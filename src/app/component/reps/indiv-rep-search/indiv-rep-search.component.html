@@ -14,6 +14,11 @@
                   #search
                   >
 
+               <button class="btn btn-default"
+                  (click)="toggleHistorical()">
+                  Toggle Historical
+                </button>
+
          </div>
 
        </form>
@@ -25,10 +30,20 @@
 
          <div class="card">
            <div class="card-block">
+             <!-- image url format
+              http://bioguide.congress.gov/bioguide/photo/E/E000215.jpg
+
+              bio url format http://bioguide.congress.gov/scripts/biodisplay.pl?index=<bioGuide>
+            -->
+            <img *ngIf="rep.bioGuide" class="card-img-top" height="100px"
+            [src]="'http://bioguide.congress.gov/bioguide/photo/' + rep.bioGuide[0] + '/' + rep.bioGuide + '.jpg'"
+            [alt]="rep.label">
              <h3 class="card-title rep-name">{{ rep.label }} </h3>
              <p class="card-text">
                <!-- With supporting text below as a natural lead-in to additional content.
                -->
+               {{ rep.state }} - {{ rep.district}}
+               {{ rep.partyFull }}
              </p>
              <button class="btn btn-primary"  (click)="onSelected(rep)" >Select</button>
            </div>

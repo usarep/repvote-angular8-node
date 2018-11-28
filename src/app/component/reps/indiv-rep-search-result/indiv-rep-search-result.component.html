@@ -8,8 +8,13 @@
   <div class="panel-heading">
       <h3 class="panel-title">
           Votes  by
-          {{ _repOrSenatorStr }} <span class="rep-name bold"> {{ _repVoteKeywordDetail.repName }} </span>
-          for search term <span class="bold"> {{ _searchStr }} </span>
+          {{ _repOrSenatorStr }}
+          <span class="rep-name bold"> {{ _repVoteKeywordDetail.repName }} </span>
+
+          <span *ngIf="_searchStr != '*'" >
+            for search term <span class="bold"> {{ _searchStr }} </span>
+          </span>
+
       </h3>
   </div>
   <div class="panel-body">

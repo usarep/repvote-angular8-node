@@ -22,7 +22,12 @@ export class IndivRepSearchComponent implements OnInit, OnChanges, OnDestroy, Af
    _selectedItems: any[] = [];
    _searchStr: string;
    _allReps: Rep[] = [];
-   _matchingReps: Rep[] = [];
+  _matchingReps: Rep[] = [];
+
+  // 11/27/18: currentReps vs allInclusiveReps (includes historical)
+  currentReps: Rep[] = [];
+  allInclusiveReps: Rep[] = [];
+  showHistorical = false;  // show only current reps by default
 
    private subscription;
 
@@ -55,7 +60,15 @@ export class IndivRepSearchComponent implements OnInit, OnChanges, OnDestroy, Af
           console.log("indiv rep search", res);
 
           if (this._chamber === res.chamber) {
-            this._allReps = res.reps;
+            this.allInclusiveReps = res.reps;
+            this.currentReps = this.allInclusiveReps.filter(rep => rep.isCurrent);
+
+            if (this.showHistorical) {
+              this._allReps = this.allInclusiveReps;
+            }
+            else {
+              this._allReps = this.currentReps;
+            }
             this.computeMatchingReps("");
 
             this._repDataLoading = false;
@@ -155,6 +168,23 @@ export class IndivRepSearchComponent implements OnInit, OnChanges, OnDestroy, Af
     }
     this._matchingReps = tmp;
   }
+
+  toggleHistorical() {
+    this.showHistorical = !this.showHistorical;
+    if (this.showHistorical) {
+      this._allReps = this.allInclusiveReps;
+    }
+    else {
+      this._allReps = this.currentReps;
+    }
+
+    console.log("toggleHistorical() - _searchForm", this._searchForm);
+    const strFragment = this._searchForm.value.search;
+
+    this.computeMatchingReps(strFragment);
+  }
+
+
 
 
   public indivReps() {
