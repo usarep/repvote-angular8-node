@@ -1,0 +1,39 @@
+<div class="card h-100" title="click to see details">
+  <div class="card-block">
+    <!-- image url format
+     http://bioguide.congress.gov/bioguide/photo/E/E000215.jpg
+
+     bio url format http://bioguide.congress.gov/scripts/biodisplay.pl?index=<bioGuide>
+   -->
+
+   <!--
+     image commented out for now
+   <img *ngIf="rep.bioGuide" class="card-img-top" height="100px"
+   [src]="'http://bioguide.congress.gov/bioguide/photo/' + rep.bioGuide[0] + '/' + rep.bioGuide + '.jpg'"
+   [alt]="rep.label">
+
+   -->
+
+    <h3 class="card-title rep-name card-title-nowrap">{{ rep.label }} </h3>
+    <p class="card-text card-text-horz-space "
+      [class.no-district]="!  rep.district">
+      <!-- With supporting text below as a natural lead-in to additional content.
+      -->
+      {{ rep.state }}
+      <span *ngIf="rep.district" > - {{ rep.district}} </span>
+    </p>
+    <!--
+    <button class="btn btn-primary"  (click)="onSelected(rep)" >Select</button>
+    -->
+
+  </div>
+  <div class="card-footer text-muted ">
+    <div class="card-footer-text-horz-space"  [class.no-district]="!  rep.district">
+      {{  rep.partyFull }}
+    </div>
+    <i *ngIf="!rep.isCurrent"
+      class="fa fa-history  float-right"
+      title="Historical Member"
+    ></i>
+  </div>
+</div> <!-- card -->

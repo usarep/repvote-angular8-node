@@ -27,6 +27,15 @@
              <i *ngIf="_selectedReps?.length >= _MAX_COMPARE"
                class="glyphicon glyphicon-question-sign"
                (click)="showMaxCompareInfo()" > </i>
+
+               <mat-slide-toggle
+                  class="vert-space"
+                  [color]="slideToggleColor"
+                  [checked]="showHistorical"
+                  (change)="toggleHistorical()"
+                  >
+                  Show Historical
+              </mat-slide-toggle>
        </div>
              <div
                *ngIf="_selectedReps?.length >= _MAX_COMPARE && _isMaxCompareInfoVisible"
@@ -43,7 +52,9 @@
      <div *ngFor="let rep of _matchingReps"
              class="col-sm-3">
 
-       <div class="card">
+       <app-rep-select-card [rep]="rep" (click)="onSelected(rep)"></app-rep-select-card>
+
+       <div *ngIf="false" class="card">
          <div class="card-block">
            <h3 class="card-title rep-name">{{ rep.label }} </h3>
            <p class="card-text">

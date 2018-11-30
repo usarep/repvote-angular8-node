@@ -29,7 +29,6 @@ http://getbootstrap.com/components/#list-group-badges
   <p class="subheader"> (Click to drill down.) </p>
 
   <div class="row">
-    <div class="col-md-6">
         <div class="list-group">
             <a *ngFor="let keywordCount of _keywordCounts"
                 (click)="detailedVote(keywordCount)"
@@ -38,7 +37,6 @@ http://getbootstrap.com/components/#list-group-badges
                 {{ keywordCount.topic }}
             </a>
         </div>
-    </div>
   </div>
 
 

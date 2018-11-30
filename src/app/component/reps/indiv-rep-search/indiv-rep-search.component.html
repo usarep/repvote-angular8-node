@@ -14,10 +14,14 @@
                   #search
                   >
 
-               <button class="btn btn-default"
-                  (click)="toggleHistorical()">
-                  Toggle Historical
-                </button>
+                <mat-slide-toggle
+                  class="vert-space"
+                  [color]="slideToggleColor"
+                  [checked]="showHistorical"
+                  (change)="toggleHistorical()"
+                  >
+                  Show Historical
+              </mat-slide-toggle>
 
          </div>
 
@@ -28,16 +32,24 @@
        <div *ngFor="let rep of _matchingReps"
                class="col-sm-3">
 
-         <div class="card">
+          <app-rep-select-card [rep]="rep" (click)="onSelected(rep)"></app-rep-select-card>
+
+         <div *ngIf="false" class="card">
            <div class="card-block">
              <!-- image url format
               http://bioguide.congress.gov/bioguide/photo/E/E000215.jpg
 
               bio url format http://bioguide.congress.gov/scripts/biodisplay.pl?index=<bioGuide>
             -->
+
+            <!--
+              image commented out for now
             <img *ngIf="rep.bioGuide" class="card-img-top" height="100px"
             [src]="'http://bioguide.congress.gov/bioguide/photo/' + rep.bioGuide[0] + '/' + rep.bioGuide + '.jpg'"
             [alt]="rep.label">
+
+            -->
+
              <h3 class="card-title rep-name">{{ rep.label }} </h3>
              <p class="card-text">
                <!-- With supporting text below as a natural lead-in to additional content.

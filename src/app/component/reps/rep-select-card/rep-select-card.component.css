@@ -1,0 +1,22 @@
+.card:hover {
+  background-color: yellow;
+  cursor: pointer;
+}
+.card-text-horz-space {
+  margin-left: 10px;
+  padding-left: 10px;
+}
+.card-footer-text-horz-space {
+  margin-left: 10px;
+  padding-left: 10px;
+  display: inline-block;
+
+}
+.card-title-nowrap {
+  white-space: nowrap;
+  overflow-y: auto;
+}
+.no-district {
+  margin-left: 5px;
+  padding-left: 5px;
+}

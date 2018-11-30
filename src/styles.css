@@ -112,6 +112,20 @@ card is a bootstrap 4 feature. we are still using bootstrap 3.x
 .card-title {
     margin-bottom: 0.75rem;
 }
+.card-footer:last-child {
+  border-radius: 0 0 calc(.25rem - 1px) calc(.25rem - 1px);
+}
+.text-muted {
+  color: #6c757d !important;
+}
+.card-footer {
+  padding: .75rem 1.25rem;
+  background-color: rgba(0,0,0,.03);
+  border-top: 1px solid rgba(0,0,0,.125);
+}
+.h-100 {
+  height: 100% !important;
+}
 
 .text-center {
   text-align: center;
@@ -120,4 +134,7 @@ card is a bootstrap 4 feature. we are still using bootstrap 3.x
     color: #d0d0d0;
     margin: 45px auto;
     text-align: center;
+}
+.float-right {
+  float: right;
 }

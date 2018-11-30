@@ -28,10 +28,13 @@ export class IndivRepSearchComponent implements OnInit, OnChanges, OnDestroy, Af
   currentReps: Rep[] = [];
   allInclusiveReps: Rep[] = [];
   showHistorical = false;  // show only current reps by default
+  slideToggleColor = "primary";
 
    private subscription;
 
-   _repDataLoading = false;
+  _repDataLoading = false;
+
+
 
 
   partyColor: {
@@ -182,6 +185,7 @@ export class IndivRepSearchComponent implements OnInit, OnChanges, OnDestroy, Af
     const strFragment = this._searchForm.value.search;
 
     this.computeMatchingReps(strFragment);
+    this.search.nativeElement.focus();
   }
 
 

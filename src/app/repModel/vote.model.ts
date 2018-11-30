@@ -1,5 +1,5 @@
 import { ChamberBill } from './chamber.model';
-import { SponsorRep } from './rep.model';
+import { SponsorRep, Rep } from './rep.model';
 
 export class Diff {
     rollCallInfo: RollCallInfo;
@@ -115,6 +115,7 @@ export class KeywordCount {
 export class RepVoteSummary {
   repName: string;
   repId: string;
+  rep?: Rep;
   absence: ChartModel;
   keywordSummary: KeywordCount[];
   policyAreaSummary: KeywordCount[];

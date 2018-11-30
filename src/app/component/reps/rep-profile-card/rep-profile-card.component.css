@@ -1,0 +1,45 @@
+.card-text-horz-space {
+  margin-left: 10px;
+  padding-left: 10px;
+}
+.card-footer-text-horz-space {
+  margin-left: 10px;
+  padding-left: 10px;
+  display: inline-block;
+
+}
+.card-title-nowrap {
+  white-space: nowrap;
+  overflow-y: auto;
+}
+.no-district {
+  margin-left: 5px;
+  padding-left: 5px;
+}
+th {
+  font-weight: normal;
+}
+.capitalize {
+  text-transform: capitalize;
+}
+.vert-space {
+  margin-top: 10px;
+  padding-top: 10px;
+}
+.lower-vert-space {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+.card-text-pos {
+  display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 16px;
+    position: relative;
+    height: inherit;
+}
+.dl {
+  font-weight: bold;
+  padding-right: 10px;
+}

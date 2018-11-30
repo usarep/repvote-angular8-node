@@ -1,43 +1,61 @@
-<div><app-spinner [visible]="_loading"> </app-spinner></div>
-<div *ngIf="_repVoteSummary && _repVoteSummary.absence?.chartData?.length > 0" >
+<div class="container-fluid">
 
-     <app-absence-bar-chart
-        [chartData]="_repVoteSummary.absence?.chartData"
-        [chartLabels]="_repVoteSummary.absence?.chartLabels"
-        [chartLegend]="_repVoteSummary.repName"
-        >
-    </app-absence-bar-chart>
-</div>
+  <!-- left column -->
+  <div class="col-md-7">
+    <div><app-spinner [visible]="_loading"> </app-spinner></div>
 
-<div>
-    <app-search-bill-for-rep [_repId]="_repId" [_chamber]="_chamber" ></app-search-bill-for-rep>
-</div>
 
-<app-policy-area-counts
-    *ngIf="showPolicyAreaCounts && _repVoteSummary && _repVoteSummary.policyAreaSummary"
-    [data]="_repVoteSummary.policyAreaSummary"
-    [_repName]="_repName"
-    [_repId]="_repId"
-    [_chamber]="_chamber"
-    > </app-policy-area-counts>
 
-<app-keyword-counts
-    *ngIf="showKeywordCounts && _repVoteSummary && _repVoteSummary.keywordSummary"
-    [data]="_repVoteSummary.keywordSummary"
-    [_repName]="_repName"
-    [_repId]="_repId"
-    [_chamber]="_chamber"
-    > </app-keyword-counts>
+    <div *ngIf="_repVoteSummary && _repVoteSummary.absence?.chartData?.length > 0" >
 
-  <!-- return all votes for rep -->
-  <div *ngIf="breakdownAvailable" class="vert-space">
-    <a (click)="allBillsForRep()">All votes for this member</a>
-  </div>
+      <app-absence-bar-chart
+          [chartData]="_repVoteSummary.absence?.chartData"
+          [chartLabels]="_repVoteSummary.absence?.chartLabels"
+          [chartLegend]="_repVoteSummary.repName"
+          >
+      </app-absence-bar-chart>
+    </div>
 
-  <!-- if there is no breakdown by legislative subjects or policy area -->
-  <div *ngIf="! breakdownAvailable" class="vert-space">
-    There is no breakdown available for Policy Area or Legislative Subjects for this member.
-    That data is available starting 2013.
+    <div>
+      <app-search-bill-for-rep [_repId]="_repId" [_chamber]="_chamber" ></app-search-bill-for-rep>
+    </div>
 
-    <p>However, you can see <a (click)="allBillsForRep()">all votes for this member</a> or search for votes.</p>
-  </div>
+    <app-policy-area-counts
+      *ngIf="showPolicyAreaCounts && _repVoteSummary && _repVoteSummary.policyAreaSummary"
+      [data]="_repVoteSummary.policyAreaSummary"
+      [_repName]="_repName"
+      [_repId]="_repId"
+      [_chamber]="_chamber"
+      > </app-policy-area-counts>
+
+    <app-keyword-counts
+      *ngIf="showKeywordCounts && _repVoteSummary && _repVoteSummary.keywordSummary"
+      [data]="_repVoteSummary.keywordSummary"
+      [_repName]="_repName"
+      [_repId]="_repId"
+      [_chamber]="_chamber"
+      > </app-keyword-counts>
+
+    <!-- return all votes for rep -->
+    <div *ngIf="breakdownAvailable" class="vert-space">
+      <a (click)="allBillsForRep()">All votes for this member</a>
+    </div>
+
+    <!-- if there is no breakdown by legislative subjects or policy area -->
+    <div *ngIf="! breakdownAvailable" class="vert-space">
+      There is no breakdown available for Policy Area or Legislative Subjects for this member.
+      That data is available starting 2013.
+
+      <p>However, you can see <a (click)="allBillsForRep()">all votes for this member</a> or search for votes.</p>
+    </div>
+
+  </div>  <!-- end of left coluumn, col-md-8 -->
+
+  <!-- right column has the profile card -->
+  <div class="col-md-5">
+    <div *ngIf="_repVoteSummary && _repVoteSummary.rep">
+      <app-rep-profile-card [rep]="_repVoteSummary.rep" ></app-rep-profile-card>
+    </div>
+  </div> <!-- end of right column -->
+
+</div> <!-- container-fluid -->

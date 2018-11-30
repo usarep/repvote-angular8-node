@@ -63,11 +63,43 @@ export class RepNamesService {
               console.log("getReps()", res);
               // cache it
               this._cachedRepNamesSearchData[chamber.id] = <Rep[]>res;
+
+              // add mappings (bioGuide, Rep) and (lis, Rep)
+              // lis will be there only for senators
+              this.add2RepMaps(<Rep[]>res);
               this.repStatusListener.next({ chamber: chamber, reps: <Rep[]>res });
               return;
             });
     }
 
-}
+  }
+
+  // key == bioGuide. value == Rep -  has data for both chambers
+  _bioGuideRepMap = {};
+
+  // key == lis. value == R. for senate
+  _lisRepMap = {};
+
+  private add2RepMaps(reps: Rep[])
+  {
+    if (!reps || reps.length === 0) {
+      return;
+    }
+
+    reps.forEach(rep => {
+
+      // _bioGuideRepMap
+      if (rep.bioGuide) {
+        this._bioGuideRepMap[rep.bioGuide] = rep;
+      }
+
+      // _lisRepMap
+      if (rep.legislator && rep.legislator.id && rep.legislator.id.lis) {
+        this._lisRepMap[rep.legislator.id.lis] = rep;
+      }
+    });
+  }
+
+
 
 }

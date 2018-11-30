@@ -29,7 +29,13 @@ export class CompareRepsSearchComponent implements OnInit, OnChanges , OnDestroy
 
   _diffData: DiffData;
 
-   _repDataLoading = false;
+  _repDataLoading = false;
+
+  // 11/27/18: currentReps vs allInclusiveReps (includes historical)
+  currentReps: Rep[] = [];
+  allInclusiveReps: Rep[] = [];
+  showHistorical = false;  // show only current reps by default
+  slideToggleColor = "primary";
 
    partyColor: {
     D: 'btn-info',  // blue
@@ -62,8 +68,18 @@ export class CompareRepsSearchComponent implements OnInit, OnChanges , OnDestroy
 
         if (this._chamber === res.chamber)
         {
-          this._allReps = res.reps;
-          this._remainingReps = res.reps.slice();
+          this.allInclusiveReps = res.reps;
+          this.currentReps = this.allInclusiveReps.filter(rep => rep.isCurrent);
+
+          if (this.showHistorical) {
+            this._allReps = this.allInclusiveReps;
+          }
+          else {
+            this._allReps = this.currentReps;
+          }
+
+          this._remainingReps = this._allReps.slice();
+
           this.computeMatchingReps("");
 
           this._repDataLoading = false;
@@ -129,6 +145,36 @@ export class CompareRepsSearchComponent implements OnInit, OnChanges , OnDestroy
       }
     }
     this._matchingReps = tmp;
+  }
+
+  toggleHistorical() {
+    this.showHistorical = !this.showHistorical;
+    if (this.showHistorical) {
+      this._allReps = this.allInclusiveReps;
+    }
+    else {
+      this._allReps = this.currentReps;
+    }
+
+    // remainingReps must be allReps - selectedReps
+
+    // if selectedReps has historical rep and we are switching to current reps only
+    // then what? we just keep the selectedRep as is.
+
+    this._remainingReps = this._allReps.slice();
+
+    if (this._selectedReps && this._selectedReps.length > 0) {
+      const index = this._remainingReps.indexOf(this._selectedReps[0]);
+      if (index >= 0) {
+        this._remainingReps.splice(index, 1);
+      }
+    }
+
+    console.log("toggleHistorical() - _searchForm", this._searchForm);
+    const strFragment = this._searchForm.value.search;
+
+    this.computeMatchingReps(strFragment);
+    this.search.nativeElement.focus();
   }
 
   public onSelected(selected: Rep) {

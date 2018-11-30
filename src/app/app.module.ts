@@ -68,6 +68,8 @@ import { SearchBillForRepComponent } from './component/reps/search-bill-for-rep/
 import { IndivRepVoteTableComponent } from './component/reps/indiv-rep-vote-table/indiv-rep-vote-table.component';
 import { IndivRepSearchResultComponent } from './component/reps/indiv-rep-search-result/indiv-rep-search-result.component';
 import { LandingPageComponent } from './component/landing-page/landing-page.component';
+import { RepSelectCardComponent } from './component/reps/rep-select-card/rep-select-card.component';
+import { RepProfileCardComponent } from './component/reps/rep-profile-card/rep-profile-card.component';
 
 const customOptions: ShareButtonsOptions = {
   include: ['reddit', 'facebook', 'twitter', 'linkedin', 'whatsapp'],
@@ -137,6 +139,10 @@ const customOptions: ShareButtonsOptions = {
     IndivRepSearchResultComponent,
 
     LandingPageComponent,
+
+    RepSelectCardComponent,
+
+    RepProfileCardComponent,
 
   ],
   imports: [
