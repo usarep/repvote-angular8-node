@@ -3,6 +3,7 @@ import { Rep } from 'src/app/repModel/rep.model';
 import { Term } from 'src/app/repModel/legislator.model';
 import { DatePipe } from '@angular/common';
 import { UrlService } from 'src/app/repService/url.service';
+import { RepUtil } from 'src/app/repUtil/rep-util';
 
 @Component({
   selector: 'app-rep-profile-card',
@@ -69,21 +70,15 @@ export class RepProfileCardComponent implements OnInit {
     if (!this.rep) {
       return null;
     }
-
-    // check rep.legislator.name fields
-    if (this.rep.legislator && this.rep.legislator.name) {
-      // officialFull
-      if (this.rep.legislator.name.officialFull) {
-        return this.rep.legislator.name.officialFull;
+    else {
+      const name = RepUtil.computeName(this.rep);
+      if (name) {
+        return name;
       }
-      else if (this.rep.legislator.name.last && this.rep.legislator.name.first) {
-        return this.rep.legislator.name.first + " " + this.rep.legislator.name.last;
+      else {
+        return this.rep.label;
       }
-
     }
-
-    // default when all else fails
-    return this.rep.label;
 
   }
 

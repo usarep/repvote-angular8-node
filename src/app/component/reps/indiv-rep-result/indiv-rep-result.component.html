@@ -4,13 +4,6 @@
   <div class="col-md-7">
     <div><app-spinner [visible]="_loading"> </app-spinner></div>
 
-    <!-- return all votes for rep -->
-    <div *ngIf="breakdownAvailable" class="center vert-space-below">
-      <a class="btn btn-default" (click)="allBillsForRep()">Click for Member's Latest Votes</a>
-    </div>
-
-
-
     <div *ngIf="_repVoteSummary && _repVoteSummary.absence?.chartData?.length > 0" >
 
       <app-absence-bar-chart
@@ -23,6 +16,11 @@
 
     <div>
       <app-search-bill-for-rep [_repId]="_repId" [_chamber]="_chamber" ></app-search-bill-for-rep>
+    </div>
+
+    <!-- return all votes for rep   -->
+    <div *ngIf="breakdownAvailable" class="row vert-space-below">
+      <a class="mouse-pointer" (click)="allBillsForRep()">Click for latest votes cast by {{ fullName }}. </a>
     </div>
 
     <app-policy-area-counts
@@ -43,11 +41,10 @@
 
 
       <!-- if there is no breakdown by legislative subjects or policy area -->
-    <div *ngIf="! breakdownAvailable" class="vert-space">
+    <div *ngIf="! breakdownAvailable" class="row vert-space">
       There is no breakdown available for Policy Area or Legislative Subjects for this member.
       That data is available starting 2013.
-
-      <p>However, you can see <a (click)="allBillsForRep()">all votes for this member</a> or search for votes.</p>
+      However, you can see <a (click)="allBillsForRep()">all votes for this {{fullName}}</a> or search for votes.
     </div>
 
   </div>  <!-- end of left coluumn, col-md-8 -->

@@ -4,6 +4,8 @@ import { Chamber, SupportedChambers } from 'src/app/repModel/chamber.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RepVotesService } from 'src/app/repService/rep-votes.service';
 import { Title } from '@angular/platform-browser';
+import { RepUtil } from 'src/app/repUtil/rep-util';
+import { repeat } from 'rxjs/operators';
 
 @Component({
   selector: 'app-indiv-rep-result',
@@ -19,6 +21,8 @@ export class IndivRepResultComponent implements OnInit, OnChanges, OnDestroy {
   _repId: string;
   _repName: string;
   _loading = false;
+
+  fullName: string; // if available. else, this value will be repName
 
   showKeywordCounts = true;
   showPolicyAreaCounts = true;
@@ -61,7 +65,8 @@ export class IndivRepResultComponent implements OnInit, OnChanges, OnDestroy {
            if (this._chamber === res.chamber && this._repId === res.repId && bioGuide === res.isBioGuide) {
              this._repVoteSummary = res.repVoteSummary; // <RepVoteSummary>res;
 
-             this.setTitle("Voting summary for " + this._repVoteSummary.repName);
+             this.fullName = this.computeName();
+             this.setTitle("Voting summary for " + this.fullName);
 
              //
              if (this._repVoteSummary &&
@@ -141,5 +146,20 @@ export class IndivRepResultComponent implements OnInit, OnChanges, OnDestroy {
 
   setTitle(title: string) {
     this.titleService.setTitle(title);
+  }
+
+  private computeName(): string {
+    if (!this._repVoteSummary || !this._repVoteSummary.rep) {
+      return this._repName;
+    }
+    else {
+      const name = RepUtil.computeName(this._repVoteSummary.rep);
+      if (name) {
+        return name;
+      }
+      else {
+        return this._repName;
+      }
+    }
   }
 }
