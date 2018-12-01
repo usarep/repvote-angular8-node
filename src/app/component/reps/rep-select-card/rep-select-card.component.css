@@ -1,5 +1,5 @@
 .card:hover {
-  background-color: yellow;
+  background-color: rgb(238,250,168);
   cursor: pointer;
 }
 .card-text-horz-space {
