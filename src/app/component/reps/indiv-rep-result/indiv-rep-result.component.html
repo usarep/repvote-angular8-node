@@ -4,6 +4,11 @@
   <div class="col-md-7">
     <div><app-spinner [visible]="_loading"> </app-spinner></div>
 
+    <!-- return all votes for rep -->
+    <div *ngIf="breakdownAvailable" class="center vert-space-below">
+      <a class="btn btn-default" (click)="allBillsForRep()">Click for Member's Latest Votes</a>
+    </div>
+
 
 
     <div *ngIf="_repVoteSummary && _repVoteSummary.absence?.chartData?.length > 0" >
@@ -36,12 +41,8 @@
       [_chamber]="_chamber"
       > </app-keyword-counts>
 
-    <!-- return all votes for rep -->
-    <div *ngIf="breakdownAvailable" class="vert-space">
-      <a (click)="allBillsForRep()">All votes for this member</a>
-    </div>
 
-    <!-- if there is no breakdown by legislative subjects or policy area -->
+      <!-- if there is no breakdown by legislative subjects or policy area -->
     <div *ngIf="! breakdownAvailable" class="vert-space">
       There is no breakdown available for Policy Area or Legislative Subjects for this member.
       That data is available starting 2013.

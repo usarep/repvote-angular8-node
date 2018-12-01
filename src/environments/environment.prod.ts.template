@@ -8,7 +8,11 @@ export const environment = {
 
   // client side key for reCaptcha V3.
   // the data here is NOT a valid key. supply your own
-  reCaptchaV3ClientKey: 'asdfghklzxcvbnmqwertyuiop'
+  reCaptchaV3ClientKey: 'asdfghklzxcvbnmqwertyuiop' ,
+
+  debug: {
+    RECAPTCHA_V3: true,
+  }
 
 
 };

@@ -14,7 +14,7 @@
 }
 .card-title-nowrap {
   white-space: nowrap;
-  overflow-y: auto;
+  overflow-x: none;
 }
 .no-district {
   margin-left: 5px;

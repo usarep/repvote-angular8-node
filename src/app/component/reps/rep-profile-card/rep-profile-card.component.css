@@ -10,7 +10,7 @@
 }
 .card-title-nowrap {
   white-space: nowrap;
-  overflow-y: auto;
+  overflow-x: none;
 }
 .no-district {
   margin-left: 5px;
@@ -38,6 +38,9 @@ th {
     padding: 0 16px;
     position: relative;
     height: inherit;
+}
+.img-pos {
+  width: 100%;
 }
 .dl {
   font-weight: bold;
