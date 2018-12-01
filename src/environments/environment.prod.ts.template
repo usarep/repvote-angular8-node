@@ -4,6 +4,7 @@ export const environment = {
 
   // change this to your production server
   server: "http://compararep.com:8080",
+  imgServer: "http://compararep.com", // serves rep photos
 
   // client side key for reCaptcha V3.
   // the data here is NOT a valid key. supply your own

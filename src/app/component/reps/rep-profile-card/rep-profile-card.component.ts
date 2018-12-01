@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Rep } from 'src/app/repModel/rep.model';
 import { Term } from 'src/app/repModel/legislator.model';
 import { DatePipe } from '@angular/common';
+import { UrlService } from 'src/app/repService/url.service';
 
 @Component({
   selector: 'app-rep-profile-card',
@@ -20,9 +21,21 @@ export class RepProfileCardComponent implements OnInit {
 
   name: string; // rep's name
 
-  constructor() { }
+  repPhotoUrl;
+
+
+  constructor(private urlService: UrlService) { }
 
   ngOnInit() {
+
+    // set url for rep's photo, if one exists
+    if (this.rep &&
+      this.rep.legislator &&
+      this.rep.legislator.id &&
+      this.rep.legislator.id.bioguide)
+    {
+      this.repPhotoUrl = this.urlService.getRepPhotoUrl(this.rep.legislator.id.bioguide);
+    }
 
     // set current term
     if (this.rep && this.rep.isCurrent && this.rep.legislator && this.rep.legislator.terms) {

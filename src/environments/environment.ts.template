@@ -6,6 +6,7 @@ export const environment = {
   production: false,
 
   server: "http://localhost:8080", // this is the java server
+  imgServer: "http://localhost:3000", // serves rep photos
 
   // client side key for reCaptcha V3.
   // the data here is NOT a valid key. supply your own

@@ -140,4 +140,9 @@ getBillSummaryUrlOld(billId: number) {
   return url;
  }
 
+  getRepPhotoUrl(bioGuide: string) {
+    const url = environment.imgServer + "/photo/" + bioGuide + ".jpg";
+    return url;
+  }
+
 }

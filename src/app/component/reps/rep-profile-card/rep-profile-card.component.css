@@ -30,7 +30,7 @@ th {
   margin-bottom: 10px;
   padding-bottom: 10px;
 }
-.card-text-pos {
+.card-text-pos , .img-pos {
   display: flex;
     flex-direction: row;
     align-items: center;
@@ -42,4 +42,9 @@ th {
 .dl {
   font-weight: bold;
   padding-right: 10px;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
