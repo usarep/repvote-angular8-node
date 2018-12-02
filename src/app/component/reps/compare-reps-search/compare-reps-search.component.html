@@ -3,7 +3,15 @@
     <form class="form-group" [formGroup]="_searchForm" (ngSubmit)="compareReps()">
      <!-- [formGroup]="compareRepsForm" -->
        <ul class="list-inline">
-         <li *ngFor="let item of _selectedReps; let i=index;  "
+         <li *ngFor="let item of _selectedReps; let i=index;  ">
+
+          <app-rep-photo-name
+            [rep]="item"
+            [deleteOption]="true"
+            (onDelete)="deleteItem(item)">
+          </app-rep-photo-name>
+
+         <!--
            [class]="getCssClass(item.party)" >
            <img *ngIf="item.photoAvailable"
            [src]="getPhotoUrl(item)" height="100px">
@@ -11,10 +19,14 @@
            <i (click)="deleteItem(item)"
                class="glyphicon glyphicon-remove">
            </i>
+
+          -->
+
          </li>
        </ul>
-
-       <app-spinner [visible]="_repDataLoading"> </app-spinner>
+       <div class="center">
+        <app-spinner [visible]="_repDataLoading"> </app-spinner>
+       </div>
 
        <div class="well col-sm-6">
           <input

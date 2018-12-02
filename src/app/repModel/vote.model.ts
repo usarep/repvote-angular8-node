@@ -80,12 +80,15 @@ export class ChartModel {
 
 
 export class DiffData {
-    repNames: string[];
-    repIds: string[];
+  repNames: string[];
+  repIds: string[];
 
-    diffs: Diff[];
+  // repName and repIds to be deprecated. because info is in Rep
+  reps: Rep[];
 
-    absence: ChartModel;
+  diffs: Diff[];
+
+  absence: ChartModel;
 }
 
 /*

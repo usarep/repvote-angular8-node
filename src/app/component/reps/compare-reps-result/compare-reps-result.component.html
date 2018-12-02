@@ -6,8 +6,18 @@
         [chartData]="_diffData.absence?.chartData"
         [chartLabels]="_diffData.absence?.chartLabels"
         [addCol]="true"
+        [addRow]="false"
       >
     </app-absence-bar-chart>
+
+    <div class="col-md-5" *ngIf="_diffData.reps && _diffData.reps.length == 2">
+      <div class="myrow">
+        <app-rep-photo-name-clear [rep]="_diffData.reps[0]" ></app-rep-photo-name-clear>
+      </div>
+      <div class="myrow" >
+          <app-rep-photo-name-clear [rep]="_diffData.reps[1]" ></app-rep-photo-name-clear>
+        </div>
+    </div>
 
 </div>
 

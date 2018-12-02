@@ -1,17 +1,9 @@
 <div class="card h-100">
     <div class="card-block">
 
-      <!-- if image is available, center it along with the name -->
-      <div *ngIf="rep.photoAvailable" class="img-pos">
-        <img class="card-img-top" height="100px"
-        [src]="repPhotoUrl"
-        [alt]="rep.label">
-
-          <h3 class="card-title rep-name card-title-nowrap">{{ name }} </h3>
+      <div>
+          <app-rep-photo-name-clear [rep]="rep"></app-rep-photo-name-clear>
       </div>
-
-      <!-- if no image is available, let the name not be centered -->
-      <h3 *ngIf="! repPhotoUrl" class="card-title rep-name card-title-nowrap">{{ name }} </h3>
 
       <!-- mat-list adds a little space, and a larger font-->
       <mat-list>
@@ -142,8 +134,4 @@
     </div> <!-- card-block -->
 
   </div> <!-- card -->
-  <div *ngIf="false">
-    <pre>
-      {{ rep | json }}
-    </pre>
-  </div>
+

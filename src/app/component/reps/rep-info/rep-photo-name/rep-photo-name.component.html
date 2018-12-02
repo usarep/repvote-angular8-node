@@ -1,0 +1,14 @@
+<div [class]="getCssClass(rep.party)" >
+
+  <div *ngIf="rep.photoAvailable">
+      <img
+      [src]="getPhotoUrl(rep)" height="100px">
+  </div>
+  <div>
+      {{ repName }}
+  </div>
+
+  <i *ngIf="deleteOption" (click)="deleteClicked()"
+      class="glyphicon glyphicon-remove top-right ">
+  </i>
+</div>

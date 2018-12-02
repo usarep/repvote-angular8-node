@@ -1,0 +1,14 @@
+
+<!-- if image is available, center it along with the name -->
+<div *ngIf="rep.photoAvailable" class="img-pos">
+    <img class="card-img-top" height="100px"
+    [src]="getPhotoUrl(rep)"
+    [alt]="repName">
+
+    <h3 class="card-title rep-name card-title-nowrap">{{ repName }} </h3>
+
+</div>
+
+<!-- if no image is available, let the name not be centered -->
+<h3 *ngIf="! rep.photoAvailable" class="card-title rep-name card-title-nowrap">{{ repName }} </h3>
+

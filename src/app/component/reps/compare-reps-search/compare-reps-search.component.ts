@@ -273,7 +273,7 @@ export class CompareRepsSearchComponent implements OnInit, OnChanges , OnDestroy
       result += " btn-danger ";
     }
     else if (party.toUpperCase() === 'D') {
-      result += " btn-info ";
+      result += " btn-primary ";
     }
     else {
       result += " btn-warning ";

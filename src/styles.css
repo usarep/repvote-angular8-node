@@ -138,3 +138,8 @@ card is a bootstrap 4 feature. we are still using bootstrap 3.x
 .float-right {
   float: right;
 }
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

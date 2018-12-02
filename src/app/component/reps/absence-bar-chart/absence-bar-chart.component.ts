@@ -21,7 +21,8 @@ e.g.,
 
 @Input() public chartLabels: Array<any>; //  e.g., ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
-@Input() public addCol : boolean; // col-md-6 if true
+  @Input() public addCol: boolean; // col-md-6 if true
+  @Input() public addRow = true; // row if true
 
 // see http://www.chartjs.org/docs/#chart-configuration-global-configuration
 public chartOptions: any = {
