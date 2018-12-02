@@ -3,9 +3,9 @@
     <div class="row">
       <form class="form-group" [formGroup]="_searchForm" (ngSubmit)="indivReps()">
 
-         <div class="column well col-sm">
-               <app-spinner [visible]="_repDataLoading"> </app-spinner>
+            <app-spinner [visible]="_repDataLoading"> </app-spinner>
 
+            <div class="well col-sm-6">
                <input
                   (ngModelChange)="onKeyPress($event)"
                   placeholder="Enter name of representative"
@@ -13,6 +13,23 @@
                   formControlName="search"
                   #search
                   >
+            </div>
+
+            <div class="col-sm-3">
+                <mat-form-field>
+                  <mat-select formControlName="state"
+                      placeholder="Narrow by State"
+                      (selectionChange)="stateSelectionChange($event)"
+                  >
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let state of states"
+                      [value]="state.abbr">{{state.name}}
+                    </mat-option>
+                  </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-sm-3">
 
                 <mat-slide-toggle
                   class="vert-space"
@@ -23,9 +40,10 @@
                   Show Historical
               </mat-slide-toggle>
 
-         </div>
+            </div>
 
-       </form>
+         </form>
+
       </div> <!-- row -->
 
       <div class="row">

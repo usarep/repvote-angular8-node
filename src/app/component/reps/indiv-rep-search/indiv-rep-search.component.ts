@@ -4,6 +4,7 @@ import { Rep } from 'src/app/repModel/rep.model';
 import { RepNamesService } from 'src/app/repService/rep-names.service';
 import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
+import { DataUtil } from 'src/app/util/data-util';
 
 @Component({
   selector: 'app-indiv-rep-search',
@@ -15,17 +16,19 @@ export class IndivRepSearchComponent implements OnInit, OnChanges, OnDestroy, Af
   @Input() _chamber: Chamber;
   @ViewChild('search') search;
 
+  states = DataUtil.US_STATE;
+
   _prevChamber: Chamber = null;
 
    _MAX_REPS = 1;
    _isMaxRepsInfoVisible = false;
    _selectedItems: any[] = [];
    _searchStr: string;
-   _allReps: Rep[] = [];
+   _allReps: Rep[] = []; // those who should be searched for strFragment
   _matchingReps: Rep[] = [];
 
   // 11/27/18: currentReps vs allInclusiveReps (includes historical)
-  currentReps: Rep[] = [];
+  currentReps: Rep[] = []; // current office holders
   allInclusiveReps: Rep[] = [];
   showHistorical = false;  // show only current reps by default
   slideToggleColor = "primary";
@@ -52,7 +55,8 @@ export class IndivRepSearchComponent implements OnInit, OnChanges, OnDestroy, Af
   ) {
 
     this._searchForm = fb.group({
-      search: ['']
+      search: [''],
+      state: [''] // used only on client side. not by server
     });
   }
 
@@ -174,17 +178,25 @@ export class IndivRepSearchComponent implements OnInit, OnChanges, OnDestroy, Af
 
   toggleHistorical() {
     this.showHistorical = !this.showHistorical;
+    this.updateSelection();
+
+    /*
+    let reps: Rep[];
     if (this.showHistorical) {
-      this._allReps = this.allInclusiveReps;
+      reps = this.allInclusiveReps;
     }
     else {
-      this._allReps = this.currentReps;
+      reps = this.currentReps;
     }
+
+    // if there is a state filter, apply it
 
     console.log("toggleHistorical() - _searchForm", this._searchForm);
     const strFragment = this._searchForm.value.search;
 
     this.computeMatchingReps(strFragment);
+    */
+
     this.search.nativeElement.focus();
   }
 
@@ -200,6 +212,54 @@ export class IndivRepSearchComponent implements OnInit, OnChanges, OnDestroy, Af
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  stateSelectionChange(event) {
+    console.log("state selecton change. event=", event);
+    this.updateSelection();
+
+    this.search.nativeElement.focus();
+
+  }
+
+  private updateSelection() {
+
+    // recompute _allReps and _matchingReps
+    let reps: Rep[];
+
+    if (this.showHistorical) {
+      reps = this.allInclusiveReps;
+    }
+    else {
+      reps = this.currentReps;
+    }
+
+    // filter by state
+    const stateAbbr = this._searchForm.value.state;
+
+    this._allReps = this.applyStateFilter(reps, stateAbbr);
+
+    const strFragment = this._searchForm.value.search;
+    this.computeMatchingReps(strFragment);
+  }
+
+  // apply the state filter to the input reps array
+  private applyStateFilter(reps: Rep[], stateAbbr: string): Rep[]
+  {
+    if (!stateAbbr) {
+      return reps;
+    }
+
+    const filteredReps = reps.filter(rep => {
+      const lowerStateAbbr = stateAbbr.toLowerCase();
+      if (rep.state && rep.state.toLowerCase() === lowerStateAbbr) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    });
+    return filteredReps;
   }
 
 }

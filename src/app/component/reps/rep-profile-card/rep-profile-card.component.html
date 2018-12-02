@@ -2,7 +2,7 @@
     <div class="card-block">
 
       <!-- if image is available, center it along with the name -->
-      <div *ngIf="repPhotoUrl" class="img-pos">
+      <div *ngIf="rep.photoAvailable" class="img-pos">
         <img class="card-img-top" height="100px"
         [src]="repPhotoUrl"
         [alt]="rep.label">

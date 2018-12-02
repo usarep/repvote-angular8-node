@@ -5,6 +5,8 @@
        <ul class="list-inline">
          <li *ngFor="let item of _selectedReps; let i=index;  "
            [class]="getCssClass(item.party)" >
+           <img *ngIf="item.photoAvailable"
+           [src]="getPhotoUrl(item)" height="100px">
            {{ item.label }}
            <i (click)="deleteItem(item)"
                class="glyphicon glyphicon-remove">
@@ -12,10 +14,10 @@
          </li>
        </ul>
 
-       <div class="well col-sm">
-             <app-spinner [visible]="_repDataLoading"> </app-spinner>
+       <app-spinner [visible]="_repDataLoading"> </app-spinner>
 
-             <input
+       <div class="well col-sm-6">
+          <input
                [disabled]="false || _selectedReps?.length >= _MAX_COMPARE"
                 [ngModel]="_searchStr"
                 (ngModelChange)="onKeyPress($event)"
@@ -27,7 +29,22 @@
              <i *ngIf="_selectedReps?.length >= _MAX_COMPARE"
                class="glyphicon glyphicon-question-sign"
                (click)="showMaxCompareInfo()" > </i>
+        </div>
+        <div class="col-sm-3">
+          <mat-form-field>
+            <mat-select formControlName="state"
+                placeholder="Narrow by State"
+                (selectionChange)="stateSelectionChange($event)"
+            >
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let state of states"
+                [value]="state.abbr">{{state.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
 
+        <div class="col-sm-3">
                <mat-slide-toggle
                   class="vert-space"
                   [color]="slideToggleColor"
@@ -36,7 +53,8 @@
                   >
                   Show Historical
               </mat-slide-toggle>
-       </div>
+        </div>
+
              <div
                *ngIf="_selectedReps?.length >= _MAX_COMPARE && _isMaxCompareInfoVisible"
                class="alert alert-success">To select a different representative, please first remove one you have already selected.

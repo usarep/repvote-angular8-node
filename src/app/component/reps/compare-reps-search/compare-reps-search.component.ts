@@ -5,6 +5,8 @@ import { RepNamesService } from 'src/app/repService/rep-names.service';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SubscriptionUtil } from 'src/app/shared/subscription-util';
+import { DataUtil } from 'src/app/util/data-util';
+import { UrlService } from 'src/app/repService/url.service';
 
 @Component({
   selector: 'app-compare-reps-search',
@@ -14,6 +16,8 @@ import { SubscriptionUtil } from 'src/app/shared/subscription-util';
 export class CompareRepsSearchComponent implements OnInit, OnChanges , OnDestroy, AfterViewInit {
   @Input() _chamber;
   @ViewChild('search') search;
+
+  states = DataUtil.US_STATE;
 
    _MAX_COMPARE = 2;
    _isMaxCompareInfoVisible = false;
@@ -48,12 +52,14 @@ export class CompareRepsSearchComponent implements OnInit, OnChanges , OnDestroy
   initialized = false;
 
   constructor(
-     public _repDataService: RepNamesService,
+    public _repDataService: RepNamesService,
+    public urlService: UrlService,
      public _router: Router,
      public fb: FormBuilder)
   {
      this._searchForm = fb.group({
-      search: ['']
+       search: [''],
+       state: [''] // used only on client side. not by server
     });
   }
 
@@ -149,6 +155,10 @@ export class CompareRepsSearchComponent implements OnInit, OnChanges , OnDestroy
 
   toggleHistorical() {
     this.showHistorical = !this.showHistorical;
+
+    this.updateSelection();
+
+    /*
     if (this.showHistorical) {
       this._allReps = this.allInclusiveReps;
     }
@@ -174,6 +184,8 @@ export class CompareRepsSearchComponent implements OnInit, OnChanges , OnDestroy
     const strFragment = this._searchForm.value.search;
 
     this.computeMatchingReps(strFragment);
+    */
+
     this.search.nativeElement.focus();
   }
 
@@ -268,6 +280,76 @@ export class CompareRepsSearchComponent implements OnInit, OnChanges , OnDestroy
     console.log("compareReps() called");
     const csvNameIds = this._selectedReps[0].value + "," + this._selectedReps[1].value;
     this._router.navigate(['/compare', this._chamber.paramName, csvNameIds]);
+
+  }
+
+  stateSelectionChange(event) {
+    console.log("state selecton change. event=", event);
+    this.updateSelection();
+
+    this.search.nativeElement.focus();
+
+  }
+
+  private updateSelection() {
+
+    // recompute _allReps and _matchingReps
+    let reps: Rep[];
+
+    if (this.showHistorical) {
+      reps = this.allInclusiveReps;
+    }
+    else {
+      reps = this.currentReps;
+    }
+
+    // filter by state
+    const stateAbbr = this._searchForm.value.state;
+
+    this._allReps = this.applyStateFilter(reps, stateAbbr);
+
+    // remainingReps must be allReps - selectedReps
+
+    // if selectedReps has historical rep and we are switching to current reps only
+    // then what? we just keep the selectedRep as is.
+
+    this._remainingReps = this._allReps.slice();
+
+    if (this._selectedReps && this._selectedReps.length > 0) {
+      const index = this._remainingReps.indexOf(this._selectedReps[0]);
+      if (index >= 0) {
+        this._remainingReps.splice(index, 1);
+      }
+    }
+
+
+    const strFragment = this._searchForm.value.search;
+    this.computeMatchingReps(strFragment);
+  }
+
+  // apply the state filter to the input reps array
+  private applyStateFilter(reps: Rep[], stateAbbr: string): Rep[]
+  {
+    if (!stateAbbr) {
+      return reps;
+    }
+
+    const filteredReps = reps.filter(rep => {
+      const lowerStateAbbr = stateAbbr.toLowerCase();
+      if (rep.state && rep.state.toLowerCase() === lowerStateAbbr) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    });
+    return filteredReps;
+  }
+
+  getPhotoUrl(rep) {
+
+    const repPhotoUrl = this.urlService.getRepPhotoUrl(rep.legislator.id.bioguide);
+    return repPhotoUrl;
 
   }
 

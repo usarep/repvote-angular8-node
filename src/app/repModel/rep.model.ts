@@ -19,6 +19,8 @@ export class Rep {
   district?: number;
   party?: string;
   partyFull?: string;
+
+  photoAvailable?: boolean;
 }
 
 // this is how sponsors and cosponsor fields appear in Bill or Amendment
