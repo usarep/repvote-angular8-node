@@ -72,6 +72,13 @@ export class CompareRepsSearchComponent implements OnInit, OnChanges , OnDestroy
       res => {
         console.log("compareReps subscription", res);
 
+        // if user switches between house and senate, make sure the state is cleared
+        // we keep the historical to whatever it was
+         const reset = {};
+         reset['search'] = '';
+         reset['state'] = '';
+         this._searchForm.patchValue(reset);
+
         if (this._chamber === res.chamber)
         {
           this.allInclusiveReps = res.reps;

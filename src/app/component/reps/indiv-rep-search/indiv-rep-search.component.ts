@@ -62,9 +62,19 @@ export class IndivRepSearchComponent implements OnInit, OnChanges, OnDestroy, Af
 
   ngOnInit() {
 
+
+
     this.subscription = this._repDataService.getRepStatusListener()
       .subscribe( res => {
-          console.log("indiv rep search", res);
+        console.log("indiv rep search", res);
+
+        // if user switches between house and senate, make sure the state is cleared
+        // we keep the historical to whatever it was
+        const reset = {};
+        reset['search'] = '';
+        reset['state'] = '';
+        this._searchForm.patchValue(reset);
+
 
           if (this._chamber === res.chamber) {
             this.allInclusiveReps = res.reps;
