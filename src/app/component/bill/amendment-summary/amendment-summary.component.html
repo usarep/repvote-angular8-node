@@ -72,7 +72,7 @@
                     Last Update: {{ amdtInfo.updateDate }}
                 </span>
                 <p>
-                Ref: <a href="{{ extUrl}}" new-tab> {{ amdtInfo.amendmentType }} {{amdtInfo.number}} </a>
+                Ref: <a href="{{ extUrl}}" appTargetBlank> {{ amdtInfo.amendmentType }} {{amdtInfo.number}} </a>
 
                 </small>
                 </dd>
@@ -92,7 +92,7 @@
                         <div *ngIf="action.links">
                             <ul class="list-inline">
                                 <li *ngFor="let link of action.links;" >
-                                    <a href="{{link.url}}" new-tab>
+                                    <a href="{{link.url}}" appTargetBlank>
                                         {{link.name}}
                                     </a>
                                 </li>

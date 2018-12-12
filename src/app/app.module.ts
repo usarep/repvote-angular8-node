@@ -72,6 +72,7 @@ import { RepSelectCardComponent } from './component/reps/rep-select-card/rep-sel
 import { RepProfileCardComponent } from './component/reps/rep-profile-card/rep-profile-card.component';
 import { RepPhotoNameComponent } from './component/reps/rep-info/rep-photo-name/rep-photo-name.component';
 import { RepPhotoNameClearComponent } from './component/reps/rep-info/rep-photo-name-clear/rep-photo-name-clear.component';
+import { TargetBlankDirective } from './shared/target-blank.directive';
 
 const customOptions: ShareButtonsOptions = {
   include: ['reddit', 'facebook', 'twitter', 'linkedin', 'whatsapp'],
@@ -149,6 +150,8 @@ const customOptions: ShareButtonsOptions = {
     RepPhotoNameComponent,
 
     RepPhotoNameClearComponent,
+
+    TargetBlankDirective,
 
   ],
   imports: [
