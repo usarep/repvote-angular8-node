@@ -27,7 +27,12 @@
 
             <div *ngIf="extUrl" class="vertical-space-10">
                 <small>
-                    <a href="{{ extUrl }} " appTargetBlank> {{ _docType }} {{ _docNumber}} </a>
+                    <a href="{{ extUrl }} " appTargetBlank
+                        gtagEvent trackOn="click"
+                        action="follow_ext_link"
+                        category="ext_link"
+                        [params]="{ event_label: _docType + ' ' + _docNumber }"
+                        > {{ _docType }} {{ _docNumber}} </a>
                 </small>
             </div>
 

@@ -72,7 +72,12 @@
                     Last Update: {{ amdtInfo.updateDate }}
                 </span>
                 <p>
-                Ref: <a href="{{ extUrl}}" appTargetBlank> {{ amdtInfo.amendmentType }} {{amdtInfo.number}} </a>
+                Ref: <a href="{{ extUrl}}" appTargetBlank
+                        gtagEvent trackOn="click"
+                        action="follow_ext_link"
+                        category="ext_link"
+                        [params]="{ event_label: amdtInfo.amendmentType + ' ' + amdtInfo.number }"
+                      > {{ amdtInfo.amendmentType }} {{amdtInfo.number}} </a>
 
                 </small>
                 </dd>
@@ -92,7 +97,12 @@
                         <div *ngIf="action.links">
                             <ul class="list-inline">
                                 <li *ngFor="let link of action.links;" >
-                                    <a href="{{link.url}}" appTargetBlank>
+                                    <a href="{{link.url}}" appTargetBlank
+                                      gtagEvent trackOn="click"
+                                      action="follow_ext_link"
+                                      category="ext_link"
+                                      [params]="{ event_label: link.name }"
+                                    >
                                         {{link.name}}
                                     </a>
                                 </li>

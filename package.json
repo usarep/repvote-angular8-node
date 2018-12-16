@@ -31,6 +31,7 @@
     "@ngx-share/button": "^6.0.1",
     "@ngx-share/buttons": "^6.0.1",
     "@ngx-share/core": "^6.0.1",
+    "angular-gtag": "^1.0.3",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "classlist.js": "1.1.20150312",

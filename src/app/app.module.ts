@@ -9,6 +9,7 @@ import { MatButtonModule, MatInputModule, MatCardModule, MatToolbarModule, MatEx
 
 // ref: https://www.npmjs.com/package/ng5-breadcrumb
 import { Ng5BreadcrumbModule } from 'ng5-breadcrumb';
+import { GtagModule } from 'angular-gtag';
 
 // other external modules
 import { Ng2CompleterModule } from "ng2-completer";
@@ -170,7 +171,7 @@ const customOptions: ShareButtonsOptions = {
     ChartsModule,
     ShareButtonsModule.forRoot({ options: customOptions }),
 
-
+    GtagModule.forRoot( { trackingId: 'UA-131004935-1', trackPageviews: true, debug: true }),
 
     ngProjectRouting
   ],

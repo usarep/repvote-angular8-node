@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BreadcrumbService } from 'ng5-breadcrumb';
 import { Recaptchav3Service } from './service/recaptchav3.service';
 import { Title, Meta } from '@angular/platform-browser';
+import { Router, NavigationEnd } from '@angular/router';
+import { Gtag } from 'angular-gtag';
 
 // [exclude]="'tumblr,pinterest,stumbleUpOn,google'"
 
@@ -39,8 +41,10 @@ export class AppComponent implements OnInit {
   constructor(
     private titleService: Title,
     private metaService: Meta,
-    private breadcrumbService: BreadcrumbService
+    private breadcrumbService: BreadcrumbService,
+    public gtag: Gtag
   ) {
+    // gtag tracking: https://github.com/codediodeio/angular-gtag
 
     // breadcrumbs: https://github.com/akiocloud/ng5-breadcrumb
     // breadcrumbs is a TODO
@@ -52,6 +56,8 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.titleService.setTitle("Voting record of members of congress");
     this.initKeywordsTag("roll-call, voting-record");
+
+
   }
 
   /*
