@@ -171,7 +171,7 @@ const customOptions: ShareButtonsOptions = {
     ChartsModule,
     ShareButtonsModule.forRoot({ options: customOptions }),
 
-    GtagModule.forRoot( { trackingId: 'UA-131004935-1', trackPageviews: true, debug: true }),
+    GtagModule.forRoot( { trackingId: 'UA-131004935-1', trackPageviews: false, debug: true }),
 
     ngProjectRouting
   ],

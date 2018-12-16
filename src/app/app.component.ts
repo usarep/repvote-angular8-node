@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { BreadcrumbService } from 'ng5-breadcrumb';
 import { Recaptchav3Service } from './service/recaptchav3.service';
 import { Title, Meta } from '@angular/platform-browser';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Gtag } from 'angular-gtag';
+import { environment } from 'src/environments/environment.prod';
+
+
 
 // [exclude]="'tumblr,pinterest,stumbleUpOn,google'"
 
@@ -42,7 +45,9 @@ export class AppComponent implements OnInit {
     private titleService: Title,
     private metaService: Meta,
     private breadcrumbService: BreadcrumbService,
-    public gtag: Gtag
+    public gtag: Gtag,
+    public router: Router,
+    public route: ActivatedRoute
   ) {
     // gtag tracking: https://github.com/codediodeio/angular-gtag
 
@@ -56,6 +61,17 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.titleService.setTitle("Voting record of members of congress");
     this.initKeywordsTag("roll-call, voting-record");
+
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.gtag.pageview({
+          page_title: this.titleService.getTitle(),
+          page_path: this.router.url,
+          page_location: environment.server + this.router.url
+        });
+      }
+    });
 
 
   }
