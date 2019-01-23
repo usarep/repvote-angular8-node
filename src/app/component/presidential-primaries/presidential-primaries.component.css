@@ -10,3 +10,7 @@ background-color: #efeee8;
 .bold {
   font-weight: bold;
 }
+.photo {
+  height: 35px;
+  margin-right: 3px;
+}

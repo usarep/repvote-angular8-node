@@ -19,27 +19,27 @@
     <table class="table table-bordered senators">
         <tr>
           <td></td>
-          <td>Elizabeth Warren</td>
-          <td>Kirsten Gillibrand</td>
-          <td>Kamala Harris</td>
+          <td><img class="photo" [src]="getPhotoUrl(warren)"> Elizabeth Warren</td>
+          <td><img class="photo" [src]="getPhotoUrl(gillibrand)"> Kirsten Gillibrand</td>
+          <td><img class="photo" [src]="getPhotoUrl(harris)"> Kamala Harris</td>
         </tr>
         <tr>
-          <td>Elizabeth Warren</td>
-          <td><a [routerLink]="['/vote', 'senate', warrenId]">Own Record</a></td>
-          <td><a class="bold" [routerLink]="['/compare', 'senate', csv(warrenId, gillibrandId)]">Compare</a></td>
-          <td><a class="bold" [routerLink]="['/compare', 'senate', csv(warrenId, harrisId)]">Compare</a></td>
+          <td><img class="photo" [src]="getPhotoUrl(warren)">Elizabeth Warren</td>
+          <td><a [routerLink]="['/vote', 'senate', warren.chamberNameId]">Own Record</a></td>
+          <td><a class="bold" [routerLink]="['/compare', 'senate', csv(warren.chamberNameId, gillibrand.chamberNameId)]">Compare</a></td>
+          <td><a class="bold" [routerLink]="['/compare', 'senate', csv(warren.chamberNameId, harris.chamberNameId)]">Compare</a></td>
         </tr>
         <tr>
-          <td>Kirsten Gillibrand</td>
+          <td><img class="photo" [src]="getPhotoUrl(gillibrand)">Kirsten Gillibrand</td>
           <td></td>
-          <td><a [routerLink]="['/vote', 'senate', gillibrandId]">Own Record</a></td>
-          <td><a class="bold" [routerLink]="['/compare', 'senate', csv(gillibrandId, harrisId)]">Compare</a></td>
+          <td><a [routerLink]="['/vote', 'senate', gillibrand.chamberNameId]">Own Record</a></td>
+          <td><a class="bold" [routerLink]="['/compare', 'senate', csv(gillibrand.chamberNameId, harris.chamberNameId)]">Compare</a></td>
         </tr>
         <tr>
-          <td>Kamala Harris</td>
+          <td><img class="photo" [src]="getPhotoUrl(harris)">Kamala Harris</td>
           <td></td>
           <td></td>
-          <td><a [routerLink]="['/vote', 'senate', harrisId]">Own Record</a></td>
+          <td><a [routerLink]="['/vote', 'senate', harris.chamberNameId]">Own Record</a></td>
         </tr>
 
       </table>
@@ -53,27 +53,27 @@
       <table class="table table-bordered houseMembers">
           <tr>
             <td></td>
-            <td>Tulsi Gabbard</td>
-            <td>Joaquin Castro</td>
-            <td>Eric Swalwell</td>
+            <td><img class="photo" [src]="getPhotoUrl(gabbard)">Tulsi Gabbard</td>
+            <td><img class="photo" [src]="getPhotoUrl(castro)">Joaquin Castro</td>
+            <td><img class="photo" [src]="getPhotoUrl(swalwell)">Eric Swalwell</td>
           </tr>
           <tr>
-            <td>Tulsi Gabbard</td>
-            <td><a [routerLink]="['/vote', 'house', gabbardId]">Own Record</a></td>
-            <td><a class="bold" [routerLink]="['/compare', 'house', csv(gabbardId, castroId) ]">Compare</a></td>
-            <td><a class="bold" [routerLink]="['/compare', 'house', csv(gabbardId, swalwellId) ]">Compare</a></td>
+            <td><img class="photo" [src]="getPhotoUrl(gabbard)">Tulsi Gabbard</td>
+            <td><a [routerLink]="['/vote', 'house', gabbard.chamberNameId]">Own Record</a></td>
+            <td><a class="bold" [routerLink]="['/compare', 'house', csv(gabbard.chamberNameId, castro.chamberNameId) ]">Compare</a></td>
+            <td><a class="bold" [routerLink]="['/compare', 'house', csv(gabbard.chamberNameId, swalwell.chamberNameId) ]">Compare</a></td>
           </tr>
           <tr>
-            <td>Joaquin Castro</td>
+            <td><img class="photo" [src]="getPhotoUrl(castro)">Joaquin Castro</td>
             <td></td>
-            <td><a [routerLink]="['/vote', 'house', castroId]">Own Record</a></td>
-            <td><a class="bold" [routerLink]="['/compare', 'house', csv(castroId, swalwellId)]">Compare</a></td>
+            <td><a [routerLink]="['/vote', 'house', castro.chamberNameId]">Own Record</a></td>
+            <td><a class="bold" [routerLink]="['/compare', 'house', csv(castro.chamberNameId, swalwell.chamberNameId)]">Compare</a></td>
           </tr>
           <tr>
-            <td>Eric Swalwell</td>
+            <td><img class="photo" [src]="getPhotoUrl(swalwell)">Eric Swalwell</td>
             <td></td>
             <td></td>
-            <td><a [routerLink]="['/vote', 'house', swalwellId]">Own Record</a></td>
+            <td><a [routerLink]="['/vote', 'house', swalwell.chamberNameId]">Own Record</a></td>
           </tr>
 
         </table>
