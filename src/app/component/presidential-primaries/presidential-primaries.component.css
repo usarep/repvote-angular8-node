@@ -1,0 +1,12 @@
+.senators {
+background-color: #efeee8;
+}
+.houseMembers {
+  background-color: #efeee8;
+}
+.senators:hover , .houseMembers:hover {
+  background-color: #efe8ba;
+}
+.bold {
+  font-weight: bold;
+}

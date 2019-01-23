@@ -1,0 +1,85 @@
+<div class="panel panel-default">
+
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      Presidential Primaries 2019: Compare Candidates On Their Voting Records
+    </h3>
+  </div> <!-- panel heading-->
+
+  <div class="panel-body">
+    <div>
+        Many of the candidates running for President have a similar message.
+        Do you find it hard to figure out how they differ?
+        Well, here is an objective comparison -- of their voting records.
+    </div>
+
+    <div>
+    <h5> Compare Senators</h5>
+
+    <table class="table table-bordered senators">
+        <tr>
+          <td></td>
+          <td>Elizabeth Warren</td>
+          <td>Kirsten Gillibrand</td>
+          <td>Kamala Harris</td>
+        </tr>
+        <tr>
+          <td>Elizabeth Warren</td>
+          <td><a [routerLink]="['/vote', 'senate', warrenId]">Own Record</a></td>
+          <td><a class="bold" [routerLink]="['/compare', 'senate', warrenId, gillibrandId]">Compare</a></td>
+          <td><a class="bold" [routerLink]="['/compare', 'senate', warrenId, harrisId]">Compare</a></td>
+        </tr>
+        <tr>
+          <td>Kirsten Gillibrand</td>
+          <td></td>
+          <td><a [routerLink]="['/vote', 'senate', gillibrandId]">Own Record</a></td>
+          <td><a class="bold" [routerLink]="['/compare', 'senate', gillibrandId, harrisId]">Compare</a></td>
+        </tr>
+        <tr>
+          <td>Kamala Harris</td>
+          <td></td>
+          <td></td>
+          <td><a [routerLink]="['/vote', 'senate', harrisId]">Own Record</a></td>
+        </tr>
+
+      </table>
+
+    </div>
+
+    <div>
+
+      <h5> Compare  House Members</h5>
+
+      <table class="table table-bordered houseMembers">
+          <tr>
+            <td></td>
+            <td>Tulsi Gabbard</td>
+            <td>Joaquin Castro</td>
+            <td>Eric Swalwell</td>
+          </tr>
+          <tr>
+            <td>Tulsi Gabbard</td>
+            <td><a [routerLink]="['/vote', 'senate', gabbardId]">Own Record</a></td>
+            <td><a class="bold" [routerLink]="['/compare', 'senate', gabbardId, castroId]">Compare</a></td>
+            <td><a class="bold" [routerLink]="['/compare', 'senate', gabbardId, swalwellId]">Compare</a></td>
+          </tr>
+          <tr>
+            <td>Joaquin Castro</td>
+            <td></td>
+            <td><a [routerLink]="['/vote', 'senate', castroId]">Own Record</a></td>
+            <td><a class="bold" [routerLink]="['/compare', 'senate', castroId, swalwellId]">Compare</a></td>
+          </tr>
+          <tr>
+            <td>Eric Swalwell</td>
+            <td></td>
+            <td></td>
+            <td><a [routerLink]="['/vote', 'senate', swalwellId]">Own Record</a></td>
+          </tr>
+
+        </table>
+
+      </div>
+
+  </div> <!-- panel body -->
+
+</div> <!-- panel panel-default -->

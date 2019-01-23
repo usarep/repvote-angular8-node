@@ -10,6 +10,7 @@ import { AmendmentSummaryComponent } from './component/bill/amendment-summary/am
 import { NotFoundComponent } from './not-found.component';
 import { IndivRepSearchResultComponent } from './component/reps/indiv-rep-search-result/indiv-rep-search-result.component';
 import { LandingPageComponent } from './component/landing-page/landing-page.component';
+import { PresidentialPrimaryLandingPageComponent } from './component/presidential-primary-landing-page/presidential-primary-landing-page.component';
 
 
 // import { BillSummaryOldComponent } from './reps/bill-summary-old.component';
@@ -28,6 +29,8 @@ export const ngProjectRouting = RouterModule.forRoot([
   // { path: 'billSummaryOld/:billId', component: BillSummaryOldComponent },
   { path: 'billSummary/:congress/:docType/:docNumber', component: BillSummaryComponent },
   { path: 'amendmentSummary/:congress/:docType/:docNumber', component: AmendmentSummaryComponent },
+
+  { path: 'presidentialPrimaries', component: PresidentialPrimaryLandingPageComponent },
 
   { path: 'notfound', component: NotFoundComponent },
   { path: '**', redirectTo: 'notfound' },

@@ -74,6 +74,8 @@ import { RepProfileCardComponent } from './component/reps/rep-profile-card/rep-p
 import { RepPhotoNameComponent } from './component/reps/rep-info/rep-photo-name/rep-photo-name.component';
 import { RepPhotoNameClearComponent } from './component/reps/rep-info/rep-photo-name-clear/rep-photo-name-clear.component';
 import { TargetBlankDirective } from './shared/target-blank.directive';
+import { PresidentialPrimariesComponent } from './component/presidential-primaries/presidential-primaries.component';
+import { PresidentialPrimaryLandingPageComponent } from './component/presidential-primary-landing-page/presidential-primary-landing-page.component';
 
 const customOptions: ShareButtonsOptions = {
   include: ['reddit', 'facebook', 'twitter', 'linkedin', 'whatsapp'],
@@ -153,6 +155,10 @@ const customOptions: ShareButtonsOptions = {
     RepPhotoNameClearComponent,
 
     TargetBlankDirective,
+
+    PresidentialPrimariesComponent,
+
+    PresidentialPrimaryLandingPageComponent,
 
   ],
   imports: [
