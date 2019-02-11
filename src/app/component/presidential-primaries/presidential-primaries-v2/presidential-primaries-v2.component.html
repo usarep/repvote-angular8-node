@@ -1,0 +1,51 @@
+<div class="panel panel-default">
+
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      Presidential Primaries 2019: Compare Candidates On Their Voting Records
+    </h3>
+  </div> <!-- panel heading-->
+
+  <div class="panel-body">
+    <div>
+        Many of the candidates running for President have a similar message.
+        Do you find it hard to figure out how they differ?
+        Well, here is an objective comparison -- of their voting records.
+    </div>
+
+    <div>
+      <h5> Compare Senators</h5>
+
+      <app-presidential-primary-table
+        [reps]="senators"
+        [chamberName]="'senate'">
+      </app-presidential-primary-table>
+
+    </div>
+
+    <div>
+
+      <h5> Compare  House Members</h5>
+
+      <app-presidential-primary-table
+        [reps]="houseMembers"
+        [chamberName]="'house'">
+      </app-presidential-primary-table>
+
+    </div>
+
+
+    <div>
+      Another interesting candidate is <b>Pete Buttigieg</b>, the mayor of South Bend, Indiana.
+    </div>
+
+    <div>
+      Eric Swalwell and Beto O'Rourke have not yet announced their candidacy.
+    </div>
+
+
+
+  </div> <!-- panel body -->
+
+</div> <!-- panel panel-default -->
+

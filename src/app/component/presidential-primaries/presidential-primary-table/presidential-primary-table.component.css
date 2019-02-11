@@ -1,0 +1,13 @@
+.members {
+  background-color: #efeee8;
+}
+.members:hover {
+  background-color: #efe8ba;
+}
+.bold {
+  font-weight: bold;
+}
+.photo {
+  height: 35px;
+  margin-right: 3px;
+}

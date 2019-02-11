@@ -1,0 +1,25 @@
+<table *ngIf="reps && reps.length > 0" class="table table-bordered members">
+
+  <!-- first row (heading)-->
+  <tr>
+    <td></td>
+    <td *ngFor="let rep of reps ">
+      <img class="photo" [src]="getPhotoUrl(rep)">{{ rep.lastName }}
+    </td>
+  </tr>
+  <!-- later rows-->
+  <tr *ngFor="let rep1 of reps; let i=index;">
+    <td><img class="photo" [src]="getPhotoUrl(rep1)">{{rep1.name}}</td>
+    <td *ngFor="let rep2 of reps; let k=index;">
+      <a *ngIf="i == k"
+        [routerLink]="['/vote', chamberName, rep1.value]">Record</a>
+
+      <a *ngIf="i != k" class="bold"
+        [routerLink]="['/compare', chamberName, csv(rep1.value, rep2.value) ]">Compare</a>
+
+    </td>
+
+  </tr>
+
+
+</table>
