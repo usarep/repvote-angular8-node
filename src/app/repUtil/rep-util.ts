@@ -30,20 +30,27 @@ export class RepUtil {
       return null;
     }
 
+    let result = null;
+
     // check rep.legislator.name fields
     if (rep.legislator && rep.legislator.name) {
       // officialFull
       if (rep.legislator.name.officialFull) {
-        return rep.legislator.name.officialFull;
+        result = rep.legislator.name.officialFull;
       }
       else if (rep.legislator.name.last && rep.legislator.name.first) {
-        return rep.legislator.name.first + " " + rep.legislator.name.last;
+        result = rep.legislator.name.first + " " + rep.legislator.name.last;
       }
 
     }
 
+    // replace ? with ' -- as in O?Rourke to O'Rourke
+    if (result && result.indexOf('?') >= 0) {
+      result = result.replace(/\?/i, "'"); // single quote in result
+    }
+
     // default when all else fails
-    return null;
+    return result;
 
   }
 }

@@ -88,7 +88,16 @@ export class PresidentialPrimariesV2Component implements OnInit {
     bioguide: 'S001193'
   });
 
-  houseMembers = [this.gabbard, this.castro, this.swalwell];
+  orourke = new PresidentialCandidate({
+    name: 'Beto O\'Rourke',
+    lastName: 'O\'Rourke',
+    value: '1-O000170',
+    chamberId : 1,
+    bioguide: 'O000170'
+  });
+
+
+  houseMembers = [this.gabbard, this.castro, this.swalwell, this.orourke];
 
 
   constructor(public urlService: UrlService) { }

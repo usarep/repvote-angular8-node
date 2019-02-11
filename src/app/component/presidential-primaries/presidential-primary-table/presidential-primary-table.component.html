@@ -14,7 +14,7 @@
       <a *ngIf="i == k"
         [routerLink]="['/vote', chamberName, rep1.value]">Record</a>
 
-      <a *ngIf="i != k" class="bold"
+      <a *ngIf="i < k" class="bold"
         [routerLink]="['/compare', chamberName, csv(rep1.value, rep2.value) ]">Compare</a>
 
     </td>
