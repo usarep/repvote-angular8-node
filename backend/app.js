@@ -57,6 +57,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/photo", express.static(path.join(__dirname, "/repPhoto")));
 app.use("/", express.static(path.join(__dirname, "/angular")));
+app.use("/iframeTest", express.static(path.join(__dirname, "/iframeTest")));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
