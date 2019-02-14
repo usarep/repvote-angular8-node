@@ -1,5 +1,6 @@
 import { Component, SimpleChanges, OnChanges, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { GlobalState } from 'src/app/model/global-state';
 
 @Component({
   selector: 'app-issue-link',
@@ -38,6 +39,10 @@ export class IssueLinkComponent implements OnChanges {
           }
           return url;
       }
+  }
+
+  get inIframe() {
+    return GlobalState.inIframe;
   }
 
 }

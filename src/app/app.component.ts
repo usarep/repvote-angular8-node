@@ -5,6 +5,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Gtag } from 'angular-gtag';
 import { environment } from 'src/environments/environment.prod';
+import { GlobalState } from './model/global-state';
 
 
 
@@ -21,7 +22,7 @@ import { environment } from 'src/environments/environment.prod';
 @Component({
   selector: 'app-root',
   template: `
-  <app-nav-bar></app-nav-bar>
+  <app-nav-bar *ngIf="!inIframe"></app-nav-bar>
 
   <div class="hidden-xs app-vert-space">
     &nbsp;
@@ -39,6 +40,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class AppComponent implements OnInit {
   title = 'app';
+
 
   //
   constructor(
@@ -59,6 +61,9 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit() {
+
+    GlobalState.inIframe = this.computeInIframe();
+    console.log("inIframe", GlobalState.inIframe);
     this.titleService.setTitle("Voting record of members of congress");
     this.initKeywordsTag("roll-call, voting-record");
 
@@ -74,6 +79,18 @@ export class AppComponent implements OnInit {
     });
 
 
+  }
+
+  get inIframe() {
+    return GlobalState.inIframe;
+  }
+
+  computeInIframe() {
+    try {
+        return window.self !== window.top;
+    } catch (e) {
+        return false;
+    }
   }
 
   /*

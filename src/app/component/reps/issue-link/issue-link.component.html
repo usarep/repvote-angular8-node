@@ -1,9 +1,21 @@
-<a *ngIf="issue"
+<a *ngIf="issue && !inIframe"
         [routerLink]="[_billSummaryUrl,
                 issue.congress,
                 issue.docType,
                 issue.docNumber
             ]"
             class="issueLink"
+
+            > {{ issue.docType }}  {{ issue.docNumber }}
+</a>
+<a *ngIf="issue && inIframe"
+        [routerLink]="[_billSummaryUrl,
+                issue.congress,
+                issue.docType,
+                issue.docNumber
+            ]"
+            class="issueLink"
+            target="_blank"
+
             > {{ issue.docType }}  {{ issue.docNumber }}
 </a>
