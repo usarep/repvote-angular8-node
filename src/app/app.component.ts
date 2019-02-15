@@ -24,6 +24,14 @@ import { GlobalState } from './model/global-state';
   template: `
   <app-nav-bar *ngIf="!inIframe"></app-nav-bar>
 
+  <div *ngIf="!inIframe" class="hidden-xs our-breadcrumb">
+    <breadcrumb></breadcrumb>
+  </div>
+
+  <div *ngIf="!inIframe" class="visible-xs our-breadcrumb">
+    <breadcrumb></breadcrumb>
+  </div>
+
   <app-back-button  *ngIf="inIframe" ></app-back-button>
   <div class="hidden-xs app-vert-space">
     &nbsp;
@@ -56,7 +64,7 @@ export class AppComponent implements OnInit {
 
     // breadcrumbs: https://github.com/akiocloud/ng5-breadcrumb
     // breadcrumbs is a TODO
-    // this.initBreadCrumbLabels();
+    this.initBreadCrumbLabels();
 
   }
 
@@ -76,6 +84,11 @@ export class AppComponent implements OnInit {
           page_path: this.router.url,
           page_location: environment.server + this.router.url
         });
+
+        // if this is the first url we are langing on, save it
+        if (GlobalState.inIframe && !GlobalState.firstUrlInIframe) {
+          GlobalState.firstUrlInIframe = this.router.url;
+        }
       }
     });
 
@@ -129,46 +142,54 @@ export class AppComponent implements OnInit {
 
   */
 
-  // initBreadCrumbLabels() {
+  initBreadCrumbLabels() {
 
-  //   this.breadcrumbService.addCallbackForRouteRegex('/vote/house/[a-zA-Z0-9_\-]', this.getVoteHouseLeaf);
-  //   this.breadcrumbService.addCallbackForRouteRegex('/vote/senate/[a-zA-Z0-9_\-]', this.getVoteSenateLeaf);
+    this.breadcrumbService.addCallbackForRouteRegex('/vote/house/[a-zA-Z0-9_\-]', this.getVoteHouseLeaf);
+    this.breadcrumbService.addCallbackForRouteRegex('/vote/senate/[a-zA-Z0-9_\-]', this.getVoteSenateLeaf);
 
-  //   this.breadcrumbService.addCallbackForRouteRegex('/compare/house/[a-zA-Z0-9_\-]', this.getCompareHouseLeaf);
-  //   this.breadcrumbService.addCallbackForRouteRegex('/compare/senate/[a-zA-Z0-9_\-]', this.getCompareSenateLeaf);
+    this.breadcrumbService.addCallbackForRouteRegex('/compare/house/[a-zA-Z0-9_\-]', this.getCompareHouseLeaf);
+    this.breadcrumbService.addCallbackForRouteRegex('/compare/senate/[a-zA-Z0-9_\-]', this.getCompareSenateLeaf);
 
-  //   this.breadcrumbService.hideRouteRegex('/billSummary');
-  //   this.breadcrumbService.hideRouteRegex('/billSummary/[a-zA-Z0-9_\-]');
+    this.breadcrumbService.hideRouteRegex('/billSummary');
+    this.breadcrumbService.hideRouteRegex('/billSummary/[a-zA-Z0-9_\-]');
 
-  //   // amendmentSummary/110/SAmdt/5280
-  //   this.breadcrumbService.hideRouteRegex('/amendmentSummary');
-  //   this.breadcrumbService.hideRouteRegex('/amendmentSummary/[a-zA-Z0-9_\-]');
-
-
-  //   this.breadcrumbService.hideRouteRegex('/vote/senate/[a-zA-Z0-9_\-]/policy-area');
+    // amendmentSummary/110/SAmdt/5280
+    this.breadcrumbService.hideRouteRegex('/amendmentSummary');
+    this.breadcrumbService.hideRouteRegex('/amendmentSummary/[a-zA-Z0-9_\-]');
 
 
-  // }
+    this.breadcrumbService.hideRouteRegex('/vote/senate/[a-zA-Z0-9_\-]/policy-area');
 
-  // getVoteHouseLeaf(id: string): string {
-  //   return 'member';
-  // }
+    this.breadcrumbService.hideRoute('/compare');
+    this.breadcrumbService.hideRoute('/vote');
 
-  // getVoteSenateLeaf(id: string): string {
-  //   return 'senator';
-  // }
+    this.breadcrumbService.addCallbackForRoute('/presidentialPrimaries', this.getPresidentialPrimaries);
 
-  // getCompareHouseLeaf(id: string): string {
-  //   return 'members';
-  // }
+  }
 
-  // getCompareSenateLeaf(id: string): string {
-  //   return 'senators';
-  // }
+  getVoteHouseLeaf(id: string): string {
+    return 'member';
+  }
 
-  // getPolicyArea(id: string): string {
-  //   return "policy-area";
-  // }
+  getVoteSenateLeaf(id: string): string {
+    return 'senator';
+  }
+
+  getCompareHouseLeaf(id: string): string {
+    return 'members';
+  }
+
+  getCompareSenateLeaf(id: string): string {
+    return 'senators';
+  }
+
+  getPolicyArea(id: string): string {
+    return "policy-area";
+  }
+
+  getPresidentialPrimaries(id: string): string {
+    return "presidential-primaries";
+  }
 
 
 }
