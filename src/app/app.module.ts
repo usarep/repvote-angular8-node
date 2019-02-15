@@ -79,6 +79,7 @@ import { PresidentialPrimaryLandingPageComponent } from './component/presidentia
 import { PresidentialPrimaryTableComponent } from './component/presidential-primaries/presidential-primary-table/presidential-primary-table.component';
 import { PresidentialPrimariesV2Component } from './component/presidential-primaries/presidential-primaries-v2/presidential-primaries-v2.component';
 import { TargetBlankConditionalDirective } from './shared/target-blank-conditional.directive';
+import { BackButtonComponent } from './shared/back-button/back-button.component';
 
 const customOptions: ShareButtonsOptions = {
   include: ['reddit', 'facebook', 'twitter', 'linkedin', 'whatsapp'],
@@ -168,6 +169,8 @@ const customOptions: ShareButtonsOptions = {
     PresidentialPrimariesV2Component,
 
     TargetBlankConditionalDirective,
+
+    BackButtonComponent,
 
   ],
   imports: [

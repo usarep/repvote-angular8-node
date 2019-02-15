@@ -24,6 +24,7 @@ import { GlobalState } from './model/global-state';
   template: `
   <app-nav-bar *ngIf="!inIframe"></app-nav-bar>
 
+  <app-back-button  *ngIf="inIframe" ></app-back-button>
   <div class="hidden-xs app-vert-space">
     &nbsp;
   </div>

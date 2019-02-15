@@ -1,0 +1,11 @@
+.back-button-color {
+  /* color: #f4ad42; */
+  color: #ea302a;
+}
+.fixed-top-left {
+  position: fixed;
+  padding: 0;
+  left: 0%;
+  top: 0%;
+  transform: translateX(-0%);
+}
