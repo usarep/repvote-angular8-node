@@ -12,7 +12,6 @@ import { IndivRepSearchResultComponent } from './component/reps/indiv-rep-search
 import { LandingPageComponent } from './component/landing-page/landing-page.component';
 import { PresidentialPrimaryLandingPageComponent } from './component/presidential-primary-landing-page/presidential-primary-landing-page.component';
 import { PresidentialPrimariesV2Component } from './component/presidential-primaries/presidential-primaries-v2/presidential-primaries-v2.component';
-import { PresidentialPrimariesBallotpediaComponent } from './component/presidential-primaries/presidential-primaries-ballotpedia/presidential-primaries-ballotpedia.component';
 import { PresidentialPrimariesSuccinctComponent } from './component/presidential-primaries/presidential-primaries-succinct/presidential-primaries-succinct.component';
 
 

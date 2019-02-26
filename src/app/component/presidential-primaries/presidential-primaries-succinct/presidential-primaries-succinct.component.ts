@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PresidentialPrimariesV2Component } from '../presidential-primaries-v2/presidential-primaries-v2.component';
 import { UrlService } from 'src/app/repService/url.service';
-import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-presidential-primaries-succinct',
