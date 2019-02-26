@@ -78,6 +78,14 @@ export class PresidentialPrimariesV2Component implements OnInit {
     this.sanders];
 
 
+  delaney = new PresidentialCandidate({
+      name: 'John Delaney',
+      lastName: 'Delaney',
+      value: '1-D000620',
+      chamberId : 1,
+      bioguide: 'D000620'
+  });
+
   gabbard = new PresidentialCandidate({
     name: 'Tulsi Gabbard',
     lastName: 'Gabbard',
@@ -111,7 +119,7 @@ export class PresidentialPrimariesV2Component implements OnInit {
   });
 
 
-  houseMembers = [this.gabbard, this.castro, this.swalwell, this.orourke];
+  houseMembers = [this.delaney, this.castro, this.gabbard, this.orourke, this.swalwell];
 
 
   constructor(public urlService: UrlService) { }

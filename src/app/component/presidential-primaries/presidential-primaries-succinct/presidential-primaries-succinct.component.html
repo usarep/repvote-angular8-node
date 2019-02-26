@@ -1,0 +1,37 @@
+<div class="panel panel-default">
+
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      Presidential Primaries 2019: Compare Candidates On Their Voting Records
+    </h3>
+  </div> <!-- panel heading-->
+
+  <div class="panel-body">
+
+    <div>
+      <h5> Compare Senators</h5>
+
+      <app-presidential-primary-table
+        [reps]="senators"
+        [chamberName]="'senate'">
+      </app-presidential-primary-table>
+
+    </div>
+
+    <div>
+
+      <h5> Compare  House Members</h5>
+
+      <app-presidential-primary-table
+        [reps]="houseMembers"
+        [chamberName]="'house'">
+      </app-presidential-primary-table>
+
+    </div>
+
+
+  </div> <!-- panel body -->
+
+</div> <!-- panel panel-default -->
+
+

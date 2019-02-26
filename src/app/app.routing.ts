@@ -12,6 +12,8 @@ import { IndivRepSearchResultComponent } from './component/reps/indiv-rep-search
 import { LandingPageComponent } from './component/landing-page/landing-page.component';
 import { PresidentialPrimaryLandingPageComponent } from './component/presidential-primary-landing-page/presidential-primary-landing-page.component';
 import { PresidentialPrimariesV2Component } from './component/presidential-primaries/presidential-primaries-v2/presidential-primaries-v2.component';
+import { PresidentialPrimariesBallotpediaComponent } from './component/presidential-primaries/presidential-primaries-ballotpedia/presidential-primaries-ballotpedia.component';
+import { PresidentialPrimariesSuccinctComponent } from './component/presidential-primaries/presidential-primaries-succinct/presidential-primaries-succinct.component';
 
 
 // import { BillSummaryOldComponent } from './reps/bill-summary-old.component';
@@ -31,7 +33,8 @@ export const ngProjectRouting = RouterModule.forRoot([
   { path: 'billSummary/:congress/:docType/:docNumber', component: BillSummaryComponent },
   { path: 'amendmentSummary/:congress/:docType/:docNumber', component: AmendmentSummaryComponent },
 
-  { path: 'presidentialPrimaries', component: PresidentialPrimariesV2Component  }, // PresidentialPrimaryLandingPageComponent
+  { path: 'presidentialPrimaries', component: PresidentialPrimariesV2Component }, // PresidentialPrimaryLandingPageComponent
+  { path: 'presidential-primaries-succinct', component: PresidentialPrimariesSuccinctComponent  }, // PresidentialPrimaryLandingPageComponent
 
   { path: 'notfound', component: NotFoundComponent },
   { path: '**', redirectTo: 'notfound' },

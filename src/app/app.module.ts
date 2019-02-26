@@ -80,6 +80,7 @@ import { PresidentialPrimaryTableComponent } from './component/presidential-prim
 import { PresidentialPrimariesV2Component } from './component/presidential-primaries/presidential-primaries-v2/presidential-primaries-v2.component';
 import { TargetBlankConditionalDirective } from './shared/target-blank-conditional.directive';
 import { BackButtonComponent } from './shared/back-button/back-button.component';
+import { PresidentialPrimariesSuccinctComponent } from './component/presidential-primaries/presidential-primaries-succinct/presidential-primaries-succinct.component';
 
 const customOptions: ShareButtonsOptions = {
   include: ['reddit', 'facebook', 'twitter', 'linkedin', 'whatsapp'],
@@ -171,6 +172,8 @@ const customOptions: ShareButtonsOptions = {
     TargetBlankConditionalDirective,
 
     BackButtonComponent,
+
+    PresidentialPrimariesSuccinctComponent,
 
   ],
   imports: [
