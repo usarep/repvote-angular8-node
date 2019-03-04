@@ -83,8 +83,7 @@ export class PresidentialPrimariesV2Component implements OnInit {
     this.harris,
     this.booker,
     this.klobuchar,
-    this.sanders,
-    this.biden
+    this.sanders
   ];
 
 
