@@ -69,13 +69,23 @@ export class PresidentialPrimariesV2Component implements OnInit {
     bioguide: 'S000033'
   });
 
+  biden = new PresidentialCandidate({
+    name: 'Joseph Biden',
+    lastName: 'Biden',
+    value: '2-S010',
+    chamberId : 2,
+    bioguide: 'B000444'
+  });
+
 
   senators = [this.warren,
     this.gillibrand,
     this.harris,
     this.booker,
     this.klobuchar,
-    this.sanders];
+    this.sanders,
+    this.biden
+  ];
 
 
   delaney = new PresidentialCandidate({
