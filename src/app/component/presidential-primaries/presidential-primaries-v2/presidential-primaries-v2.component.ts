@@ -103,6 +103,7 @@ export class PresidentialPrimariesV2Component implements OnInit {
     bioguide: 'G000571'
   });
 
+  /*
   castro = new PresidentialCandidate({
     name: 'Joaquin Castro',
     lastName: 'Castro',
@@ -110,6 +111,7 @@ export class PresidentialPrimariesV2Component implements OnInit {
     chamberId : 1,
     bioguide: 'C001091'
   });
+  */
 
   swalwell = new PresidentialCandidate({
     name: 'Eric Swalwell',
@@ -129,7 +131,7 @@ export class PresidentialPrimariesV2Component implements OnInit {
 
 
   // Joaquin is Julian's brother!
-  houseMembers = [this.delaney,  this.gabbard, this.orourke, this.swalwell];
+  houseMembers = [this.delaney,  this.gabbard, this.orourke];
 
 
   constructor(public urlService: UrlService) { }
