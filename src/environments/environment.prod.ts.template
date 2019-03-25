@@ -3,8 +3,8 @@ export const environment = {
   // server: "http://localhost:3001", // for testing prod in local
 
   // change this to your production server
-  server: "http://compararep.com:8080",
-  imgServer: "http://compararep.com", // serves rep photos
+  server: "https://api.compararep.com",
+  imgServer: "https://www.compararep.com", // serves rep photos
 
   // client side key for reCaptcha V3.
   // the data here is NOT a valid key. supply your own

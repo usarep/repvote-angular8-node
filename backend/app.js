@@ -62,6 +62,8 @@ app.use("/t1", express.static(path.join(__dirname, "/test/t1")));
 
 app.use("/share", express.static(path.join(__dirname, "/embed/shareV1")));
 
+app.use("/.well-known/acme-challenge", express.static(path.join(__dirname, "/acme-challenge")));
+
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
