@@ -113,6 +113,15 @@ export class PresidentialPrimariesV2Component implements OnInit {
   });
   */
 
+
+ ryanOH = new PresidentialCandidate({
+  name: 'Tim Ryan (OH)',
+  lastName: 'Ryan (OH)',
+  value: '1-R000577',
+  chamberId : 1,
+  bioguide: 'R000577'
+});
+
   swalwell = new PresidentialCandidate({
     name: 'Eric Swalwell',
     lastName: 'Swalwell',
@@ -131,7 +140,7 @@ export class PresidentialPrimariesV2Component implements OnInit {
 
 
   // Joaquin is Julian's brother!
-  houseMembers = [this.delaney,  this.gabbard, this.orourke, this.swalwell];
+  houseMembers = [this.delaney,  this.gabbard, this.orourke, this.ryanOH, this.swalwell];
 
 
   constructor(public urlService: UrlService) { }
