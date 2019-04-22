@@ -14,7 +14,13 @@ export class PresidentialPrimariesSuccinctComponent extends PresidentialPrimarie
    }
 
   ngOnInit() {
-    this.houseMembers = [this.delaney, this.gabbard, this.orourke, this.ryanOH, this.swalwell];
+    this.houseMembers = [this.delaney,
+      this.gabbard,
+      this.moulton,
+      this.orourke,
+      this.ryanOH,
+      this.swalwell];
+
     this.senators = [this.booker,
       this.gillibrand,
       this.harris,

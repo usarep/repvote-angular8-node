@@ -138,9 +138,18 @@ export class PresidentialPrimariesV2Component implements OnInit {
     bioguide: 'O000170'
   });
 
+  moulton = new PresidentialCandidate({
+    name: 'Seth Moulton',
+    lastName: 'Moulton',
+    value: '1-M001196',
+    chamberId : 1,
+    bioguide: 'M001196'
+  });
+
+
 
   // Joaquin is Julian's brother!
-  houseMembers = [this.delaney,  this.gabbard, this.orourke, this.ryanOH, this.swalwell];
+  houseMembers = [this.delaney,  this.gabbard, this.moulton, this.orourke, this.ryanOH, this.swalwell];
 
 
   constructor(public urlService: UrlService) { }
