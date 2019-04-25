@@ -21,6 +21,16 @@
         [chamberName]="'senate'">
       </app-presidential-primary-table>
 
+      <div>
+        Joe Biden has had overlapping years
+        only with Bernie Sanders  (in the US Senate, 2007-2008).
+
+        <a class="bold" [routerLink]="['/compare', 'senate', csv(biden.value, sanders.value) ]">Biden vs Sanders.</a>
+
+        <span class="hspace"></span>
+        <a class="bold" [routerLink]="['/search', 'senate', biden.value, '*']">Biden's latest votes.</a>
+
+      </div>
     </div>
 
     <div>
