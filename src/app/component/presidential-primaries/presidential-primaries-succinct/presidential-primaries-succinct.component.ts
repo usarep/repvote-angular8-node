@@ -21,7 +21,8 @@ export class PresidentialPrimariesSuccinctComponent extends PresidentialPrimarie
       this.ryanOH,
       this.swalwell];
 
-    this.senators = [this.booker,
+    this.senators = [this.bennet,
+      this.booker,
       this.gillibrand,
       this.harris,
       this.klobuchar,

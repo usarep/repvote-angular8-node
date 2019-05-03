@@ -77,13 +77,22 @@ export class PresidentialPrimariesV2Component implements OnInit {
     bioguide: 'B000444'
   });
 
+  bennet = new PresidentialCandidate({
+    name: 'Michael Bennet',
+    lastName: 'Bennet',
+    value: '2-S330',
+    chamberId : 2,
+    bioguide: 'B001267'
+  });
+
 
   senators = [this.warren,
     this.gillibrand,
     this.harris,
     this.booker,
     this.klobuchar,
-    this.sanders
+    this.sanders,
+    this.bennet
   ];
 
 
