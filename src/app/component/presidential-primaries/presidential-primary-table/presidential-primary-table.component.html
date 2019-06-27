@@ -11,11 +11,18 @@
   <tr *ngFor="let rep1 of reps; let i=index;">
     <td><img class="photo" [src]="getPhotoUrl(rep1)">{{rep1.name}}</td>
     <td *ngFor="let rep2 of reps; let k=index;">
-      <a *ngIf="i == k"
+      <a *ngIf="i == k && !newPage"
         [routerLink]="['/vote', chamberName, rep1.value]">Record</a>
 
-      <a *ngIf="i < k" class="bold"
+      <a *ngIf="i == k && newPage"
+        [href]="'/vote/' + chamberName + '/' + rep1.value" target="_blank" >Record</a>
+
+      <a *ngIf="i < k && !newPage" class="bold"
         [routerLink]="['/compare', chamberName, csv(rep1.value, rep2.value) ]">Compare</a>
+
+      <a *ngIf="i < k && newPage" class="bold"
+        [href]="'/compare/' + chamberName + '/' +  csv(rep1.value, rep2.value)" target="_blank">Compare</a>
+
 
     </td>
 

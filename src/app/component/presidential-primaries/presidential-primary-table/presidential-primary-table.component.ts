@@ -12,6 +12,8 @@ export class PresidentialPrimaryTableComponent implements OnInit, OnDestroy {
   @Input() reps : PresidentialCandidate[];
 
   @Input() chamberName: string;  // house or senate
+
+  @Input() newPage: boolean;
   constructor(public urlService: UrlService) { }
 
   ngOnInit() {
