@@ -61,6 +61,7 @@ app.use("/iframeTest", express.static(path.join(__dirname, "/iframeTest")));
 app.use("/t1", express.static(path.join(__dirname, "/test/t1")));
 
 app.use("/share", express.static(path.join(__dirname, "/embed/shareV1")));
+app.use("/shareLocalTest", express.static(path.join(__dirname, "/embedLocalTest/shareV1")));
 
 app.use("/.well-known/acme-challenge", express.static(path.join(__dirname, "/acme-challenge")));
 

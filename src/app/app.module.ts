@@ -85,7 +85,7 @@ import { PresidentialPrimariesSuccinctComponent } from './component/presidential
 const customOptions: ShareButtonsOptions = {
   include: ['reddit', 'facebook', 'twitter', 'linkedin', 'whatsapp'],
   exclude: ['tumblr', 'stumble', 'vk'],
-  // theme: 'modern-light',
+  theme: 'modern-light',
   // gaTracking: true,
   // twitterAccount: 'twitterUsername'
 };
