@@ -9,7 +9,7 @@ import { Router, NavigationEnd } from '@angular/router';
 export class WrappedShareButtonComponent implements OnInit {
 
   // keep track of current url
-  private currentUrl: string;
+  public currentUrl: string;
   constructor(private router: Router ) { }
 
   ngOnInit() {
