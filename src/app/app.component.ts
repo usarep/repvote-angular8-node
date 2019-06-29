@@ -42,7 +42,7 @@ import { GlobalState } from './model/global-state';
 
   <router-outlet></router-outlet>
 
-  <share-buttons  *ngIf="!inIframe"></share-buttons>
+  <app-wrapped-share-button  *ngIf="!inIframe"></app-wrapped-share-button>
   ` ,
   styleUrls: ['./app.component.css'
   ]
