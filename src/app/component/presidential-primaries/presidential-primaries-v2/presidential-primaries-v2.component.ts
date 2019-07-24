@@ -158,7 +158,7 @@ export class PresidentialPrimariesV2Component implements OnInit {
 
 
   // Joaquin is Julian's brother!
-  houseMembers = [this.delaney,  this.gabbard, this.moulton, this.orourke, this.ryanOH, this.swalwell];
+  houseMembers = [this.delaney,  this.gabbard, this.moulton, this.orourke, this.ryanOH];
 
 
   constructor(public urlService: UrlService) { }
