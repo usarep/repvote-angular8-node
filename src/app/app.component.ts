@@ -1,61 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { BreadcrumbService } from 'ng5-breadcrumb';
-import { Recaptchav3Service } from './service/recaptchav3.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Gtag } from 'angular-gtag';
 import { environment } from 'src/environments/environment.prod';
 import { GlobalState } from './model/global-state';
 
-
-
-// [exclude]="'tumblr,pinterest,stumbleUpOn,google'"
-
-/*
-[title]="'ComparaRep'"
-        [description]="'Compare votes cast by different House and Senate members'"
-        [tags]="'tag1,tag2'"
-        [include]="'facebook,twitter,reddit,whatsapp,linkedin'"
-        [showCount]="true"
-*/
-
 @Component({
   selector: 'app-root',
-  template: `
-  <app-nav-bar *ngIf="!inIframe"></app-nav-bar>
-
-  <div *ngIf="!inIframe" class="hidden-xs our-breadcrumb">
-    <breadcrumb></breadcrumb>
-  </div>
-
-  <div *ngIf="!inIframe" class="visible-xs our-breadcrumb">
-    <breadcrumb></breadcrumb>
-  </div>
-
-  <app-back-button  *ngIf="inIframe" ></app-back-button>
-  <div class="hidden-xs app-vert-space">
-    &nbsp;
-  </div>
-  <div class="visible-xs app-vert-space">
-    &nbsp;
-  </div>
-
-  <router-outlet></router-outlet>
-
-  <app-wrapped-share-button  *ngIf="!inIframe"></app-wrapped-share-button>
-  ` ,
-  styleUrls: ['./app.component.css'
-  ]
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   title = 'app';
-
 
   //
   constructor(
     private titleService: Title,
     private metaService: Meta,
-    private breadcrumbService: BreadcrumbService,
+    // private breadcrumbService: BreadcrumbService,
     public gtag: Gtag,
     public router: Router,
     public route: ActivatedRoute
@@ -144,6 +106,7 @@ export class AppComponent implements OnInit {
 
   initBreadCrumbLabels() {
 
+    /*
     this.breadcrumbService.addCallbackForRouteRegex('/vote/house/[a-zA-Z0-9_\-]', this.getVoteHouseLeaf);
     this.breadcrumbService.addCallbackForRouteRegex('/vote/senate/[a-zA-Z0-9_\-]', this.getVoteSenateLeaf);
 
@@ -164,6 +127,8 @@ export class AppComponent implements OnInit {
     this.breadcrumbService.hideRoute('/vote');
 
     this.breadcrumbService.addCallbackForRoute('/presidentialPrimaries', this.getPresidentialPrimaries);
+
+    */
 
   }
 
@@ -190,6 +155,5 @@ export class AppComponent implements OnInit {
   getPresidentialPrimaries(id: string): string {
     return "presidential-primaries";
   }
-
 
 }

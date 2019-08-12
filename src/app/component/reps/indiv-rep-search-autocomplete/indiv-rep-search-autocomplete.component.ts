@@ -92,7 +92,7 @@ export class IndivRepSearchAutocompleteComponent implements OnInit, OnChanges, O
 
  }
 
- private deleteItem(item) {
+ public deleteItem(item) {
 
    if (!this._items) {
      console.log("_items is empty");
@@ -111,15 +111,15 @@ export class IndivRepSearchAutocompleteComponent implements OnInit, OnChanges, O
 
  }
 
- private showMaxCompareInfo() {
+ public showMaxCompareInfo() {
    this._isMaxRepsInfoVisible = true;
  }
 
- private hidMaxCompareInfo() {
+ public hidMaxCompareInfo() {
    this._isMaxRepsInfoVisible = false;
  }
 
- private getCssClass(party) {
+ public getCssClass(party) {
    let result = "btn selected-rep ";
 
     // red for republican, blue for democrat, orange for everything else

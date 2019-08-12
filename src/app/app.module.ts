@@ -1,13 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClientJsonpModule } from "@angular/common/http";
 
-import { MatButtonModule, MatInputModule, MatCardModule, MatToolbarModule, MatExpansionModule, MatProgressSpinnerModule, MatPaginatorModule } from "@angular/material";
+// now part of AngularMaterialModule
+// import { MatButtonModule, MatInputModule, MatCardModule, MatToolbarModule, MatExpansionModule, MatProgressSpinnerModule, MatPaginatorModule } from "@angular/material";
 
 
 // ref: https://www.npmjs.com/package/ng5-breadcrumb
+// undo comment
 import { Ng5BreadcrumbModule } from 'ng5-breadcrumb';
 import { GtagModule } from 'angular-gtag';
 
@@ -15,8 +20,9 @@ import { GtagModule } from 'angular-gtag';
 import { Ng2CompleterModule } from "ng2-completer";
 import { ChartsModule } from 'ng4-charts/ng4-charts';
 
-import { ShareButtonsOptions } from '@ngx-share/core';
-import {ShareButtonsModule} from "@ngx-share/buttons";
+// undo comments
+// import { ShareButtonModule } from '@ngx-share/button';
+// import {ShareButtonsModule} from "@ngx-share/buttons";
 
 
 import { AngularMaterialModule } from './angular-material.module';
@@ -34,7 +40,6 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 import { AppComponent } from './app.component';
 
 import { SpinnerComponent } from './shared/spinner.component';
-import { ngProjectRouting } from './app.routing';
 import { NotFoundComponent } from './not-found.component';
 import { ActiveLinkSRComponent } from './active-link-sr.component';
 
@@ -81,22 +86,23 @@ import { PresidentialPrimariesV2Component } from './component/presidential-prima
 import { TargetBlankConditionalDirective } from './shared/target-blank-conditional.directive';
 import { BackButtonComponent } from './shared/back-button/back-button.component';
 import { PresidentialPrimariesSuccinctComponent } from './component/presidential-primaries/presidential-primaries-succinct/presidential-primaries-succinct.component';
-import { WrappedShareButtonComponent } from './shared/wrapped-share-button/wrapped-share-button.component';
 
-const customOptions: ShareButtonsOptions = {
-  include: ['reddit', 'facebook', 'twitter', 'linkedin', 'whatsapp'],
-  exclude: ['tumblr', 'stumble', 'vk'],
-  theme: 'modern-light',
-  // gaTracking: true,
-  // twitterAccount: 'twitterUsername'
-};
+
+// undo comments
+// import { WrappedShareButtonComponent } from './shared/wrapped-share-button/wrapped-share-button.component';
+
+// undo comments
+// const customOptions: ShareButtonsOptions = {
+//   include: ['reddit', 'facebook', 'twitter', 'linkedin', 'whatsapp'],
+//   exclude: ['tumblr', 'stumble', 'vk'],
+//   theme: 'modern-light',
+//   // gaTracking: true,
+//   // twitterAccount: 'twitterUsername'
+// };
 
 
 @NgModule({
   declarations: [
-    // Autosize,
-    // AutosizeDirective, // npm install angular-autosize, as opposed to ng-autosize
-
     AppComponent,
     SpinnerComponent,
     NotFoundComponent,
@@ -176,11 +182,12 @@ const customOptions: ShareButtonsOptions = {
 
     PresidentialPrimariesSuccinctComponent,
 
-    WrappedShareButtonComponent,
 
+    // undo comment
+    // WrappedShareButtonComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -189,22 +196,27 @@ const customOptions: ShareButtonsOptions = {
 
     AngularMaterialModule,
 
+    // undo comments
     Ng5BreadcrumbModule.forRoot(),
 
     Ng2CompleterModule,
     ChartsModule,
-    ShareButtonsModule.forRoot({ options: customOptions }),
 
-    GtagModule.forRoot( { trackingId: 'UA-131004935-1', trackPageviews: false, debug: true }),
+    // undo comments
+    // forRoot() removed in 7.1.0-beta.1
+    // https://github.com/MurhafSousli/ngx-sharebuttons/blob/master/CHANGELOG.MD
+    // was forRoot({ options: customOptions })
+    // ShareButtonsModule.withConfig(customOptions),
 
-    ngProjectRouting
+    GtagModule.forRoot({ trackingId: 'UA-131004935-1', trackPageviews: false, debug: true }),
+
+    AppRoutingModule
   ],
   providers: [
-    // { provide: TitleMetaService, useValue: {} },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: MAT_DIALOG_DATA, useValue: {} },
-     { provide: MatDialogRef, useValue: {} }
-
+     // { provide: TitleMetaService, useValue: {} },
+     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+     { provide: MAT_DIALOG_DATA, useValue: {} },
+      { provide: MatDialogRef, useValue: {} }
   ],
   bootstrap: [AppComponent],
   entryComponents: [ErrorComponent]

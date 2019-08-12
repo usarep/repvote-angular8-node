@@ -11,6 +11,7 @@ export class NavBarComponent {
 
   @Input() activeClass: string;
 
+  // tslint:disable-next-line: variable-name
   constructor(private _router: Router) { }
 
 
@@ -26,6 +27,7 @@ export class NavBarComponent {
   }
 
   stopPropagation($event) {
+        // tslint:disable-next-line: deprecation
         event.stopPropagation();
   }
 

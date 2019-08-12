@@ -1,5 +1,6 @@
-import { Router, RouterModule } from '@angular/router';
-import { HomeComponent } from './component/home.component';
+import { NgModule } from '@angular/core';
+import { Routes, Router, RouterModule } from '@angular/router';
+
 import { IndivRepLandingComponent } from './component/reps/indiv-rep-landing/indiv-rep-landing.component';
 import { IndivRepResultComponent } from './component/reps/indiv-rep-result/indiv-rep-result.component';
 import { IndivRepKeywordResultComponent } from './component/reps/indiv-rep-keyword-result/indiv-rep-keyword-result.component';
@@ -15,9 +16,7 @@ import { PresidentialPrimariesV2Component } from './component/presidential-prima
 import { PresidentialPrimariesSuccinctComponent } from './component/presidential-primaries/presidential-primaries-succinct/presidential-primaries-succinct.component';
 
 
-// import { BillSummaryOldComponent } from './reps/bill-summary-old.component';
-
-export const ngProjectRouting = RouterModule.forRoot([
+const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'vote/:chamber', component: IndivRepLandingComponent },
   { path: 'vote/:chamber/:rep', component: IndivRepResultComponent },
@@ -37,4 +36,10 @@ export const ngProjectRouting = RouterModule.forRoot([
 
   { path: 'notfound', component: NotFoundComponent },
   { path: '**', redirectTo: 'notfound' },
-]);
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

@@ -14,7 +14,7 @@ import { DataUtil } from 'src/app/util/data-util';
 export class IndivRepSearchComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
 
   @Input() _chamber: Chamber;
-  @ViewChild('search') search;
+  @ViewChild('search', {static: false}) search;
 
   states = DataUtil.US_STATE;
 

@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, Renderer, Input, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appTargetBlankConditional]'
@@ -13,11 +13,11 @@ export class TargetBlankConditionalDirective implements OnInit {
   ngOnInit() seems to be too late.
   but Input value is not available in constructor.
   */
-  constructor(private el: ElementRef, private renderer: Renderer) {
+  constructor(private el: ElementRef, private renderer: Renderer2) {
 
     console.log("constructor: optionalBlank", this.optionalBlank);
     if (this.optionalBlank) {
-      this.renderer.setElementAttribute(this.el.nativeElement, 'target', '_new');
+      this.renderer.setAttribute(this.el.nativeElement, 'target', '_new');
        // el.nativeElement.attr.target = '_blank';
     }
 
@@ -27,7 +27,7 @@ export class TargetBlankConditionalDirective implements OnInit {
 
     console.log("ngOnInit optionalBlank", this.optionalBlank);
     if (this.optionalBlank) {
-      this.renderer.setElementAttribute(this.el.nativeElement, 'target', '_new');
+      this.renderer.setAttribute(this.el.nativeElement, 'target', '_new');
        // el.nativeElement.attr.target = '_blank';
     }
 

@@ -15,7 +15,7 @@ import { UrlService } from 'src/app/repService/url.service';
 })
 export class CompareRepsSearchComponent implements OnInit, OnChanges , OnDestroy, AfterViewInit {
   @Input() _chamber;
-  @ViewChild('search') search;
+  @ViewChild('search', {static: false} ) search;
 
   states = DataUtil.US_STATE;
 
@@ -227,7 +227,7 @@ export class CompareRepsSearchComponent implements OnInit, OnChanges , OnDestroy
         }
   }
 
-  private deleteItem(item) {
+  public deleteItem(item) {
 
     if (!this._selectedReps) {
       console.log("_items is empty");
@@ -254,15 +254,15 @@ export class CompareRepsSearchComponent implements OnInit, OnChanges , OnDestroy
 
   }
 
-  private showMaxCompareInfo() {
+  public showMaxCompareInfo() {
     this._isMaxCompareInfoVisible = true;
   }
 
-  private hidMaxCompareInfo() {
+  public hidMaxCompareInfo() {
     this._isMaxCompareInfoVisible = false;
   }
 
-  private getCssClass(party) {
+  public getCssClass(party) {
     let result = "btn selected-rep ";
 
      // red for republican, blue for democrat, orange for everything else
