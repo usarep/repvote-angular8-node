@@ -3,5 +3,6 @@ module.exports = {
   RECAPTCHA_URL: 'https://www.google.com/recaptcha/api/siteverify',
   JSON_WEB_TOKEN_SERVER_KEY: process.env.JSON_WEB_TOKEN_SERVER_KEY || 'something_that_should_be_larger',
   MONGO_URL: process.env.MONGO_URL || 'unused_mongodb://localhost:27017/dbName',
-  FIRST_TIME: process.env.FIRST_TIME || 0
+  FIRST_TIME: process.env.FIRST_TIME || 0,
+  IS_PROD: process.env.IS_PROD || 0
 }

@@ -121,10 +121,12 @@ mongoose.connection.db.listCollections().toArray().then(collections => {
 app.use("/api/form", formRoutes);
 app.use("/api/user", userRoutes);
 
-
-app.use((req, res, next) => {
-  res.sendFile(path.join(__dirname, "angular", "index.html"));
-});
+// in dev mode
+if (!config.IS_PROD) {
+  app.use((req, res, next) => {
+    res.sendFile(path.join(__dirname, "angular", "index.html"));
+  });
+}
 
 
 

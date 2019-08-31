@@ -1,0 +1,13 @@
+test url:
+
+http://localhost:4000/compare/senate/2-S366,2-S370
+
+gives error:
+
+https://api.compararep.com/compare.htm?chamber_id=2&rep_name_id=2-S366,2-S370
+
+
+The solution is to add NODE_TLS_REJECT_UNAUTHORIZED=0 to your environment to disable the SSL verification in Node.js. You should only set this in development; in production it is very risky.
+
+source: https://stackoverflow.com/questions/48557390/angular-4-http-failure-response-for-unknown-url-0-unknown-error
+

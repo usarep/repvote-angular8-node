@@ -20,9 +20,7 @@ import { GtagModule } from 'angular-gtag';
 import { Ng2CompleterModule } from "ng2-completer";
 import { ChartsModule } from 'ng4-charts/ng4-charts';
 
-// undo comments
-// import { ShareButtonModule } from '@ngx-share/button';
-// import {ShareButtonsModule} from "@ngx-share/buttons";
+
 
 
 import { AngularMaterialModule } from './angular-material.module';
@@ -89,16 +87,24 @@ import { PresidentialPrimariesSuccinctComponent } from './component/presidential
 
 
 // undo comments
-// import { WrappedShareButtonComponent } from './shared/wrapped-share-button/wrapped-share-button.component';
+import { WrappedShareButtonComponent } from './shared/wrapped-share-button/wrapped-share-button.component';
+
+// older version of ngx-share
+// import { ShareButtonsModule } from "@ngx-share/buttons";
+// import { ShareButtonsOptions } from '@ngx-share/core';
+
+// newer version of ngx-share
+import { ShareButtonsConfig } from '@ngx-share/core';
+import { ShareButtonsModule } from '@ngx-share/buttons';
 
 // undo comments
-// const customOptions: ShareButtonsOptions = {
-//   include: ['reddit', 'facebook', 'twitter', 'linkedin', 'whatsapp'],
-//   exclude: ['tumblr', 'stumble', 'vk'],
-//   theme: 'modern-light',
-//   // gaTracking: true,
-//   // twitterAccount: 'twitterUsername'
-// };
+const customOptions: ShareButtonsConfig = {
+  include: ['reddit', 'facebook', 'twitter', 'linkedin', 'whatsapp'],
+  exclude: ['tumblr', 'stumble', 'vk'],
+  theme: 'modern-light',
+  // gaTracking: true,
+  // twitterAccount: 'twitterUsername'
+};
 
 
 @NgModule({
@@ -184,7 +190,7 @@ import { PresidentialPrimariesSuccinctComponent } from './component/presidential
 
 
     // undo comment
-    // WrappedShareButtonComponent,
+    WrappedShareButtonComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -206,7 +212,11 @@ import { PresidentialPrimariesSuccinctComponent } from './component/presidential
     // forRoot() removed in 7.1.0-beta.1
     // https://github.com/MurhafSousli/ngx-sharebuttons/blob/master/CHANGELOG.MD
     // was forRoot({ options: customOptions })
-    // ShareButtonsModule.withConfig(customOptions),
+    ShareButtonsModule.withConfig(customOptions),
+
+    //  older version for Angular 6
+    // ShareButtonsModule.forRoot({ options: customOptions }),
+
 
     GtagModule.forRoot({ trackingId: 'UA-131004935-1', trackPageviews: false, debug: true }),
 

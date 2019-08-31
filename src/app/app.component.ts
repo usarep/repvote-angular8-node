@@ -4,6 +4,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Gtag } from 'angular-gtag';
 import { environment } from 'src/environments/environment.prod';
 import { GlobalState } from './model/global-state';
+import { BreadcrumbService } from 'ng5-breadcrumb';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit {
   constructor(
     private titleService: Title,
     private metaService: Meta,
-    // private breadcrumbService: BreadcrumbService,
+    private breadcrumbService: BreadcrumbService,
     public gtag: Gtag,
     public router: Router,
     public route: ActivatedRoute
@@ -106,7 +107,7 @@ export class AppComponent implements OnInit {
 
   initBreadCrumbLabels() {
 
-    /*
+
     this.breadcrumbService.addCallbackForRouteRegex('/vote/house/[a-zA-Z0-9_\-]', this.getVoteHouseLeaf);
     this.breadcrumbService.addCallbackForRouteRegex('/vote/senate/[a-zA-Z0-9_\-]', this.getVoteSenateLeaf);
 
@@ -128,7 +129,7 @@ export class AppComponent implements OnInit {
 
     this.breadcrumbService.addCallbackForRoute('/presidentialPrimaries', this.getPresidentialPrimaries);
 
-    */
+
 
   }
 
