@@ -11,7 +11,7 @@
 
 # note: env variables are read from ./backend/.env
 
-forever start -a  -l forever_usarep8.log -o out_usarep6.log -e err_usarep6.log dist/server
+forever start -a  -l forever_usarep8.log -o out_usarep8.log -e err_usarep8.log dist/server
 
 
 
