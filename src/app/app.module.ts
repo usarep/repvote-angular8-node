@@ -218,7 +218,7 @@ const customOptions: ShareButtonsConfig = {
     // ShareButtonsModule.forRoot({ options: customOptions }),
 
 
-    GtagModule.forRoot({ trackingId: 'UA-131004935-1', trackPageviews: false, debug: true }),
+    GtagModule.forRoot({ trackingId: 'UA-131004935-2', trackPageviews: false, debug: true }),
 
     AppRoutingModule
   ],
