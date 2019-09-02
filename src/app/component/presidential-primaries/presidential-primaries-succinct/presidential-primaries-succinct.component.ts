@@ -16,10 +16,13 @@ export class PresidentialPrimariesSuccinctComponent extends PresidentialPrimarie
 
   ngOnInit() {
     // if this is not an iframe, redirect to /presidentialPrimaries
-    if (window.self === window.top) {
-      this._router.navigate(["/presidentialPrimaries"]);
-    }
-    else {
+    // with angular universal, there is no window object on the server.
+    // so need to fix this logic. for nwo, no redirection
+    // if (window.self === window.top) {
+    //   this._router.navigate(["/presidentialPrimaries"]);
+    // }
+    // else
+    {
       // this is an iFrame
       // seth moulton and eric swallwell have dropped out
       this.houseMembers = [this.delaney,
