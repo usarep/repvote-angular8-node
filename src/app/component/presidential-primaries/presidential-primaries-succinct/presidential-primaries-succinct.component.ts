@@ -21,19 +21,20 @@ export class PresidentialPrimariesSuccinctComponent extends PresidentialPrimarie
     }
     else {
       // this is an iFrame
+      // seth moulton and eric swallwell have dropped out
       this.houseMembers = [this.delaney,
       this.gabbard,
-      this.moulton,
       this.orourke,
       this.ryanOH];
 
+      // gillibrand, dropped out Aug 28, 2019
       this.senators = [this.bennet,
       this.booker,
-      this.gillibrand,
       this.harris,
       this.klobuchar,
       this.sanders,
       this.warren];
+
     }
   }
 

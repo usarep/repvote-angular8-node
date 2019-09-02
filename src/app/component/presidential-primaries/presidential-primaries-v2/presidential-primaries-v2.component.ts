@@ -86,8 +86,8 @@ export class PresidentialPrimariesV2Component implements OnInit {
   });
 
 
+  // this.gillibrand, dropped out Aug 28, 2019
   senators = [this.warren,
-    this.gillibrand,
     this.harris,
     this.booker,
     this.klobuchar,
@@ -158,7 +158,8 @@ export class PresidentialPrimariesV2Component implements OnInit {
 
 
   // Joaquin is Julian's brother!
-  houseMembers = [this.delaney,  this.gabbard, this.moulton, this.orourke, this.ryanOH];
+  // moulton and swallwell have dropped out
+  houseMembers = [this.delaney,  this.gabbard,  this.orourke, this.ryanOH];
 
 
   constructor(public urlService: UrlService) { }
