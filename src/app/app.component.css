@@ -13,3 +13,8 @@
 .visible-xs.app-vert-space {
   margin-top: 10px;
 }
+
+.some-vspace {
+  margin-top: 80px;
+  padding-top: 10px;
+}

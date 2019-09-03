@@ -18,7 +18,6 @@ export class PresidentialPrimaryTableComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-
   }
 
   ngOnDestroy() {

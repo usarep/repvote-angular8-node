@@ -61,6 +61,11 @@ app.use("/iframeTest", express.static(path.join(__dirname, "/iframeTest")));
 app.use("/t1", express.static(path.join(__dirname, "/test/t1")));
 
 app.use("/share", express.static(path.join(__dirname, "/embed/shareV1")));
+
+// for testing ssr build (similar to a prod build) in local dev environment
+app.use("/shareDev", express.static(path.join(__dirname, "/embedDev/shareV1")));
+
+// these two can probably be removed
 app.use("/shareLocalTest", express.static(path.join(__dirname, "/embedLocalTest/shareV1")));
 app.use("/shareJS", express.static(path.join(__dirname, "/embedJS/shareV1")));
 

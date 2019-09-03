@@ -1,4 +1,5 @@
-import { Component, OnChanges, SimpleChanges, Input } from '@angular/core';
+import { Component, OnChanges, SimpleChanges, Input, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-absence-bar-chart',
@@ -9,7 +10,12 @@ export class AbsenceBarChartComponent implements OnChanges {
 
 // lineChart
 
-@Input() public chartData: Array<any>;
+  @Input() public chartData: Array<any>;
+
+  constructor(@Inject(PLATFORM_ID) public platformId) {
+
+  }
+
 /*
 e.g.,
 [
@@ -81,5 +87,9 @@ public chartHovered(e: any): void {
 ngOnChanges(changes: SimpleChanges) {
     console.log("OnChanges(): chartLabels= " + this.chartLabels);
 }
+
+  public get browser() {
+   return isPlatformBrowser(this.platformId);
+  }
 
 }

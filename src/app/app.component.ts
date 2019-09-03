@@ -1,18 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 import { Gtag } from 'angular-gtag';
 import { environment } from 'src/environments/environment.prod';
 import { GlobalState } from './model/global-state';
 import { BreadcrumbService } from 'ng5-breadcrumb';
+import { SubscriptionUtil } from './shared/subscription-util';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   title = 'app';
+
+  @Inject(PLATFORM_ID) private platformId;
+
+  public testingBrowser = false;
+
+  private queryParamSub;
 
   //
   constructor(
@@ -31,32 +39,82 @@ export class AppComponent implements OnInit {
 
   }
 
+  ngAfterViewInit() {
+    console.log("in ngAfterViewInit");
 
-  ngOnInit() {
-
-    GlobalState.inIframe = this.computeInIframe();
-    console.log("inIframe", GlobalState.inIframe);
-    this.titleService.setTitle("Voting record of members of congress");
-    this.initKeywordsTag("roll-call, voting-record");
-
-
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.gtag.pageview({
-          page_title: this.titleService.getTitle(),
-          page_path: this.router.url,
-          page_location: environment.server + this.router.url
-        });
-
-        // if this is the first url we are langing on, save it
-        if (GlobalState.inIframe && !GlobalState.firstUrlInIframe) {
-          GlobalState.firstUrlInIframe = this.router.url;
-        }
+    try {
+      let t = typeof window;
+      if (typeof window != 'undefined') {
+        console.log("window available, it is ", t);
+      } else {
+        console.log("window unavailable, t is ", t);
       }
-    });
+    } catch (err) {
+      console.log("caught error for window", err);
+    }
+
+
+    // if (isPlatformBrowser(this.platformId)) {
+    //   this.testingBrowser = true;
+    //   GlobalState.inIframe = this.computeInIframe();
+    //   console.log("from browser, ngAfterViewInit: inIframe", GlobalState.inIframe);
+
+    //   setTimeout(() => {
+    //     console.log("toggling this.testingBrowser");
+    //     this.testingBrowser = !this.testingBrowser;
+    //   }, 5000);
+
+    // // }
+
 
 
   }
+
+
+
+  ngOnInit() {
+
+    this.queryParamSub = this.route.queryParams.subscribe(params => {
+      const contentOnly = params["co"];
+      if (contentOnly) {
+        GlobalState.inIframe = true;
+        console.log("AppComponent: setting inIFrame to true based on queryString");
+      }
+
+    });
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.testingBrowser = true;
+      GlobalState.inIframe = this.computeInIframe();
+      console.log("from browser ngOnInit: inIframe", GlobalState.inIframe);
+
+    }
+
+    this.titleService.setTitle("Voting record of members of congress");
+    this.initKeywordsTag("roll-call, voting-record");
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.router.events.subscribe(event => {
+        if (event instanceof NavigationEnd) {
+          this.gtag.pageview({
+            page_title: this.titleService.getTitle(),
+            page_path: this.router.url,
+            page_location: environment.server + this.router.url
+          });
+
+          // if this is the first url we are landing on, save it
+          if (GlobalState.inIframe && !GlobalState.firstUrlInIframe) {
+            GlobalState.firstUrlInIframe = this.router.url;
+          }
+        }
+      });
+    } // in browser
+
+  }
+
+  // ngOnDestroy() {
+  //   SubscriptionUtil.unsubscribe(this.queryParamSub);
+  // }
 
   get inIframe() {
     return GlobalState.inIframe;

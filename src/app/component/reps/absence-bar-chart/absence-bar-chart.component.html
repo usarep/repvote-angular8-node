@@ -1,7 +1,8 @@
 <div class.row="addRow">
   <div [class.col-md-6]="addCol" > <!-- "col-md-6"-->
       <div style="display: block;">
-          <canvas baseChart
+          <canvas *ngIf="browser"
+                  baseChart
                   width="400"
                   height="400"
                   [datasets]="chartData"

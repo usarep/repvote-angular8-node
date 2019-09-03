@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PresidentialPrimariesV2Component } from '../presidential-primaries-v2/presidential-primaries-v2.component';
 import { UrlService } from 'src/app/repService/url.service';
 import { Router } from '@angular/router';
+import { GlobalState } from 'src/app/model/global-state';
 
 @Component({
   selector: 'app-presidential-primaries-succinct',
@@ -23,7 +24,7 @@ export class PresidentialPrimariesSuccinctComponent extends PresidentialPrimarie
     // }
     // else
     {
-      // this is an iFrame
+      // this should be an iFrame
       // seth moulton and eric swallwell have dropped out
       this.houseMembers = [this.delaney,
       this.gabbard,
