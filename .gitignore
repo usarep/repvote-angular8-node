@@ -36,6 +36,13 @@ speed-measure-plugin*.json
 /connect.lock
 /coverage
 /libpeerconnection.log
+/err_usarep8.log
+/err_usareport-static8
+/out_usareport-static8
+/out_usarep8.log
+/startProdServer.sh
+/startStaticServer.sh
+
 npm-debug.log
 yarn-error.log
 testem.log
