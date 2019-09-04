@@ -50,12 +50,17 @@
                 <th>Start</th>
                 <th>End</th>
               </thead>
+
+              <tbody>
+
               <tr *ngFor="let item of rep.legislator.leadershipRoles; let i=index" >
                   <td> {{ item.title }} </td>
                   <td class="capitalize"> {{ item.chamber}}  </td>
                   <td>{{ item.start |  date:'shortDate'  }} </td>
                   <td> {{ item.end  | date: 'shortDate' }} </td>
               </tr>
+            </tbody>
+
             </table>
           </mat-expansion-panel>
 
@@ -77,6 +82,9 @@
                     <th>District</th>
                     <th>Party</th>
                   </thead>
+
+                  <tbody>
+
                   <tr *ngFor="let item of rep.legislator.terms; let i=index" >
                       <td class="capitalize"> {{ item.type }} </td>
                       <td>{{ item.start |  date:'shortDate'  }} </td>
@@ -85,6 +93,8 @@
                       <td> {{ item.district}}  </td>
                       <td> {{ item.party?.charAt(0)}}  </td>
                   </tr>
+                </tbody>
+
                 </table>
 
             </mat-expansion-panel>

@@ -68,6 +68,9 @@ http://getbootstrap.com/components/#panels-heading
             <th class="rep-name" > {{ _diffData.repNames[1]}} </th>
             <th>Date</th>
         </thead>
+        <tbody>
+
+
         <tr *ngFor="let diff of _diffData.diffs">
             <td>{{ diff.rollCallInfo?.year }} </td>
             <td>{{ diff.rollCallInfo?.rollCallNum }}
@@ -86,6 +89,7 @@ http://getbootstrap.com/components/#panels-heading
             <td>{{ diff.rollCallInfo?.actionDate }} </td>
 
         </tr>
+      </tbody>
     </table>
 
 </div>

@@ -27,6 +27,9 @@
               <th><i class="glyphicon glyphicon-unchecked" title="voted present"></i></th>
               <th><i class="glyphicon glyphicon-minus" title="did not vote"></i></th>
             </thead>
+
+            <tbody>
+
             <tr *ngFor="let policyAreaCount of _policyAreaCounts" >
               <td> {{ policyAreaCount.topic }} </td>
               <td>
@@ -58,6 +61,7 @@
               </td>
             </tr>
 
+          </tbody>
           </table>
         </div> <!-- ngIf showDetailed -->
 
