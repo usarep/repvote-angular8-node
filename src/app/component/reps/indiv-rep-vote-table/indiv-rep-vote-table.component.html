@@ -6,6 +6,7 @@
         <th class="rep-name" > {{ _repVoteKeywordDetail.repName }} </th>
         <th>Date</th>
     </thead>
+    <tbody>
     <tr *ngFor="let rollCallInfoVote of _repVoteKeywordDetail.rollCallInfoVote">
         <td>{{ rollCallInfoVote.rollCallInfo?.year }} </td>
         <td> {{ rollCallInfoVote?.rollCallInfo?.rollCallNum }}   </td>
@@ -24,4 +25,5 @@
         <td>{{ rollCallInfoVote.rollCallInfo?.actionDate }} </td>
 
     </tr>
+  </tbody>
 </table>

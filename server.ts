@@ -23,6 +23,14 @@ import {join} from 'path';
 // Express server
 const app = express();
 
+// problem with certificates FIXME
+// https://api.usarep.org/compare.htm?chamber_id=2&rep_name_id=2-S330,2-S387:
+// runs into certificate verification error
+// following is a temp workaround
+// it's safe in that we are only making these https requests
+// to api.usarep.org from inside the server
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist/browser');
 
