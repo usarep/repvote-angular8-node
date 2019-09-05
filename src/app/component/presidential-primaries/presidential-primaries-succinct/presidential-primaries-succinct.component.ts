@@ -28,7 +28,10 @@ export class PresidentialPrimariesSuccinctComponent extends PresidentialPrimarie
 
       // this is an unfortunate hack. we should really be looking for the co param
       // see AppComponent.ts
-      GlobalState.inIframe = true;
+      if (!GlobalState.inIframe) {
+        GlobalState.inIframe = true;
+      }
+
 
       // this should be an iFrame
       // seth moulton and eric swallwell have dropped out

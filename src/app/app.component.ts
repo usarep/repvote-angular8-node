@@ -16,8 +16,6 @@ import { SubscriptionUtil } from './shared/subscription-util';
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'app';
 
-  @Inject(PLATFORM_ID) private platformId;
-
   public testingBrowser = false;
 
   private queryParamSub;
@@ -29,7 +27,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     private breadcrumbService: BreadcrumbService,
     public gtag: Gtag,
     public router: Router,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    @Inject(PLATFORM_ID) private platformId
   ) {
     // gtag tracking: https://github.com/codediodeio/angular-gtag
 
@@ -40,18 +39,18 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log("in ngAfterViewInit");
+    // console.log("in ngAfterViewInit");
 
-    try {
-      let t = typeof window;
-      if (typeof window != 'undefined') {
-        console.log("window available, it is ", t);
-      } else {
-        console.log("window unavailable, t is ", t);
-      }
-    } catch (err) {
-      console.log("caught error for window", err);
-    }
+    // try {
+    //   let t = typeof window;
+    //   if (typeof window != 'undefined') {
+    //     console.log("window available, it is ", t);
+    //   } else {
+    //     console.log("window unavailable, t is ", t);
+    //   }
+    // } catch (err) {
+    //   console.log("caught error for window", err);
+    // }
 
 
     // if (isPlatformBrowser(this.platformId)) {
