@@ -13,6 +13,7 @@ export class PresidentialPrimariesSuccinctComponent extends PresidentialPrimarie
 
   constructor(public urlService: UrlService, private _router: Router) {
     super(urlService);
+
    }
 
   ngOnInit() {
@@ -24,6 +25,11 @@ export class PresidentialPrimariesSuccinctComponent extends PresidentialPrimarie
     // }
     // else
     {
+
+      // this is an unfortunate hack. we should really be looking for the co param
+      // see AppComponent.ts
+      GlobalState.inIframe = true;
+
       // this should be an iFrame
       // seth moulton and eric swallwell have dropped out
       this.houseMembers = [this.delaney,
