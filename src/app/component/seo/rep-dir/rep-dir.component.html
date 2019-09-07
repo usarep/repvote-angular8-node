@@ -1,5 +1,6 @@
 <div class="container-fluid">
 
+  <h4 *ngIf="headingText"> List of {{ headingText }} </h4>
   <div class="row">
     <div *ngFor="let rep of allInclusiveReps" class="col-sm-3">
       <a [routerLink]="['/vote', _chamber.paramName, rep.seoNameId]">

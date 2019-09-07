@@ -20,6 +20,9 @@ export class RepDirComponent implements OnInit, OnDestroy {
   private dataSubscription;
   private paramSubscription;
 
+  // Senators or House Members
+  public headingText = "";
+
   _repDataLoading = false;
 
   constructor(private _route: ActivatedRoute,
@@ -35,6 +38,13 @@ export class RepDirComponent implements OnInit, OnDestroy {
         // house or  senate
         const normalized = String(params['chamber']).toLowerCase().trim();
         this._chamber = SupportedChambers[normalized];
+
+        // memberNamePlural for house is CongressPersons. We prefer House Members
+        if (normalized === 'house') {
+          this.headingText = "House Members";
+        } else if (normalized === "senate") {
+          this.headingText = "Senators";
+        }
 
         console.log(this._chamber);
 
