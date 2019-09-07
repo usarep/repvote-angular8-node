@@ -1,5 +1,6 @@
 import { Legislator } from "./legislator.model";
 import { CdkStepLabel } from "@angular/cdk/stepper";
+import { RepUtil } from '../repUtil/rep-util';
 
 export class Rep {
   label: string;
@@ -22,6 +23,11 @@ export class Rep {
   partyFull?: string;
 
   photoAvailable?: boolean;
+
+  // format: 1-A1234@first-middle-last
+  seoNameId?: string;
+
+  seoName?: string;
 
 }
 
@@ -57,4 +63,6 @@ export class PresidentialCandidate {
     this.chamberId = o.chamberId;
     this.bioguide = o.bioguide;
   }
+
+
 }

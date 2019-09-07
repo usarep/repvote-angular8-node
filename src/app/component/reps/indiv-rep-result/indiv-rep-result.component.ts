@@ -19,6 +19,7 @@ export class IndivRepResultComponent implements OnInit, OnChanges, OnDestroy {
   subscription;
   _chamber: Chamber;
   _repId: string;
+  _seoRepId: string; // this is _repId + @ + seoName
   _repName: string;
   _loading = false;
 
@@ -47,7 +48,15 @@ export class IndivRepResultComponent implements OnInit, OnChanges, OnDestroy {
        this._chamber = SupportedChambers[chamberStr];
 
        // repId - case sensitive for repName
-       this._repId = String(params['rep']).trim();
+       // repId + @ + seoName
+       this._seoRepId = String(params['rep']).trim();
+
+       const atIndex = this._seoRepId.indexOf('@');
+       if (atIndex > 0) {
+         this._repId = this._seoRepId.substring(0, atIndex);
+       } else {
+         this._repId = this._seoRepId;
+       }
 
        let bioGuide = false;
        // kludge: if repId doesn't have a 1- or 2-, it's a bioGuide

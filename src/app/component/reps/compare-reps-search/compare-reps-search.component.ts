@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { SubscriptionUtil } from 'src/app/shared/subscription-util';
 import { DataUtil } from 'src/app/util/data-util';
 import { UrlService } from 'src/app/repService/url.service';
+import { RepUtil } from 'src/app/repUtil/rep-util';
 
 @Component({
   selector: 'app-compare-reps-search',
@@ -285,8 +286,14 @@ export class CompareRepsSearchComponent implements OnInit, OnChanges , OnDestroy
 
   public compareReps() {
     console.log("compareReps() called");
-    const csvNameIds = this._selectedReps[0].value + "," + this._selectedReps[1].value;
-    this._router.navigate(['/compare', this._chamber.paramName, csvNameIds]);
+    // const csvNameIds = this._selectedReps[0].value + "," + this._selectedReps[1].value;
+
+
+    const csvSeoNameIds =
+      RepUtil.computeSeoNameId(this._selectedReps[0]) +
+      "," + RepUtil.computeSeoNameId(this._selectedReps[1]);
+
+    this._router.navigate(['/compare', this._chamber.paramName, csvSeoNameIds]);
 
   }
 

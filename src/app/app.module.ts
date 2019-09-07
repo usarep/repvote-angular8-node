@@ -96,6 +96,9 @@ import { WrappedShareButtonComponent } from './shared/wrapped-share-button/wrapp
 // newer version of ngx-share
 import { ShareButtonsConfig } from '@ngx-share/core';
 import { ShareButtonsModule } from '@ngx-share/buttons';
+import { RepDirComponent } from './component/seo/rep-dir/rep-dir.component';
+import { RepDirectoriesComponent } from './component/seo/rep-directories/rep-directories.component';
+import { FooterComponent } from './component/footer/footer.component';
 
 // undo comments
 const customOptions: ShareButtonsConfig = {
@@ -191,6 +194,15 @@ const customOptions: ShareButtonsConfig = {
 
     // undo comment
     WrappedShareButtonComponent,
+
+
+    RepDirComponent,
+
+
+    RepDirectoriesComponent,
+
+
+    FooterComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

@@ -1,0 +1,11 @@
+<div class="container-fluid">
+
+  <div class="row">
+    <div *ngFor="let rep of allInclusiveReps" class="col-sm-3">
+      <a [routerLink]="['/vote', _chamber.paramName, rep.seoNameId]">
+        {{ rep.seoName }}
+      </a>
+    </div> <!-- col-->
+   </div> <!-- row -->
+
+</div> <!-- container-fluid  -->

@@ -5,6 +5,7 @@ import { RepNamesService } from 'src/app/repService/rep-names.service';
 import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { DataUtil } from 'src/app/util/data-util';
+import { RepUtil } from 'src/app/repUtil/rep-util';
 
 @Component({
   selector: 'app-indiv-rep-search',
@@ -216,7 +217,14 @@ export class IndivRepSearchComponent implements OnInit, OnChanges, OnDestroy, Af
   public indivReps() {
 
     console.log("indivReps() called");
-    this._router.navigate(['/vote', this._chamber.paramName, this._selectedItems[0].value]);
+    console.log(this._selectedItems[0]);
+
+    // this._selectedItems[0].value + "@" + RepUtil.computeSeoName(this._selectedItems[0]);
+    const seoRepNameId = this._selectedItems[0].seoRepNameId;
+
+    console.log("seoRepNameId", seoRepNameId);
+    // this._router.navigate(['/vote', this._chamber.paramName, this._selectedItems[0].value]);
+    this._router.navigate(['/vote', this._chamber.paramName, seoRepNameId]);
 
   }
 

@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { SubscriptionUtil } from 'src/app/shared/subscription-util';
 import { Title } from '@angular/platform-browser';
 import { Constants } from 'src/app/constants/constants';
+import { RepUtil } from 'src/app/repUtil/rep-util';
 
 @Component({
   selector: 'app-compare-reps-result',
@@ -22,6 +23,7 @@ export class CompareRepsResultComponent implements OnInit, OnChanges, OnDestroy 
   subscriptionParam;
   _chamber: Chamber;
   _csvRepIds: string;
+  _csvSeoRepIds: string; // each is for the format repId + @ + seoName
   _loading = false;
 
 
@@ -43,8 +45,11 @@ export class CompareRepsResultComponent implements OnInit, OnChanges, OnDestroy 
        const chamberStr = String(params['chamber']).toLowerCase().trim();
        this._chamber = SupportedChambers[chamberStr];
 
+       // _csvSeoRepIds
+       this._csvSeoRepIds = String(params['reps']).trim();
        // repId - case sensitive for repName
-       this._csvRepIds = String(params['reps']).trim();
+       // this._csvRepIds = String(params['reps']).trim();
+       this._csvRepIds = RepUtil.removeSeoNames(this._csvSeoRepIds);
 
        console.log(this._chamber, this._csvRepIds);
        this.subscriptionDiffData = this._diffDataService.getDiffDataStatusListener()

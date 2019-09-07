@@ -14,6 +14,8 @@ import { LandingPageComponent } from './component/landing-page/landing-page.comp
 import { PresidentialPrimaryLandingPageComponent } from './component/presidential-primary-landing-page/presidential-primary-landing-page.component';
 import { PresidentialPrimariesV2Component } from './component/presidential-primaries/presidential-primaries-v2/presidential-primaries-v2.component';
 import { PresidentialPrimariesSuccinctComponent } from './component/presidential-primaries/presidential-primaries-succinct/presidential-primaries-succinct.component';
+import { RepDirectoriesComponent } from './component/seo/rep-directories/rep-directories.component';
+import { RepDirComponent } from './component/seo/rep-dir/rep-dir.component';
 
 
 const routes: Routes = [
@@ -33,6 +35,12 @@ const routes: Routes = [
 
   { path: 'presidentialPrimaries', component: PresidentialPrimariesV2Component }, // PresidentialPrimaryLandingPageComponent
   { path: 'presidential-primaries-succinct', component: PresidentialPrimariesSuccinctComponent  }, // PresidentialPrimaryLandingPageComponent
+
+  // seo
+  { path: 'dir/:chamber', component: RepDirComponent },
+
+  // TODO dir of comparisons
+  { path: 'dir-compare/:chamber', component: RepDirComponent },
 
   { path: 'notfound', component: NotFoundComponent },
   { path: '**', redirectTo: 'notfound' },

@@ -4,6 +4,7 @@ import { Chamber } from '../repModel/chamber.model';
 import { Observable, Subject } from 'rxjs';
 import { Rep } from '../repModel/rep.model';
 import { HttpClient } from '@angular/common/http';
+import { RepUtil } from '../repUtil/rep-util';
 
 
 @Injectable({
@@ -62,11 +63,18 @@ export class RepNamesService {
             res => {
               console.log("getReps()", res);
               // cache it
-              this._cachedRepNamesSearchData[chamber.id] = <Rep[]>res;
+              this._cachedRepNamesSearchData[chamber.id] = res as Rep[];
 
               // add mappings (bioGuide, Rep) and (lis, Rep)
               // lis will be there only for senators
               this.add2RepMaps(<Rep[]>res);
+
+              // add seo nameId
+              const reps: Rep[] = res as Rep[];
+              reps.forEach(rep => {
+                RepUtil.initSeo(rep);
+              });
+
               this.repStatusListener.next({ chamber: chamber, reps: <Rep[]>res });
               return;
             });
