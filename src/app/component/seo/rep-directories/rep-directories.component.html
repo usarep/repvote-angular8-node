@@ -14,16 +14,35 @@
         <li class="directory-list-item">
           <a class="directory-link"
             [routerLink]="['/dir', 'house']">
-              List of House Members
+              House Members
           </a>
         </li>
         <li class="directory-list-item">
             <a class="directory-link"
               [routerLink]="['/dir', 'senate']">
-                List of Senators
+                Senators
             </a>
           </li>
       </ul>  <!-- directory-list -->
+
+      <ul class="directory-list">
+
+          <li class="directory-list-item-heading">Comparisons </li>
+
+          <!-- dir/:chamber -->
+          <li class="directory-list-item">
+            <a class="directory-link"
+              [routerLink]="['/dir-compare', 'house']">
+                House Members
+            </a>
+          </li>
+          <li class="directory-list-item">
+              <a class="directory-link"
+                [routerLink]="['/dir-compare', 'senate']">
+                  Senators
+              </a>
+            </li>
+        </ul>  <!-- directory-list -->
 
   </div> <!-- directory-lists -->
 

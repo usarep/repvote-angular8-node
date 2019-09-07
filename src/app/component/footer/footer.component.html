@@ -1,4 +1,4 @@
-<div class="container-fluid li-footer">
+<div *ngIf="aboutAvailable" class="container-fluid li-footer">
     <div class="row">
         <div class="col-sm-3">
             © usarep.org 2019
@@ -24,7 +24,12 @@
 
   </div> <!-- container-fluid  -->
 
-
+  <!-- temp, about not available -->
+  <div *ngIf="!aboutAvailable" class="container-fluid li-footer">
+    <p class="text-center">
+      © usarep.org 2019
+    </p>
+  </div>
 <!--
 
 

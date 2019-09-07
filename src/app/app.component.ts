@@ -186,6 +186,11 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     this.breadcrumbService.addCallbackForRoute('/presidentialPrimaries', this.getPresidentialPrimaries);
 
+    this.breadcrumbService.hideRoute('/dir-compare');
+    this.breadcrumbService.hideRoute('/dir');
+
+    this.breadcrumbService.hideRouteRegex('/dir-compare/[a-zA-Z0-9_\-]');
+    this.breadcrumbService.hideRouteRegex('/dir/[a-zA-Z0-9_\-]');
 
 
   }

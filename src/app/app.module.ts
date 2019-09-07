@@ -99,6 +99,7 @@ import { ShareButtonsModule } from '@ngx-share/buttons';
 import { RepDirComponent } from './component/seo/rep-dir/rep-dir.component';
 import { RepDirectoriesComponent } from './component/seo/rep-directories/rep-directories.component';
 import { FooterComponent } from './component/footer/footer.component';
+import { CompareDirComponent } from './component/seo/compare-dir/compare-dir.component';
 
 // undo comments
 const customOptions: ShareButtonsConfig = {
@@ -203,6 +204,9 @@ const customOptions: ShareButtonsConfig = {
 
 
     FooterComponent,
+
+
+    CompareDirComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
