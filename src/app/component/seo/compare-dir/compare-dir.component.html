@@ -5,13 +5,13 @@
   <h4 *ngIf="headingText"> Compare Voting Records of {{ headingText }} </h4>
   <div class="row">
     <div *ngFor="let rep1 of currentReps; let i=index;" class="col-md-12">
-      <div *ngFor="let rep2 of currentReps; let k=index;" >
+      <ng-container *ngFor="let rep2 of currentReps; let k=index;" >
         <a  *ngIf="i < k"
           class="col-sm-3"
           [routerLink]="['/compare', _chamber.paramName, csv(rep1.seoNameId, rep2.seoNameId)]" >
           {{ rep1.seoName }} vs {{ rep2.seoName }}
         </a>
-    </div> <!-- col-->
+    </ng-container> <!-- col-->
    </div> <!-- row -->
 
 </div> <!-- container-fluid  -->
