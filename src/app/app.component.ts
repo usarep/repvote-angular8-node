@@ -191,8 +191,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.breadcrumbService.hideRouteRegex('^/vote/senate/[a-zA-Z0-9_\\-@]');
     this.breadcrumbService.hideRouteRegex('^/vote/house/[a-zA-Z0-9_\\-@]');
 
-    this.breadcrumbService.hideRouteRegex('^/search/senate/[a-zA-Z0-9_\\-@]');
-    this.breadcrumbService.hideRouteRegex('^/search/house/[a-zA-Z0-9_\\-@]');
+    this.breadcrumbService.hideRouteRegex('^/search/[a-zA-Z0-9_\\-@]');
 
     this.breadcrumbService.hideRoute('/compare');
     this.breadcrumbService.hideRoute('/vote');
