@@ -25,6 +25,7 @@ export class IndivRepSearchResultComponent implements OnInit, OnDestroy {
   subscriptionParam;
   _chamber: Chamber;
   _repId: string;
+  _seoRepId: string; // this is _repId + @ + seoName
   _repName: string;
   _searchStr: string;
 
@@ -65,7 +66,17 @@ export class IndivRepSearchResultComponent implements OnInit, OnDestroy {
         }
 
         // repId - case sensitive on server when looking up repName
-        this._repId = String(params['rep']).trim();
+       // was this._repId = String(params['rep']).trim();
+
+        // repId + @ + seoName
+       this._seoRepId = String(params['rep']).trim();
+
+       const atIndex = this._seoRepId.indexOf('@');
+       if (atIndex > 0) {
+         this._repId = this._seoRepId.substring(0, atIndex);
+       } else {
+         this._repId = this._seoRepId;
+       }
 
         this._searchStr = String(params['searchStr']).trim();
 

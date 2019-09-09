@@ -31,7 +31,7 @@
     <!-- return all votes for rep   -->
     <div *ngIf="breakdownAvailable" class="row vert-space-below">
       <a class="mouse-pointer"
-        [routerLink]="['/search', _chamber.paramName, _repId, '*']"
+        [routerLink]="['/search', _chamber.paramName, _seoRepId || _repId, '*']"
       >Click for latest votes cast by {{ fullName }}. </a>
     </div>
 
@@ -40,6 +40,7 @@
       [data]="_repVoteSummary.policyAreaSummary"
       [_repName]="_repName"
       [_repId]="_repId"
+      [_seoRepId]="_seoRepId"
       [_chamber]="_chamber"
       > </app-policy-area-counts>
 

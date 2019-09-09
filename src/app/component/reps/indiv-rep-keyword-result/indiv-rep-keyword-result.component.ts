@@ -20,6 +20,7 @@ export class IndivRepKeywordResultComponent implements OnInit, OnChanges, OnDest
   subscriptionParam;
   _chamber: Chamber;
   _repId: string;
+  _seoRepId: string; // this is _repId + @ + seoName
   _repName: string;
   _topic: string;
   _topicType: string; // policy-area or legislative-subject
@@ -65,7 +66,18 @@ export class IndivRepKeywordResultComponent implements OnInit, OnChanges, OnDest
        }
 
        // repId - case sensitive on server when looking up repName
-       this._repId = String(params['rep']).trim();
+
+      // repId + @ + seoName
+       this._seoRepId = String(params['rep']).trim();
+
+       const atIndex = this._seoRepId.indexOf('@');
+       if (atIndex > 0) {
+         this._repId = this._seoRepId.substring(0, atIndex);
+       } else {
+         this._repId = this._seoRepId;
+       }
+
+      // was this._repId = String(params['rep']).trim();
 
        this._topic = String(params['topic']).trim();
        this._topicType = String(params['topicType']).trim();

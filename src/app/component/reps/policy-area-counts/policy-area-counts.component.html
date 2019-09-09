@@ -40,38 +40,40 @@
 
       was (click)="detailedVote2(policyAreaCount, 'wasMember')"
       voteType: wasMember, yay, nay present absent
+
+      _seoRepId || _repId : preferred is the first one, but if it's not available, use the second one
               -->
 
             <tr *ngFor="let policyAreaCount of _policyAreaCounts" >
               <td> {{ policyAreaCount.topic }} </td>
               <td>
                 <a *ngIf="policyAreaCount.wasMember > 0"
-                  [routerLink]="['/vote', _chamber.paramName, _repId, 'policy-area', policyAreaCount.topic, 'wasMember']"
+                  [routerLink]="['/vote', _chamber.paramName, _seoRepId || _repId, 'policy-area', policyAreaCount.topic, 'wasMember']"
                   >{{ policyAreaCount.wasMember }}
                 </a>
               </td>
               <td>
                 <a *ngIf="policyAreaCount.yes > 0"
-                  [routerLink]="['/vote', _chamber.paramName, _repId, 'policy-area', policyAreaCount.topic, 'yay']"
+                  [routerLink]="['/vote', _chamber.paramName, _seoRepId || _repId, 'policy-area', policyAreaCount.topic, 'yay']"
                  >{{ policyAreaCount.yes }}
                 </a>
                 <br>{{ percent(policyAreaCount, policyAreaCount.yes) }}
               </td>
               <td>
                 <a *ngIf="policyAreaCount.no > 0"
-                  [routerLink]="['/vote', _chamber.paramName, _repId, 'policy-area', policyAreaCount.topic, 'nay']"
+                  [routerLink]="['/vote', _chamber.paramName,_seoRepId ||  _repId, 'policy-area', policyAreaCount.topic, 'nay']"
                   >{{ policyAreaCount.no }}
                 </a>
               </td>
               <td>
                 <a *ngIf="policyAreaCount.present > 0"
-                  [routerLink]="['/vote', _chamber.paramName, _repId, 'policy-area', policyAreaCount.topic, 'present']"
+                  [routerLink]="['/vote', _chamber.paramName, _seoRepId || _repId, 'policy-area', policyAreaCount.topic, 'present']"
                  >{{ policyAreaCount.present }}
                 </a>
               </td>
               <td>
                 <a *ngIf="policyAreaCount.absent > 0"
-                  [routerLink]="['/vote', _chamber.paramName, _repId, 'policy-area', policyAreaCount.topic, 'absent']"
+                  [routerLink]="['/vote', _chamber.paramName, _seoRepId || _repId, 'policy-area', policyAreaCount.topic, 'absent']"
                   >{{ policyAreaCount.absent }}
                 </a>
                 <br>{{ percent(policyAreaCount, policyAreaCount.absent) }}

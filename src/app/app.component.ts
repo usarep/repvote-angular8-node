@@ -165,21 +165,31 @@ export class AppComponent implements OnInit, AfterViewInit {
   initBreadCrumbLabels() {
 
 
-    this.breadcrumbService.addCallbackForRouteRegex('/vote/house/[a-zA-Z0-9_\-]', this.getVoteHouseLeaf);
-    this.breadcrumbService.addCallbackForRouteRegex('/vote/senate/[a-zA-Z0-9_\-]', this.getVoteSenateLeaf);
 
-    this.breadcrumbService.addCallbackForRouteRegex('/compare/house/[a-zA-Z0-9_\-]', this.getCompareHouseLeaf);
-    this.breadcrumbService.addCallbackForRouteRegex('/compare/senate/[a-zA-Z0-9_\-]', this.getCompareSenateLeaf);
+
+
+    this.breadcrumbService.addCallbackForRouteRegex('/compare/house/[a-zA-Z0-9_\\-@]', this.getCompareHouseLeaf);
+    this.breadcrumbService.addCallbackForRouteRegex('/compare/senate/[a-zA-Z0-9_\\-@]', this.getCompareSenateLeaf);
 
     this.breadcrumbService.hideRouteRegex('/billSummary');
-    this.breadcrumbService.hideRouteRegex('/billSummary/[a-zA-Z0-9_\-]');
+    this.breadcrumbService.hideRouteRegex('/billSummary/[a-zA-Z0-9_\\-]');
 
     // amendmentSummary/110/SAmdt/5280
     this.breadcrumbService.hideRouteRegex('/amendmentSummary');
-    this.breadcrumbService.hideRouteRegex('/amendmentSummary/[a-zA-Z0-9_\-]');
+    this.breadcrumbService.hideRouteRegex('/amendmentSummary/[a-zA-Z0-9_\\-]');
 
 
-    this.breadcrumbService.hideRouteRegex('/vote/senate/[a-zA-Z0-9_\-]/policy-area');
+    // this needs to be debugged.
+    // this.breadcrumbService.hideRouteRegex('^/vote/senate/[a-zA-Z0-9_\\-@]/[a-zA-Z0-9_\\-]$');
+    // this.breadcrumbService.hideRouteRegex('^/vote/senate/[a-zA-Z0-9_\\-@]/[a-zA-Z0-9_\\-]/[a-zA-Z0-9_\\-]$');
+    // this.breadcrumbService.hideRouteRegex('^/vote/senate/[a-zA-Z0-9_\\-@]/[a-zA-Z0-9_\\-]/[a-zA-Z0-9_\\-]+/[a-zA-Z0-9_\\-]$');
+
+    // this.breadcrumbService.addCallbackForRouteRegex('/vote/house/[a-zA-Z0-9_\\-@]', this.getVoteHouseLeaf);
+    // this.breadcrumbService.addCallbackForRouteRegex('/vote/senate/[a-zA-Z0-9_\\-@]', this.getVoteSenateLeaf);
+
+    // for now, hide everything
+    this.breadcrumbService.hideRouteRegex('^/vote/senate/[a-zA-Z0-9_\\-@]');
+    this.breadcrumbService.hideRouteRegex('^/vote/house/[a-zA-Z0-9_\\-@]');
 
     this.breadcrumbService.hideRoute('/compare');
     this.breadcrumbService.hideRoute('/vote');
@@ -196,11 +206,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   getVoteHouseLeaf(id: string): string {
+    console.log("getVoteHouseLeaf id=", id);
     return 'member';
   }
 
   getVoteSenateLeaf(id: string): string {
-    return 'senator';
+    console.log("getVoteSenateLeaf id=", id);
+    return id; // was 'senator';
   }
 
   getCompareHouseLeaf(id: string): string {
@@ -208,6 +220,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   getCompareSenateLeaf(id: string): string {
+    console.log("getCompareSenateLeaf id=", id);
     return 'senators';
   }
 

@@ -14,6 +14,7 @@ export class PolicyAreaCountsComponent implements OnInit {
 
   @Input() _chamber: Chamber;
   @Input() _repId: string;
+  @Input() _seoRepId: string;
   @Input() _repName: string;
 
   showDetailed = true;
@@ -55,6 +56,7 @@ export class PolicyAreaCountsComponent implements OnInit {
 
   // /repkeydet.htm?chamber_id=1&rep_name_id=foo&index_term=education
 
+  // this is still active. not generating routerlinks for these
   detailedVote(policyAreaCount: KeywordCount) {
 
       console.log("detailedVote() called for policy area");
@@ -67,6 +69,7 @@ export class PolicyAreaCountsComponent implements OnInit {
 
   // voteType: yes, no, present, absent, wasMember
 
+  // deprecated. now using routerLink
   detailedVote2(policyAreaCount, voteType) {
     console.log("detailedVote2() called for policy area");
 
