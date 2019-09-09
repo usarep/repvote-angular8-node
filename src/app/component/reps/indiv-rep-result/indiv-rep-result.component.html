@@ -18,9 +18,21 @@
       <app-search-bill-for-rep [_repId]="_repId" [_chamber]="_chamber" ></app-search-bill-for-rep>
     </div>
 
+    <!--
+      ['/search',
+      this._chamber.paramName,
+      this._repId,
+      "*" // searchStr
+    ]
+
+    was (click)="allBillsForRep()"
+
+    -->
     <!-- return all votes for rep   -->
     <div *ngIf="breakdownAvailable" class="row vert-space-below">
-      <a class="mouse-pointer" (click)="allBillsForRep()">Click for latest votes cast by {{ fullName }}. </a>
+      <a class="mouse-pointer"
+        [routerLink]="['/search', _chamber.paramName, _repId, '*']"
+      >Click for latest votes cast by {{ fullName }}. </a>
     </div>
 
     <app-policy-area-counts

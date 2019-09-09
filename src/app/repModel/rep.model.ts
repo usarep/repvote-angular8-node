@@ -48,13 +48,15 @@ export class PresidentialCandidate {
   value: string;  // 2-lis or 1-bioguide
   chamberId: number;
   bioguide: string; // for photo
+  at?: string; // e.g., @elizabeth-warren
 
   constructor(o: {
     name: string,
     lastName: string,
     value: string,
     chamberId: number,
-    bioguide: string
+    bioguide: string,
+    at?: string
   })
   {
     this.name = o.name;
@@ -62,6 +64,7 @@ export class PresidentialCandidate {
     this.value = o.value;
     this.chamberId = o.chamberId;
     this.bioguide = o.bioguide;
+    this.at = o.at;
   }
 
 

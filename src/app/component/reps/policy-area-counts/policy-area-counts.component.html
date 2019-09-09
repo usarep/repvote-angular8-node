@@ -30,32 +30,49 @@
 
             <tbody>
 
+              <!--
+                ['/vote',
+      this._chamber.paramName,
+      this._repId,
+      'policy-area',
+      policyAreaCount.topic,
+      voteType]
+
+      was (click)="detailedVote2(policyAreaCount, 'wasMember')"
+      voteType: wasMember, yay, nay present absent
+              -->
+
             <tr *ngFor="let policyAreaCount of _policyAreaCounts" >
               <td> {{ policyAreaCount.topic }} </td>
               <td>
                 <a *ngIf="policyAreaCount.wasMember > 0"
-                  (click)="detailedVote2(policyAreaCount, 'wasMember')" >{{ policyAreaCount.wasMember }}
+                  [routerLink]="['/vote', _chamber.paramName, _repId, 'policy-area', policyAreaCount.topic, 'wasMember']"
+                  >{{ policyAreaCount.wasMember }}
                 </a>
               </td>
               <td>
                 <a *ngIf="policyAreaCount.yes > 0"
-                  (click)="detailedVote2(policyAreaCount, 'yay')" >{{ policyAreaCount.yes }}
+                  [routerLink]="['/vote', _chamber.paramName, _repId, 'policy-area', policyAreaCount.topic, 'yay']"
+                 >{{ policyAreaCount.yes }}
                 </a>
                 <br>{{ percent(policyAreaCount, policyAreaCount.yes) }}
               </td>
               <td>
                 <a *ngIf="policyAreaCount.no > 0"
-                  (click)="detailedVote2(policyAreaCount, 'nay')" >{{ policyAreaCount.no }}
+                  [routerLink]="['/vote', _chamber.paramName, _repId, 'policy-area', policyAreaCount.topic, 'nay']"
+                  >{{ policyAreaCount.no }}
                 </a>
               </td>
               <td>
                 <a *ngIf="policyAreaCount.present > 0"
-                  (click)="detailedVote2(policyAreaCount, 'present')" >{{ policyAreaCount.present }}
+                  [routerLink]="['/vote', _chamber.paramName, _repId, 'policy-area', policyAreaCount.topic, 'present']"
+                 >{{ policyAreaCount.present }}
                 </a>
               </td>
               <td>
                 <a *ngIf="policyAreaCount.absent > 0"
-                  (click)="detailedVote2(policyAreaCount, 'absent')" >{{ policyAreaCount.absent }}
+                  [routerLink]="['/vote', _chamber.paramName, _repId, 'policy-area', policyAreaCount.topic, 'absent']"
+                  >{{ policyAreaCount.absent }}
                 </a>
                 <br>{{ percent(policyAreaCount, policyAreaCount.absent) }}
               </td>

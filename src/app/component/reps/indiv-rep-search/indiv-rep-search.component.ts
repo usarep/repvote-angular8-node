@@ -220,11 +220,11 @@ export class IndivRepSearchComponent implements OnInit, OnChanges, OnDestroy, Af
     console.log(this._selectedItems[0]);
 
     // this._selectedItems[0].value + "@" + RepUtil.computeSeoName(this._selectedItems[0]);
-    const seoRepNameId = this._selectedItems[0].seoRepNameId;
+    const seoNameId = this._selectedItems[0].seoNameId;
 
-    console.log("seoRepNameId", seoRepNameId);
+    console.log("seoRepNameId", seoNameId);
     // this._router.navigate(['/vote', this._chamber.paramName, this._selectedItems[0].value]);
-    this._router.navigate(['/vote', this._chamber.paramName, seoRepNameId]);
+    this._router.navigate(['/vote', this._chamber.paramName, seoNameId]);
 
   }
 
