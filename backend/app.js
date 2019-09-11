@@ -60,6 +60,8 @@ app.use("/", express.static(path.join(__dirname, "/angular")));
 app.use("/iframeTest", express.static(path.join(__dirname, "/iframeTest")));
 app.use("/t1", express.static(path.join(__dirname, "/test/t1")));
 
+app.use("/sitemap", express.static(path.join(__dirname, "/sitemaps")));
+
 app.use("/share", express.static(path.join(__dirname, "/embed/shareV1")));
 
 // for testing ssr build (similar to a prod build) in local dev environment
