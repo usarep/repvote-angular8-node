@@ -75,7 +75,7 @@ export class BillSummaryService {
     const key = "" + congress + "_" + docType.toLowerCase().trim() + "_" + docNumber;
     if (this._cachedBillSummaryData[key]) {
       // found in cache
-      this.billSummaryStatus.next({ congress: congress, docType: docType, docNumber: docNumber, billData: this._cachedAmdtSummaryData[key] });
+      this.billSummaryStatus.next({ congress: congress, docType: docType, docNumber: docNumber, billData: this._cachedBillSummaryData[key] });
       return;
     }
     else

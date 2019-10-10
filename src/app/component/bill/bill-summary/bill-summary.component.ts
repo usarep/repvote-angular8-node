@@ -41,50 +41,57 @@ export class BillSummaryComponent implements OnInit, OnDestroy {
   subscriptionBillSummary: Subscription;
 
   ngOnInit() {
-      this._loading = true;
+    this._loading = true;
+    this.subscriptionBillSummary = null;
 
-      this.subscriptionParam = this._route.params.subscribe(
+    this.subscriptionParam = this._route.params.subscribe(
           params => {
             this._loading = true;
             this._congress = +params['congress'];
             this._docType = params['docType'];
             this._docNumber = +params['docNumber'];
 
-            this.subscriptionBillSummary = this._billSummaryService.getBillSummaryStatusListener()
-                  .subscribe(res => {
-                    console.log("billSummaryService(): our info: " + this._congress + ", " + this._docType + " " + this._docNumber);
+        // subscribe only once
+            if (!this.subscriptionBillSummary) {
+              this.subscriptionBillSummary = this._billSummaryService.getBillSummaryStatusListener()
+              .subscribe(res => {
+                console.log("billSummaryService(): our info: " + this._congress + ", " + this._docType + " " + this._docNumber);
 
-                    // verify that the data is for this particular set of params
-                    if (this._congress === res.congress && this._docType === res.docType && this._docNumber === res.docNumber) {
-                      this.billInfo = res.billData;
-                      console.log(this.billInfo);
-                      this.cleanStuff();
-                      this.computeExtUrl();
+                // verify that the data is for this particular set of params
+                if (this._congress === res.congress && this._docType === res.docType && this._docNumber === res.docNumber) {
+                  this.billInfo = res.billData;
+                  console.log(this.billInfo);
+                  this.cleanStuff();
+                  this.computeExtUrl();
 
-                      // {{ billName }} {{ _docNumber }} ,  {{ congressStr }}
-                      this._titleService.setTitle(
-                            "Bill summary for " +
-                            this.billName + " " +
-                            this._docNumber + " " +
-                            this.congressStr);
+                  // {{ billName }} {{ _docNumber }} ,  {{ congressStr }}
+                  this._titleService.setTitle(
+                    "Bill summary for " +
+                    this.billName + " " +
+                    this._docNumber + " " +
+                    this.congressStr);
 
-                    }
-                    else {
-                      console.log("stale bill data, skipping. res=", res);
-                    }
-                    this._loading = false;
+                }
+                else {
+                  console.log("stale bill data, skipping. res=", res);
+                }
+                this._loading = false;
 
 
               });
+          }
 
-              this._billSummaryService.fetchBillSummary(this._congress, this._docType, this._docNumber);
-          });
+          this._billSummaryService.fetchBillSummary(this._congress, this._docType, this._docNumber);
+
+        });
 
   }
 
   ngOnDestroy() {
     SubscriptionUtil.unsubscribe(this.subscriptionBillSummary);
     SubscriptionUtil.unsubscribe(this.subscriptionParam);
+
+    this.subscriptionBillSummary = null;
   }
 
   // kludge. some stuff in scraped html need to be cleaned.
