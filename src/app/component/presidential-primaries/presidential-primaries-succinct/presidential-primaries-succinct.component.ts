@@ -34,11 +34,9 @@ export class PresidentialPrimariesSuccinctComponent extends PresidentialPrimarie
 
 
       // this should be an iFrame
-      // seth moulton and eric swallwell have dropped out
+      // seth moulton and eric swallwell, beto o'rourke and ryan(OH) have dropped out
       this.houseMembers = [this.delaney,
-      this.gabbard,
-      this.orourke,
-      this.ryanOH];
+      this.gabbard];
 
       // gillibrand, dropped out Aug 28, 2019
       this.senators = [this.bennet,
