@@ -39,9 +39,9 @@ export class PresidentialPrimariesSuccinctComponent extends PresidentialPrimarie
       this.gabbard];
 
       // gillibrand, dropped out Aug 28, 2019
+      // harris, dropped out Dec 3, 2019
       this.senators = [this.bennet,
       this.booker,
-      this.harris,
       this.klobuchar,
       this.sanders,
       this.warren];
