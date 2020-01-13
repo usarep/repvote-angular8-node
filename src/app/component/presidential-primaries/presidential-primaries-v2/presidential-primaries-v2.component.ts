@@ -100,11 +100,12 @@ export class PresidentialPrimariesV2Component implements OnInit {
 
   // this.gillibrand, dropped out Aug 28, 2019
   // harris, Dec 3, 2019
-  senators = [this.warren,
-    this.booker,
+  // booker, Jan 13, 2020
+  senators = [
+    this.bennet,
     this.klobuchar,
     this.sanders,
-    this.bennet
+    this.warren,
   ];
 
 
