@@ -33,20 +33,28 @@
       </div>
     </div>
 
+    <h5> Others</h5>
+
     <div>
 
-      <h5> Compare  House Members</h5>
 
+      From the House of Representatives, only Tulsi Gabbard is left in the race. Here is her
+      <a [routerLink]="['/vote', 'house', '1-G000571@tulsi-gabbard']" >Voting Record.</a>
+
+
+
+      <!--
+
+        was
       <app-presidential-primary-table
         [reps]="houseMembers"
-        [chamberName]="'house'">
+        [chamberName]="'house'"
+        [newPage]="true">
       </app-presidential-primary-table>
+      -->
 
-    </div>
-
-    <div>
-      Pete Buttigieg, former Mayor of South Bend, Indiana, is not a member of Congress,
-      so apples-to-apples comparison of voting records do not apply for him.
+      Pete Buttigieg, Andrew Yang, Tom Stayer, and Mike Bloomberg are not members of Congress.
+      We have no voting records for them.
     </div>
 
     <!--
@@ -60,12 +68,13 @@
       </ul>
     </div>
      -->
-    <div>
+    <div class="vspace">
       Candidates who have dropped out of the race:
       <ul class="list-group">
           <li class="list-group-item">Bill De Blasio, Mayor of New York City</li>
           <li class="list-group-item">Cory Booker, Senator</li>
           <li class="list-group-item">Julian Castro, Former Secretary of Housing and Urban Development.</li>
+          <li class="list-group-item">John Delaney, Former Congressman  </li>
           <li class="list-group-item"> Kirsten Gillibrand, Senator  </li>
           <li class="list-group-item"> Kamala Harris, Senator  </li>
           <li class="list-group-item">John Hickenlooper, Former Governor of Colorado.</li>

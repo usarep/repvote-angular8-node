@@ -2,6 +2,10 @@
   margin-left: 10px;
   padding-left: 5px;
 }
+.vspace {
+  margin-top: 15px;
+  padding-top: 10px;
+}
 .bold {
   font-weight: bold;
 }
